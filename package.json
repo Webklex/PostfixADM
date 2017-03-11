@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglifyjs": "^0.6.2",
+    "laravel-elixir": "^5.0.0"
+  },
+  "dependencies": {
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-rename": "^1.2.2",
+    "pump": "^1.0.2"
+  }
+}
