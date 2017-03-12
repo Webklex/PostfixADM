@@ -23,6 +23,7 @@ var js_vendors = [
 var angular_components = [
     'domain',
     'mailbox',
+    'alias',
 ];
 
 /**

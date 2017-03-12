@@ -23,7 +23,7 @@ class PostAliasCreateRequest extends Request {
         return [
             'domain_id'     => 'required|integer',
             'source'        => 'required|email',
-            'destination'   => 'required|string',
+            'destination'   => 'required',
         ];
     }
 }

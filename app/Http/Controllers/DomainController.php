@@ -67,7 +67,7 @@ class DomainController extends Controller {
         $mDomain->active = $request->get('active') == true ? 1 : 0;
         $mDomain->save();
 
-        return $this->getUpdate($mDomain->id);
+        return redirect()->to('/domain');
     }
 
     public function getDelete($id) {

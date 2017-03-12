@@ -26,38 +26,43 @@ class AliasController extends Controller {
     public function index() {
         $aAlias = Alias::whereHas('domain', function($q){
             $q->whereIn('id', Domain::available()->pluck('id'));
-        });
-        return view('domain.index', [
-            $aAlias
+        })->paginate(10);
+        return view('alias.index', [
+            'aAlias' => $aAlias
         ]);
     }
 
     public function getCreate() {
         $aDomain = Domain::available();
 
-        return view('domain.create', [
+        return view('alias.create', [
             'aDomain' => $aDomain
         ]);
     }
 
     public function postCreate(PostAliasCreateRequest $request) {
         /** @var Alias $mAlias */
-        $mAlias = Alias::create($request->all());
         $mDomain = Domain::getAvailable($request->get('domain_id'));
         if($mDomain == null) abort(404);
 
-        $mAlias->domain()->associate($mDomain);
+        $mAlias = Alias::create([
+            'domain_id'     => $request->get('domain_id'),
+            'source'        => $request->get('source'),
+            'destination'   => implode(',', $request->get('destination'))
+        ]);
         $mAlias->save();
 
-        return $this->getUpdate($mAlias->id);
+        return redirect()->to('/alias');
     }
 
     public function getUpdate($id) {
         /** @var Alias $mAlias */
-        $mAlias = Alias::findOrFail($id);
+        $mAlias  = Alias::findOrFail($id);
+        $aDomain = Domain::available();
 
-        return view('domain.update', [
-            'mAlias' => $mAlias
+        return view('alias.update', [
+            'mAlias' => $mAlias,
+            'aDomain' => $aDomain
         ]);
     }
 
@@ -76,6 +81,6 @@ class AliasController extends Controller {
 
         $mAlias->delete();
 
-        return redirect()->to('/domain');
+        return redirect()->to('/alias');
     }
 }

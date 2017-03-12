@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alias extends Model {
 
-    protected $table = '';
+    protected $table = 'virtual_aliases';
 
     /**
      * The attributes that are mass assignable.
@@ -14,7 +14,7 @@ class Alias extends Model {
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'super_user'
+        'domain_id', 'source', 'destination'
     ];
 
 

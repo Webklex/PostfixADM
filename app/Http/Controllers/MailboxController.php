@@ -58,7 +58,7 @@ class MailboxController extends Controller {
         $mMailbox->domain()->associate($mDomain);
         $mMailbox->save();
 
-        return $this->getUpdate($mMailbox->id);
+        return redirect()->to('/mailbox');
     }
 
     public function getUpdate($id) {

@@ -22,6 +22,10 @@ class Domain extends Model {
         return $this->hasMany(Mailbox::class);
     }
 
+    public function aliases(){
+        return $this->hasMany(Alias::class);
+    }
+
     public function users(){
         return $this->belongsToMany(User::class);
     }
