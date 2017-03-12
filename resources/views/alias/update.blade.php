@@ -20,7 +20,7 @@
 
 @section('content')
     <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
-                ng-controller="aliasUpdate as vm" ng-init="vm.parse('{{$mAlias->toJson()}}' , '{{$aDomain->toJson()}}')">
+                ng-controller="aliasUpdate as vm" ng-init="vm.parse('{{base64_encode($mAlias->toJson())}}' , '{{$aDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
             <a href="/alias" title="Zurück">
@@ -43,12 +43,12 @@
                     </md-card-title>
                     <md-card-content layout-wrap layout="row">
 
-                        <md-input-container flex="50">
+                        <md-input-container flex="100">
                             <label>Quelladresse</label>
                             <input id="source" type="text" minlength="5" ng-model="vm.data.source"
                                    maxlength="100" name="source" value="{{ getCurrent($mAlias, 'source') }}" required autofocus autocomplete="off">
                             @if ($errors->has('source'))
-                                <div role="alert"><div>{{ $errors->first('emasourceil') }}</div></div>
+                                <div role="alert"><div>{{ $errors->first('source') }}</div></div>
                             @endif
                             <div ng-messages="authForm.source.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
@@ -58,7 +58,7 @@
                         </md-input-container>
 
 
-                        <md-input-container flex="50">
+                        <md-input-container flex="100">
                             <label>Domain</label>
                             <md-select name="domain_id" ng-model="vm.data.domain_id" required>
                                 <md-option ng-repeat="domain in vm.domains track by $index" ng-value="domain.id">[[domain.name]]</md-option>
@@ -93,5 +93,3 @@
     </md-content>
 
 @endsection
-
-

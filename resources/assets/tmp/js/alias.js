@@ -266,7 +266,7 @@
     }
 })();
 /*
- * File: start.controller.js
+ * File: alias.controller.js
  * Category: AngularJS Controller
  * Author: MSG
  * Created: 18.02.17 22:44
@@ -282,20 +282,32 @@
 (function(){
     'use strict';
 
-    angular.module('app').controller('domainCreate', [domainCreate]);
+    angular.module('app').controller('aliasCreate', [aliasCreate]);
 
-    function domainCreate() {
+    function aliasCreate() {
         var vm = this;
 
-        vm.data = {};
+        vm.data = {
+            domain_id:   null,
+            source:      '',
+            destination: ['']
+        };
 
         vm.parse = function(json){
-            vm.data = JSON.parse(json);
+            vm.domains = JSON.parse(json);
+        };
+
+        vm.addAlias = function(){
+            vm.data.destination.push('');
+        };
+
+        vm.removeAlias = function(key){
+            vm.data.destination.splice(key, 1);
         }
     }
 })();
 /*
- * File: start.controller.js
+ * File: alias.controller.js
  * Category: AngularJS Controller
  * Author: MSG
  * Created: 18.02.17 22:44
@@ -311,15 +323,25 @@
 (function(){
     'use strict';
 
-    angular.module('app').controller('domainUpdate', [domainUpdate]);
+    angular.module('app').controller('aliasUpdate', [aliasUpdate]);
 
-    function domainUpdate() {
+    function aliasUpdate() {
         var vm = this;
 
         vm.data = {};
 
-        vm.parse = function(json){
-            vm.data = JSON.parse(json);
+        vm.parse = function(data, domains){
+            vm.data             = JSON.parse(atob(data));
+            vm.data.destination = vm.data.destination.split(',');
+            vm.domains          = JSON.parse(domains);
+        };
+
+        vm.addAlias = function(){
+            vm.data.destination.push('');
+        };
+
+        vm.removeAlias = function(key){
+            vm.data.destination.splice(key, 1);
         }
     }
 })();

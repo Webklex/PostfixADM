@@ -22,7 +22,7 @@ class PostAliasUpdateRequest extends Request {
     public function rules(){
         return [
             'domain_id'     => 'required|integer',
-            'source'        => 'required|email',
+            'source'        => 'required|string',
             'destination'   => 'required',
         ];
     }

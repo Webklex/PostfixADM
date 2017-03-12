@@ -45,10 +45,12 @@ class AliasController extends Controller {
         $mDomain = Domain::getAvailable($request->get('domain_id'));
         if($mDomain == null) abort(404);
 
+        $destination = implode(',', $request->get('destination'));
+
         $mAlias = Alias::create([
             'domain_id'     => $request->get('domain_id'),
             'source'        => $request->get('source'),
-            'destination'   => implode(',', $request->get('destination'))
+            'destination'   => $destination
         ]);
         $mAlias->save();
 
@@ -68,9 +70,19 @@ class AliasController extends Controller {
 
     public function postUpdate($id, PostAliasUpdateRequest $request) {
 
+        $mDomain = Domain::getAvailable($request->get('domain_id'));
+        if($mDomain == null) abort(404);
+
         /** @var Alias $mAlias */
         $mAlias = Alias::findOrFail($id);
-        $mAlias->update($request->all());
+
+        $destination = implode(',', $request->get('destination'));
+
+        $mAlias->update([
+            'domain_id'     => $request->get('domain_id'),
+            'source'        => $request->get('source'),
+            'destination'   => $destination
+        ]);
 
         return $this->getUpdate($mAlias->id);
     }

@@ -21,8 +21,8 @@
         var vm = this;
 
         vm.data = {
-            domain_id:   ull,
-            source:      0,
+            domain_id:   null,
+            source:      '',
             destination: ['']
         };
 

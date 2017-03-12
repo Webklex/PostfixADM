@@ -52,7 +52,7 @@
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    Your name must be between 5 and 100 characters long and look like an e-mail address.
+                                    Your name must be between 5 and 100 characters long.
                                 </div>
                             </div>
                         </md-input-container>

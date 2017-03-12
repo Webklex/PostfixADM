@@ -324,8 +324,6 @@
 
         vm.parse = function(json){
             vm.data = JSON.parse(json);
-
-            console.log(vm.data);
         }
     }
 })();

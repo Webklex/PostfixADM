@@ -32,21 +32,21 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">Name der Domain</span>
+                            <span class="md-headline">Neue Domain anlegen</span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
 
                         <md-input-container class="md-block">
-                            <label>E-Mail Address</label>
+                            <label>Name der Domain</label>
                             <input id="name" type="text" ng-model="name" minlength="5" maxlength="100" name="name" value="{{ old('name') }}" required autofocus>
                             @if ($errors->has('name'))
                                 <div role="alert"><div>{{ $errors->first('name') }}</div></div>
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    Your domain must be between 5 and 100 characters long and look like an e-mail address.
+                                    Your domain must be between 5 and 100 characters long.
                                 </div>
                             </div>
                         </md-input-container>

@@ -23,7 +23,7 @@
         vm.data = {};
 
         vm.parse = function(data, domains){
-            vm.data             = JSON.parse(data);
+            vm.data             = JSON.parse(atob(data));
             vm.data.destination = vm.data.destination.split(',');
             vm.domains          = JSON.parse(domains);
         };
