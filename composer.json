@@ -8,7 +8,8 @@
         "php": ">=5.6.4",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "webklex/helpers": "^1.0"
+        "webklex/helpers": "^1.0",
+        "webklex/translator": "1.0.4.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

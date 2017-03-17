@@ -23,7 +23,7 @@
                 ng-controller="domainUpdate as vm" ng-init="vm.parse('{{$mDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
-            <a href="{{url()->previous()}}" title="Zurück">
+            <a href="{{url()->previous()}}" title="@t('Zurück')">
                 <i class="material-icons md-color-default">arrow_back</i>
             </a>
 
@@ -37,14 +37,14 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">Domain aktualisieren</span>
+                            <span class="md-headline">@t('Domain aktualisieren')</span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
 
                         <md-input-container class="md-block">
-                            <label>Name der Domain</label>
+                            <label>@t('Name der Domain')</label>
                             <input id="name" type="text" minlength="5" ng-model="vm.data.name"
                                    maxlength="100" name="name" value="{{ getCurrent($mDomain, 'name') }}" required autofocus>
                             @if ($errors->has('name'))
@@ -52,14 +52,14 @@
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    Your name must be between 5 and 100 characters long.
+                                    @t('Der Name der Domain inklusive TLD muss mindestens 5 Zeichen lang sein.')
                                 </div>
                             </div>
                         </md-input-container>
 
                         <md-input-container class="md-block">
                             <md-checkbox ng-checked="vm.data.active" ng-click="vm.data.active = !vm.data.active">
-                                Domain ist aktiv und kann verwendet werden
+                                @t('Domain ist aktiv und kann verwendet werden')
                             </md-checkbox>
                             @if ($errors->has('active'))
                                 <div role="alert"><div>{{ $errors->first('active') }}</div></div>
@@ -68,7 +68,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">Domain aktualisieren</md-button>
+                        <md-button type="submit">@t('Domain aktualisieren')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

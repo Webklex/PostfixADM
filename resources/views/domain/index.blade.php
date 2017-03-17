@@ -19,7 +19,7 @@
     <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center">
         <div flex>
 
-            <h1 class="md-title">Übersicht aller verfügbaren Domains</h1>
+            <h1 class="md-title">@t('Übersicht aller verfügbaren Domains')</h1>
 
             <md-list ng-cloak>
                 <md-divider></md-divider>
@@ -34,10 +34,10 @@
                             </md-button>
                             <md-menu-content width="3">
                                 <md-menu-item>
-                                    <a class="md-button" href="/domain/update/{{$mDomain->id}}">Bearbeiten</a>
+                                    <a class="md-button" href="/domain/update/{{$mDomain->id}}">@t('Bearbeiten')</a>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <a class="md-button" href="/domain/delete/{{$mDomain->id}}">Löschen</a>
+                                    <a class="md-button" href="/domain/delete/{{$mDomain->id}}">@t('Löschen')</a>
                                 </md-menu-item>
                             </md-menu-content>
                         </md-menu>

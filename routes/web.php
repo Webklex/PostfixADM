@@ -14,10 +14,11 @@
 Route::get('/', 'HomeController@welcome');
 Auth::routes();
 Route::get('/logout', 'Auth\AuthController@logout');
+Route::get('/language/{locale}', 'Auth\AuthController@changeLanguage');
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'locale']], function () {
 
     Route::get('/mailbox',              'MailboxController@index');
     Route::get('/mailbox/create',       'MailboxController@getCreate');

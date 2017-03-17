@@ -8,7 +8,7 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">Bitte anmelden</span>
+                            <span class="md-headline">@t('Bitte anmelden')</span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
@@ -16,15 +16,11 @@
 
                             <md-input-container class="md-block">
                                 <label>E-Mail Address</label>
-                                <input id="email" type="email" ng-model="email" minlength="5" maxlength="100" ng-pattern="/^.+@.+\..+$/" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" ng-model="email" minlength="5" maxlength="100"
+                                       name="email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
                                     <div role="alert"><div>{{ $errors->first('email') }}</div></div>
                                 @endif
-                                <div ng-messages="authForm.email.$error" role="alert">
-                                    <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                                        Your email must be between 5 and 100 characters long and look like an e-mail address.
-                                    </div>
-                                </div>
                             </md-input-container>
 
                             <md-input-container class="md-block">
@@ -33,17 +29,12 @@
                                 @if ($errors->has('password'))
                                     <div role="alert"><div>{{ $errors->first('password') }}</div></div>
                                 @endif
-                                <div ng-messages="authForm.password.$error" role="alert">
-                                    <div ng-message-exp="['required', 'minlength']">
-                                        Your password must be at least 3 characters long.
-                                    </div>
-                                </div>
                             </md-input-container>
 
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">Anmelden</md-button>
+                        <md-button type="submit">@t('Anmelden')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>
