@@ -17,7 +17,7 @@
 
     @include('layout.header')
 
-    <body ng-app="app" ng-cloak layout-padding>
+    <body ng-app="app" ng-cloak>
         <div class="wrapper">
             @include('layout.content')
         </div>

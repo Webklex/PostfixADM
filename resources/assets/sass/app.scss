@@ -5,5 +5,22 @@
 // Variables
 @import "variables";
 
-// Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+body {
+  padding: 8px;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.display-inline {
+  display: inline;
+}
+
+.vertical-align-middle{
+  vertical-align: middle;
+}
+
+.clickable {
+  cursor: pointer;
+}

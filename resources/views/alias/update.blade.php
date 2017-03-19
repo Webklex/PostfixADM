@@ -27,7 +27,7 @@
                 <i class="material-icons md-color-default">arrow_back</i>
             </a>
 
-            <form role="form" name="authForm" method="POST" action="/alias/update/{{$mAlias->id}}" autocomplete="off">
+            <form role="form" name="authForm" method="POST" action="/alias/update/{{$mAlias->id}}" autocomplete="off" novalidate>
                 {{ csrf_field() }}
                 <input type="checkbox" name="active"
                        ng-value="vm.data.active"
@@ -37,7 +37,12 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">@t('Alias aktualisieren')</span>
+                            <span class="md-headline display-inline-block vertical-align-middle">
+                                <a href="/alias" title="@t('Zurück')" class="clickable">
+                                    <i class="material-icons md-color-default">arrow_back</i>
+                                </a>
+                                @t('Alias aktualisieren')
+                            </span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
@@ -56,7 +61,6 @@
                                 </div>
                             </div>
                         </md-input-container>
-
 
                         <md-input-container flex="100">
                             <label>@t('Domain')</label>

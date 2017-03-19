@@ -1,6 +1,6 @@
 <?php
 /*
- * File: update.blade.php
+ * File: create.blade.php
  * Category: View
  * Author: MSG
  * Created: 11.03.17 14:09
@@ -20,34 +20,48 @@
 
 @section('content')
     <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
-                ng-controller="mailboxUpdate as vm" ng-init="vm.parse('{{$mMailbox->toJson()}}')">
+                ng-controller="mailboxCreate as vm" ng-init="vm.parse('{{$aDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
-            <form role="form" name="authForm" method="POST" action="/mailbox/update/{{$mMailbox->id}}" autocomplete="off" novalidate>
+            <form role="form" name="authForm" method="POST" action="/user/create" novalidate autocomplete="off">
                 {{ csrf_field() }}
-                <input type="checkbox" name="active"
-                       ng-value="vm.data.active"
-                       ng-checked="vm.data.active"
-                       ng-click="vm.data.active = !vm.data.active" class="display-none"/>
+                <input type="checkbox" name="super_user"
+                       ng-value="vm.data.super_user"
+                       ng-checked="vm.data.super_user"
+                       ng-click="vm.data.super_user = !vm.data.super_user" class="display-none"/>
 
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/mailbox" title="@t('Zurück')" class="clickable">
+                                <a href="/" title="@t('Zurück')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
-                                @t('Mailbox aktualisieren')
+                                @t('Benutzer erstellen')
                             </span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-content>
+                    <md-card-content layout-wrap layout="row">
 
-                        <md-input-container class="md-block">
+                        <md-input-container flex="100">
+                            <label>@t('Accountname')</label>
+                            <input id="name" type="text" minlength="2" ng-model="vm.data.name"
+                                   maxlength="100" name="name" value="{{ old('name') }}" required autofocus autocomplete="off">
+                            @if ($errors->has('name'))
+                                <div role="alert"><div>{{ $errors->first('name') }}</div></div>
+                            @endif
+                            <div ng-messages="authForm.name.$error" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength']">
+                                    @t('Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein')
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container flex="100">
                             <label>@t('Emailadresse')</label>
-                            <input id="name" type="text" minlength="5" ng-model="vm.data.email"
-                                   maxlength="100" name="email" value="{{ getCurrent($mMailbox, 'email') }}" required autofocus autocomplete="off">
+                            <input id="name" type="text" minlength="2" ng-model="vm.data.email"
+                                   maxlength="100" name="email" value="{{ old('email') }}" required autofocus autocomplete="off">
                             @if ($errors->has('email'))
                                 <div role="alert"><div>{{ $errors->first('email') }}</div></div>
                             @endif
@@ -58,16 +72,7 @@
                             </div>
                         </md-input-container>
 
-                        <md-input-container class="md-block">
-                            <label>@t('Postfachgröße in MB')</label>
-                            <input id="quota_kb" type="text" ng-model="vm.data.quota_kb"
-                                   name="quota_kb" value="{{ getCurrent($mMailbox, 'quota_kb') }}" required autocomplete="off">
-                            @if ($errors->has('quota_kb'))
-                                <div role="alert"><div>{{ $errors->first('quota_kb') }}</div></div>
-                            @endif
-                        </md-input-container>
-
-                        <md-input-container class="md-block">
+                        <md-input-container flex>
                             <label>@t('Passwort')</label>
                             <input id="password" type="password" minlength="5" ng-model="vm.data.password"
                                    minlength="100" name="password" value="" autocomplete="off">
@@ -75,24 +80,15 @@
                                 <div role="alert"><div>{{ $errors->first('password') }}</div></div>
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
-                                <div ng-message-exp="['minlength', 'maxlength']">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength']">
                                     @t('Das Passwort muss mindestens 5, aber nicht länger als 100 Zeichen sein')
                                 </div>
                             </div>
                         </md-input-container>
 
-                        <md-input-container class="md-block">
-                            <md-checkbox ng-checked="vm.data.active" ng-click="vm.data.active = !vm.data.active">
-                                @t('Mailbox ist aktiv und kann verwendet werden')
-                            </md-checkbox>
-                            @if ($errors->has('active'))
-                                <div role="alert"><div>{{ $errors->first('active') }}</div></div>
-                            @endif
-                        </md-input-container>
-
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Mailbox aktualisieren')</md-button>
+                        <md-button type="submit">@t('Benutzer erstellen')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>
@@ -100,5 +96,3 @@
     </md-content>
 
 @endsection
-
-

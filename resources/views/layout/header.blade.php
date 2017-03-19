@@ -24,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link rel="stylesheet" media="all" href="/assets/css/vendors.css">
+    <link rel="stylesheet" media="all" href="/assets/css/vendors.min.css">
     <link rel="stylesheet" media="all" href="/assets/css/app.css">
 
 </head>

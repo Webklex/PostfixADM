@@ -19,7 +19,15 @@
     <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center">
         <div flex>
 
-            <h1 class="md-title">@t('Übersicht aller verfügbaren Domains')</h1>
+            <h1 class="md-title display-inline-block vertical-align-middle clickable">
+                <a href="/" title="@t('Zurück')">
+                    <i class="material-icons md-color-default">arrow_back</i>
+                </a>
+            </h1>
+
+            <h1 class="md-title display-inline-block vertical-align-middle">
+                @t('Übersicht aller verfügbaren Domains')
+            </h1>
 
             <md-list ng-cloak>
                 <md-divider></md-divider>

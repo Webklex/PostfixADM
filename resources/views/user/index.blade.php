@@ -26,15 +26,15 @@
             </h1>
 
             <h1 class="md-title display-inline-block vertical-align-middle">
-                @t('Übersicht aller verfügbaren Mailboxen')
+                @t('Übersicht aller verfügbaren Benutzer')
             </h1>
 
             <md-list ng-cloak>
                 <md-divider></md-divider>
 
-                @foreach( $aMailbox as $mMailbox)
+                @foreach( $aUser as $mUser)
                     <md-list-item>
-                        <p>{{$mMailbox->email}}</p>
+                        <p>{{$mUser->email}}</p>
 
                         <md-menu class="md-secondary">
                             <md-button class="md-icon-button">
@@ -42,10 +42,10 @@
                             </md-button>
                             <md-menu-content width="3">
                                 <md-menu-item>
-                                    <a class="md-button" href="/mailbox/update/{{$mMailbox->id}}">@t('Bearbeiten')</a>
+                                    <a class="md-button" href="/user/update/{{$mUser->id}}">@t('Bearbeiten')</a>
                                 </md-menu-item>
                                 <md-menu-item>
-                                    <a class="md-button" href="/mailbox/delete/{{$mMailbox->id}}">@t('Löschen')</a>
+                                    <a class="md-button" href="/user/delete/{{$mUser->id}}">@t('Löschen')</a>
                                 </md-menu-item>
                             </md-menu-content>
                         </md-menu>
@@ -55,7 +55,7 @@
 
             </md-list>
 
-            {{ $aMailbox->links() }}
+            {{ $aUser->links() }}
         </div>
     </md-content>
 

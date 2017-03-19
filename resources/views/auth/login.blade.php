@@ -3,7 +3,7 @@
 @section('content')
     <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
-            <form role="form" name="authForm" method="POST" action="{{ route('login') }}">
+            <form role="form" name="authForm" autocomplete="off" novalidate method="POST" action="{{ route('login') }}" flex>
                 {{ csrf_field() }}
                 <md-card md-theme="default">
                     <md-card-title>
@@ -16,7 +16,7 @@
 
                             <md-input-container class="md-block">
                                 <label>E-Mail Address</label>
-                                <input id="email" type="email" ng-model="email" minlength="5" maxlength="100"
+                                <input id="email" type="email" ng-model="vm.email"
                                        name="email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
                                     <div role="alert"><div>{{ $errors->first('email') }}</div></div>
@@ -24,11 +24,8 @@
                             </md-input-container>
 
                             <md-input-container class="md-block">
-                                <label>Password</label>
+                                <label>@t('Passwort')</label>
                                 <input id="password" type="password" ng-model="password" minlength="3" name="password" required>
-                                @if ($errors->has('password'))
-                                    <div role="alert"><div>{{ $errors->first('password') }}</div></div>
-                                @endif
                             </md-input-container>
 
 

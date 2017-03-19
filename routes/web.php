@@ -42,3 +42,15 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     Route::post('/domain/create',       'DomainController@postCreate');
     
 });
+
+Route::group(['middleware' => ['auth', 'locale', 'super_admin']], function () {
+
+    Route::get('/user',               'UserController@index');
+    Route::get('/user/create',        'UserController@getCreate');
+    Route::get('/user/delete/{id}',   'UserController@getDelete');
+    Route::get('/user/update/{id}',   'UserController@getUpdate');
+    Route::post('/user/update/{id}',  'UserController@postUpdate');
+    Route::post('/user/create',       'UserController@postCreate');
+    Route::get('/user/toggle/{id}/{domain}', 'UserController@toggleDomain');
+
+});

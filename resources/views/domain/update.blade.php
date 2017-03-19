@@ -23,11 +23,7 @@
                 ng-controller="domainUpdate as vm" ng-init="vm.parse('{{$mDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
-            <a href="{{url()->previous()}}" title="@t('Zurück')">
-                <i class="material-icons md-color-default">arrow_back</i>
-            </a>
-
-            <form role="form" name="authForm" method="POST" action="/domain/update/{{$mDomain->id}}">
+            <form role="form" name="authForm" method="POST" action="/domain/update/{{$mDomain->id}}" autocomplete="off" novalidate>
                 {{ csrf_field() }}
                 <input type="checkbox" name="active"
                        ng-value="vm.data.active"
@@ -37,7 +33,12 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">@t('Domain aktualisieren')</span>
+                            <span class="md-headline display-inline-block vertical-align-middle">
+                                <a href="/domain" title="@t('Zurück')" class="clickable">
+                                    <i class="material-icons md-color-default">arrow_back</i>
+                                </a>
+                                @t('Domain aktualisieren')
+                            </span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
