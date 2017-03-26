@@ -21,7 +21,14 @@
                 <md-card-content layout="row">
                     <div flex="nogrow" class="pr-16" layout-align="center center">
                         <a href="/">
-                            <h1 class="pa-header-title md-display-2 m-1"><div class="material-icons" style="color: white;">verified_user</div>Postfix <span class="part-two">ADM</span></h1>
+                            <h1 class="pa-header-title md-display-2 m-1 hide-sm hide-xs show-gt-sm">
+                                <div class="material-icons" style="color: white;">verified_user</div>
+                                Postfix <span class="part-two">ADM</span>
+                            </h1>
+                            <h1 class="pa-header-title md-display-2 m-1 show-sm show-xs hide-gt-sm">
+                                <div class="material-icons" style="color: white;">verified_user</div>
+                                <span class="part-two">PFA</span>
+                            </h1>
                         </a>
                     </div>
                     <div flex></div>

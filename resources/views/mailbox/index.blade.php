@@ -45,7 +45,7 @@
                         <md-list-item layout="row" flex="100">
                             <div flex><i>@t('Emailadresse')</i></div>
                             @if(config('postfixadm.quota.enabled') == true)
-                                <div flex><i>@t('Pastfachgröße')</i></div>
+                                <div flex-xs="25" flex><i>@t('Pastfachgröße')</i></div>
                             @endif
                             <md-menu class="md-secondary" flex>
                                 <md-button class="md-icon-button"></md-button>
@@ -59,8 +59,12 @@
                             <md-list-item layout="row" flex="100">
                                 <div flex>{{$mMailbox->email}}</div>
                                 @if(config('postfixadm.quota.enabled') == true)
-                                    <div flex>{{$mMailbox->quota_kb}}MB / {{$mMailbox->quota}}MB
+                                    <div flex-xs="25" flex>
                                         @if($mMailbox->quota > 0 && $mMailbox->quota_kb > 0)
+
+                                            <span class="hide-sm hide-xs show-gt-sm">
+                                                {{$mMailbox->quota}}MB / {{$mMailbox->quota_kb}}MB
+                                            </span>
                                             <?php
                                             $percent = ($mMailbox->quota / $mMailbox->quota_kb) * 100;
                                             ?>
@@ -72,7 +76,10 @@
                                                 <md-progress-linear class="md-accent" value="{{$percent}}"></md-progress-linear>
                                             @endif
                                         @else
-                                            <md-progress-linear class="md-accent" value="0"></md-progress-linear>
+                                            <span class="hide-sm hide-xs show-gt-sm">
+                                                {{$mMailbox->quota}}MB / {{$mMailbox->quota_kb}}MB
+                                            </span>
+                                            <md-progress-linear class="md-accent"></md-progress-linear>
                                         @endif
                                     </div>
                                 @endif
