@@ -51,7 +51,7 @@
                                 <div flex="100">
                                     @if($mMailbox->quota > 0 && $mMailbox->quota_kb > 0)
                                         <?php
-                                        $percent = ($mMailbox->quota_kb / $mMailbox->quota) * 100;
+                                        $percent = ($mMailbox->quota / $mMailbox->quota_kb) * 100;
                                         ?>
                                         @if($percent >= 75)
                                             <md-progress-linear class="md-warn" value="{{$percent}}"></md-progress-linear>

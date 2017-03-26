@@ -42,11 +42,10 @@
                 @else
 
                     <md-list ng-cloak  flex="100">
-                        <md-divider></md-divider>
                         <md-list-item layout="row" flex="100">
-                            <div flex>@t('Emailadresse')</div>
+                            <div flex><i>@t('Emailadresse')</i></div>
                             @if(config('postfixadm.quota.enabled') == true)
-                                <div flex>@t('Pastfachgröße')</div>
+                                <div flex><i>@t('Pastfachgröße')</i></div>
                             @endif
                             <md-menu class="md-secondary" flex>
                                 <md-button class="md-icon-button"></md-button>
@@ -63,7 +62,7 @@
                                     <div flex>{{$mMailbox->quota_kb}}MB / {{$mMailbox->quota}}MB
                                         @if($mMailbox->quota > 0 && $mMailbox->quota_kb > 0)
                                             <?php
-                                            $percent = ($mMailbox->quota_kb / $mMailbox->quota) * 100;
+                                            $percent = ($mMailbox->quota / $mMailbox->quota_kb) * 100;
                                             ?>
                                             @if($percent >= 75)
                                                 <md-progress-linear class="md-warn" value="{{$percent}}"></md-progress-linear>
