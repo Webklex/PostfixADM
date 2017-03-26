@@ -19,7 +19,7 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="domainUpdate as vm" ng-init="vm.parse('{{$mDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 

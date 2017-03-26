@@ -19,7 +19,7 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="mailboxCreate as vm" ng-init="vm.parse('{{$aDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
@@ -34,7 +34,7 @@
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/" title="@t('Zurück')" class="clickable">
+                                <a href="/user" title="@t('Zurück')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
                                 @t('Benutzer erstellen')

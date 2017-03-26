@@ -19,7 +19,7 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="mailboxUpdate as vm" ng-init="vm.parse('{{$mMailbox->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
@@ -37,26 +37,12 @@
                                 <a href="/mailbox" title="@t('Zurück')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
-                                @t('Mailbox aktualisieren')
+                                <b>{{$mMailbox->email}}</b> @t('aktualisieren')
                             </span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
-
-                        <md-input-container class="md-block">
-                            <label>@t('Emailadresse')</label>
-                            <input id="name" type="text" minlength="5" ng-model="vm.data.email"
-                                   maxlength="100" name="email" value="{{ getCurrent($mMailbox, 'email') }}" required autofocus autocomplete="off">
-                            @if ($errors->has('email'))
-                                <div role="alert"><div>{{ $errors->first('email') }}</div></div>
-                            @endif
-                            <div ng-messages="authForm.email.$error" role="alert">
-                                <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    @t('Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein')
-                                </div>
-                            </div>
-                        </md-input-container>
 
                         <md-input-container class="md-block">
                             <label>@t('Postfachgröße in MB')</label>

@@ -13,8 +13,17 @@
 (function(){
     'use strict';
 
-    angular.module('app').config(['$interpolateProvider', function($interpolateProvider){
-        $interpolateProvider.startSymbol('[[');
-        $interpolateProvider.endSymbol(']]');
+
+    var config = {
+        app: {
+            name: 'PostfixADM'
+        },
+        storage: {
+            type: 'localStorage' //sessionStorage
+        }
+    };
+
+    angular.module('app').config([function(){
+
     }]);
 })();

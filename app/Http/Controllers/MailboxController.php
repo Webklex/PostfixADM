@@ -24,9 +24,7 @@ class MailboxController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $aMailbox = Mailbox::whereHas('domain', function($q){
-            $q->whereIn('id', Domain::available()->pluck('id'));
-        })->paginate(10);
+        $aMailbox = Mailbox::whereHasAvailableDomain()->paginate(10);
         return view('mailbox.index', [
             'aMailbox' => $aMailbox
         ]);
@@ -46,16 +44,13 @@ class MailboxController extends Controller {
 
         $password = exec('doveadm pw -s SHA512-CRYPT -p '.$request->get('password').' 2>&1');
         /** @var Mailbox $mMailbox */
-        $mMailbox = Mailbox::create([
-            'quota_kb' => $request->get('quota_kb'),
-            'domain_id' => $request->get('domain_id'),
-            'password' => $password,
-            'email' => $request->get('email').'@'.$mDomain->name,
-        ]);
+        $mMailbox = new Mailbox();
+
+        $mMailbox->quota_kb  = (int)$request->get('quota_kb');
+        $mMailbox->domain    = $mDomain->name;
+        $mMailbox->password  = $password;
 
         $mMailbox->active = 1;
-
-        $mMailbox->domain()->associate($mDomain);
         $mMailbox->save();
 
         return redirect()->to('/mailbox');
@@ -74,9 +69,8 @@ class MailboxController extends Controller {
 
         /** @var Mailbox $mMailbox */
         $mMailbox = Mailbox::findOrFail($id);
-        $mMailbox->update($request->except(['active', 'password']));
 
-
+        $mMailbox->quota_kb  = (int)$request->get('quota_kb');
         if($request->has('password')){
             $password = exec('doveadm pw -s SHA512-CRYPT -p '.$request->get('password').' 2>&1');
             $mMailbox->password = $password;

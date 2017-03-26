@@ -19,7 +19,7 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="domainCreate as vm">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
@@ -29,7 +29,7 @@
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/" title="@t('Zurück')" class="clickable">
+                                <a href="/domain" title="@t('Zurück')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
                                 @t('Neue Domain anlegen')

@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mailbox extends Model {
 
-    protected $table = 'virtual_users';
+    use MappedModel;
+
+    protected $table = 'pfa_mailboxes';
+
+    protected $map = 'mailbox';
 
     /**
      * The attributes that are mass assignable.
@@ -14,7 +18,7 @@ class Mailbox extends Model {
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'quota_kb', 'active', 'domain_id'
+        'email', 'password', 'quota_kb', 'active', 'domain'
     ];
 
     /**
@@ -30,17 +34,58 @@ class Mailbox extends Model {
         'active' => 'boolean'
     ];
 
-    public function domain(){
-        return $this->belongsTo(Domain::class);
+    public static function whereHasAvailableDomain(){
+        $mapConfig  = collect(json_decode(env('DB_MAPPING'), true));
+        $mapColumnConfig = collect($mapConfig->get('mailbox')['columns']);
+        $attribute = $mapColumnConfig->get('domain') == false ? 'domain' : $mapColumnConfig->get('domain');
+
+        if(isset($config['join'])){
+            return self::whereIn($attribute, Domain::available()->pluck($config['join']['key']));
+        }
+        return self::whereIn($attribute, Domain::available()->pluck('name'));
     }
 
-    public function setQuotaKbAttribute($kb){
-        if($kb > 0) $this->attributes['quota_kb']= $kb * 1024;
-        return $this;
+    public function getEmailAttribute(){
+        return $this->getMapped('email');
+    }
+
+    public function setEmailAttribute($value){
+        return $this->setMapped('email', $value);
+    }
+
+    public function getPasswordAttribute(){
+        return $this->getMapped('password');
+    }
+
+    public function setPasswordAttribute($value){
+        return $this->setMapped('password', $value);
     }
 
     public function getQuotaKbAttribute(){
-        return $this->attributes['quota_kb'] > 0 ? $this->attributes['quota_kb'] / 1024 : 0;
+        $value = $this->getMapped('quota_kb');
+        return $value > 0 ? $value / 1024 : 0;
     }
 
+    public function setQuotaKbAttribute($kb){
+        if($kb > 0)  $kb = $kb * 1024;
+        if($kb <= 0) $kb = 0;
+
+        return $this->setMapped('quota_kb', $kb);
+    }
+
+    public function getActiveAttribute(){
+        return $this->getMapped('active');
+    }
+
+    public function setActiveAttribute($value){
+        return $this->setMapped('active', $value);
+    }
+
+    public function getDomainAttribute(){
+        return $this->getMapped('domain');
+    }
+
+    public function setDomainAttribute($value){
+        return $this->setMapped('domain', $value);
+    }
 }

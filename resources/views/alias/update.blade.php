@@ -19,13 +19,9 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="aliasUpdate as vm" ng-init="vm.parse('{{base64_encode($mAlias->toJson())}}' , '{{$aDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
-
-            <a href="/alias" title="@t('Zurück')">
-                <i class="material-icons md-color-default">arrow_back</i>
-            </a>
 
             <form role="form" name="authForm" method="POST" action="/alias/update/{{$mAlias->id}}" autocomplete="off" novalidate>
                 {{ csrf_field() }}

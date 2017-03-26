@@ -19,13 +19,9 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="aliasCreate as vm" ng-init="vm.parse('{{$aDomain->toJson()}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
-
-            <a href="/alias" title="@t('Zurück')">
-                <i class="material-icons md-color-default">arrow_back</i>
-            </a>
 
             <form role="form" name="authForm" method="POST" action="/alias/create" autocomplete="off" novalidate>
                 {{ csrf_field() }}
@@ -38,7 +34,7 @@
                     <md-card-title>
                         <md-card-title-text>
                             <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/" title="@t('Zurück')" class="clickable">
+                                <a href="/alias" title="@t('Zurück')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
                                 @t('Alias hinzufügen')
@@ -81,7 +77,7 @@
                         </md-input-container>
 
                         <div flex="100">
-                            <md-icon class="material-icons md-color-default" style="float: right; border: 1px solid #929292;" ng-click="vm.addAlias()">add</md-icon>
+                            <md-icon class="material-icons md-color-default clickable" style="float: right; border: 1px solid #929292;" ng-click="vm.addAlias()">add</md-icon>
                         </div>
 
                         @if ($errors->has('destination'))

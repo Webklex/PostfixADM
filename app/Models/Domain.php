@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 class Domain extends Model {
+    use MappedModel;
 
-    protected $table = 'virtual_domains';
+    protected $table = 'pfa_domains';
+
+    protected $map = 'domain';
 
     /**
      * The attributes that are mass assignable.
@@ -18,21 +21,13 @@ class Domain extends Model {
         'name', 'active'
     ];
 
-    public function mailboxes(){
-        return $this->hasMany(Mailbox::class);
-    }
-
-    public function aliases(){
-        return $this->hasMany(Alias::class);
-    }
-
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'pfa_domain_user');
     }
 
     public static function availableQuery(){
         return self::whereHas('users', function($q){
-            $q->where('domain_user.user_id', auth()->user()->id);
+            $q->where('pfa_domain_user.user_id', auth()->user()->id);
         });
     }
     public static function available(){
@@ -44,5 +39,21 @@ class Domain extends Model {
         $aDomain = self::availableQuery();
 
         return $aDomain->find($id);
+    }
+
+    public function getNameAttribute(){
+        return $this->getMapped('name');
+    }
+
+    public function setNameAttribute($value){
+        return $this->setMapped('name', $value);
+    }
+
+    public function getActiveAttribute(){
+        return $this->getMapped('active');
+    }
+
+    public function setActiveAttribute($value){
+        return $this->setMapped('active', $value);
     }
 }

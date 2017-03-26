@@ -5,8 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Alias extends Model {
+    use MappedModel;
 
-    protected $table = 'virtual_aliases';
+    protected $table = 'pfa_aliases';
+
+    protected $map = 'alias';
 
     /**
      * The attributes that are mass assignable.
@@ -14,12 +17,42 @@ class Alias extends Model {
      * @var array
      */
     protected $fillable = [
-        'domain_id', 'source', 'destination'
+        'domain', 'source', 'destination'
     ];
 
+    public static function whereHasAvailableDomain(){
+        $mapConfig  = collect(json_decode(env('DB_MAPPING'), true));
+        $mapColumnConfig = collect($mapConfig->get('alias')['columns']);
+        $attribute = $mapColumnConfig->get('domain') == false ? 'domain' : $mapColumnConfig->get('domain');
 
-    public function domain(){
-        return $this->belongsTo(Domain::class);
+        if(isset($config['join'])){
+            return self::whereIn($attribute, Domain::available()->pluck($config['join']['key']));
+        }
+        return self::whereIn($attribute, Domain::available()->pluck('name'));
     }
 
+
+    public function getSourceAttribute(){
+        return $this->getMapped('source');
+    }
+
+    public function setSourceAttribute($value){
+        return $this->setMapped('source', $value);
+    }
+
+    public function getDestinationAttribute(){
+        return $this->getMapped('destination');
+    }
+
+    public function setDestinationAttribute($value){
+        return $this->setMapped('destination', $value);
+    }
+
+    public function getDomainAttribute(){
+        return $this->getMapped('domain');
+    }
+
+    public function setDomainAttribute($value){
+        return $this->setMapped('domain', $value);
+    }
 }

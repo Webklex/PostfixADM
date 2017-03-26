@@ -24,9 +24,7 @@ class AliasController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $aAlias = Alias::whereHas('domain', function($q){
-            $q->whereIn('id', Domain::available()->pluck('id'));
-        })->paginate(10);
+        $aAlias = Alias::whereHasAvailableDomain()->paginate(10);
         return view('alias.index', [
             'aAlias' => $aAlias
         ]);
@@ -47,11 +45,11 @@ class AliasController extends Controller {
 
         $destination = implode(',', $request->get('destination'));
 
-        $mAlias = Alias::create([
-            'domain_id'     => $request->get('domain_id'),
-            'source'        => $request->get('source'),
-            'destination'   => $destination
-        ]);
+        $mAlias = new Alias();
+        $mAlias->domain      = $mDomain->name;
+        $mAlias->source      = $request->get('source');
+        $mAlias->destination = $destination;
+
         $mAlias->save();
 
         return redirect()->to('/alias');
@@ -61,6 +59,8 @@ class AliasController extends Controller {
         /** @var Alias $mAlias */
         $mAlias  = Alias::findOrFail($id);
         $aDomain = Domain::available();
+
+        $mAlias->domain_id = Domain::availableQuery()->where('name', $mAlias->domain)->first()->id;
 
         return view('alias.update', [
             'mAlias' => $mAlias,
@@ -78,11 +78,9 @@ class AliasController extends Controller {
 
         $destination = implode(',', $request->get('destination'));
 
-        $mAlias->update([
-            'domain_id'     => $request->get('domain_id'),
-            'source'        => $request->get('source'),
-            'destination'   => $destination
-        ]);
+        $mAlias->domain      = $mDomain->name;
+        $mAlias->source      = $request->get('source');
+        $mAlias->destination = $destination;
 
         return $this->getUpdate($mAlias->id);
     }

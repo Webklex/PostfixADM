@@ -37,3 +37,18 @@ if (!function_exists('realUser')) {
         return \App\Models\User::findOrFail(auth()->user()->id);
     }
 }
+
+if (!function_exists('_t')) {
+
+    /**
+     * Shorthand translation
+     * @param string $string
+     * @param string $locale
+     *
+     * @return string
+     */
+    function _t($string, $locale = null)
+    {
+        return Webklex\Translator\Facades\TranslatorFacade::get($string, $locale);
+    }
+}

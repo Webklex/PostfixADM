@@ -1,6 +1,6 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
+    "name": "webklex/postfixadm",
+    "description": "PostfixADM Emailaccount management tool",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",

@@ -41,6 +41,7 @@ var angular_components = [
     'alias',
     'auth',
     'user',
+    'installer',
 ];
 
 
@@ -52,23 +53,27 @@ elixir.extend('custom_watch', function() {
 });
 
 elixir(function(mix) {
-    mix.
-    browserSync({
+    mix
+    .custom_watch()
+    .browserSync({
         injectChanges: true,
         proxy: 'postfixadm.dev',
         open: false,
         files: [
+            'routes/**/*.php',
+            'app/Http/Controllers/**/*.php',
+            'app/Models/**/*.php',
             "resources/views/**/*.blade.php",
             "public/**/*.css",
-            "public/js/**/*.js"
+            "public/**/*.js"
         ]
-    }).custom_watch();
+    })
 });
 
 gulp.task('default', ['php', 'bower', 'copyfiles', 'scripts', 'styles']);
 
 gulp.task('php', shell.task([
-    './artisan update'
+    './artisan route:clear'
 ]));
 
 /**
@@ -81,15 +86,7 @@ gulp.task("copyfiles", function(done) {
 
 });
 
-gulp.task("scripts", function() {
-    gulp.src([
-        '!' + js_path + 'vendors/*.js',
-        '!' + js_path + 'angular/*.js',
-        js_path + '*.js'
-    ])
-        .pipe(concat('app.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('public/assets/js'));
+gulp.task("scripts", function(done) {
 
     for(var i = 0; i < angular_components.length; i++){
         var name = angular_components[i];
@@ -109,6 +106,15 @@ gulp.task("scripts", function() {
             .pipe(gulp.dest('public/assets/js'));
     }
 
+    gulp.src([
+        '!' + js_path + 'vendors/*.js',
+        '!' + js_path + 'angular/*.js',
+        js_path + '*.js'
+    ])
+        .pipe(concat('app.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('public/assets/js'))
+        .on('end', done);
 });
 
 gulp.task('sass', function(done) {

@@ -1,7 +1,7 @@
 @extends('layout.app')
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap layout-align="center center">
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
             <form role="form" name="authForm" autocomplete="off" novalidate method="POST" action="{{ route('login') }}" flex>
                 {{ csrf_field() }}

@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable {
     use Notifiable;
 
+    protected $table = 'pfa_users';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -31,6 +33,6 @@ class User extends Authenticatable {
     ];
 
     public function domains(){
-        return $this->belongsToMany(Domain::class);
+        return $this->belongsToMany(Domain::class, 'pfa_domain_user');
     }
 }

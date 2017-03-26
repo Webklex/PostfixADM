@@ -11,14 +11,29 @@
 |
 */
 
-Route::get('/', 'HomeController@welcome');
-Auth::routes();
-Route::get('/logout', 'Auth\AuthController@logout');
-Route::get('/language/{locale}', 'Auth\AuthController@changeLanguage');
+Route::group(['middleware' => ['installer', 'locale']], function () {
 
-Route::get('/home', 'HomeController@index');
+    Auth::routes();
+    Route::get('/', 'HomeController@welcome');
+    Route::get('/language/{locale}', 'Auth\AuthController@changeLanguage');
+
+    Route::get('installer', 'InstallController@setup');
+    Route::get('installer/general', 'InstallController@getGeneralSetup');
+    Route::post('installer/general', 'InstallController@postGeneralSetup');
+    Route::get('installer/database', 'InstallController@getDatabaseSetup');
+    Route::post('installer/database', 'InstallController@postDatabaseSetup');
+    Route::get('installer/service', 'InstallController@getServices');
+    Route::post('installer/service', 'InstallController@postServices');
+    Route::get('installer/finish', 'InstallController@getFinish');
+
+});
 
 Route::group(['middleware' => ['auth', 'locale']], function () {
+
+    Route::get('/home',      'HomeController@welcome');
+    Route::get('/settings',  'SettingsController@getUpdate');
+    Route::post('/settings', 'SettingsController@postUpdate');
+    Route::get('/logout',    'Auth\AuthController@logout');
 
     Route::get('/mailbox',              'MailboxController@index');
     Route::get('/mailbox/create',       'MailboxController@getCreate');
@@ -40,10 +55,10 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
     Route::get('/domain/update/{id}',   'DomainController@getUpdate');
     Route::post('/domain/update/{id}',  'DomainController@postUpdate');
     Route::post('/domain/create',       'DomainController@postCreate');
-    
+
 });
 
-Route::group(['middleware' => ['auth', 'locale', 'super_admin']], function () {
+Route::group(['middleware' => ['auth', 'super_admin', 'locale']], function () {
 
     Route::get('/user',               'UserController@index');
     Route::get('/user/create',        'UserController@getCreate');

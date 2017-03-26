@@ -1,5 +1,45 @@
 Key;Value;Missing
+Abmelden;Abmelden;x
+Accountname;Accountname;x
+Aliase verwalten;Aliase verwalten;x
+Alle benötigten Schreibrechte vorhanden;Alle benötigten Schreibrechte vorhanden;x
+Alle einsehen;Alle einsehen;x
+Allgemeine Einstellungen;Allgemeine Einstellungen;x
 Anmelden;Anmelden;x
+Bearbeiten;Bearbeiten;x
+Benutzer verwalten;Benutzer verwalten;x
 Bitte anmelden;Bitte anmelden;x
+Bitte nach erfolgreicher Installation überprüfen, ob die <b>installer.lock</b> Datei auch wirklich entfernt wurde.;Bitte nach erfolgreicher Installation überprüfen, ob die <b>installer.lock</b> Datei auch wirklich entfernt wurde.;x
+Das Passwort muss mindestens 5, aber nicht länger als 100 Zeichen sein;Das Passwort muss mindestens 5, aber nicht länger als 100 Zeichen sein;x
+Dateipfad;Dateipfad;x
+Datenbankmapping;Datenbankmapping;x
+Der Installation steht nun nichts mehr im Wege. Klicken Sie auf "Installation beginnen", um zu starten.;Der Installation steht nun nichts mehr im Wege. Klicken Sie auf "Installation beginnen", um zu starten.;x
+Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein;Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein;x
+Die Basisinstallation dauert im Durchschnitt nur wenige Minuten. Er sollte in jedem Fall vollendet werden.;Die Basisinstallation dauert im Durchschnitt nur wenige Minuten. Er sollte in jedem Fall vollendet werden.;x
+Domain;Domain;x
+Domains verwalten;Domains verwalten;x
+Fertigstellen;Fertigstellen;x
+Für Tipps zur Installation oder allgemein bekannten Problemen gehen Sie bitte auf eine der folgenden Seiten:;Für Tipps zur Installation oder allgemein bekannten Problemen gehen Sie bitte auf eine der folgenden Seiten:;x
 Ihre Emailadresse sollte schon wie eine aussehen.;Ihre Emailadresse sollte schon wie eine aussehen.;x
 Ihre Emailadresse sollte wie eine aussehen.;Ihre Emailadresse sollte wie eine aussehen.;x
+In den nächsten drei Schritten werden sie Stück für Stück durch die einzelnen Installationsprozesse geführt.;In den nächsten drei Schritten werden sie Stück für Stück durch die einzelnen Installationsprozesse geführt.;x
+Installation beginnen;Installation beginnen;x
+Löschen;Löschen;x
+Mailbox erstellen;Mailbox erstellen;x
+Mailboxen verwalten;Mailboxen verwalten;x
+Neue anlegen;Neue anlegen;x
+Passwort;Passwort;x
+Postfachgröße in MB;Postfachgröße in MB;x
+PostfixADM Erstinstallation;PostfixADM Erstinstallation;x
+PostfixADM Installationsprozess starten;PostfixADM Installationsprozess starten;x
+Sehe alle Benutzer ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle Benutzer ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
+Sehe alle deine verfügbaren Domains ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle deine verfügbaren Domains ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
+Sehe alle deine verfügbaren Mailboxen aliase ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle deine verfügbaren Mailboxen aliase ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
+Sehe alle deine verfügbaren Mailboxen ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle deine verfügbaren Mailboxen ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
+Sollte dies aus irgendwelchen Gründen nicht möglich sein, sollte diese Seite unter keinen Umständen öffentlich erreichbar sein.;Sollte dies aus irgendwelchen Gründen nicht möglich sein, sollte diese Seite unter keinen Umständen öffentlich erreichbar sein.;x
+Sollte diese Datei existieren, entfernen Sie jene manuell, um eine erneute Installation zu verhindern.;Sollte diese Datei existieren, entfernen Sie jene manuell, um eine erneute Installation zu verhindern.;x
+Zurück;Zurück;x
+Übersicht aller verfügbaren Aliase;Übersicht aller verfügbaren Aliase;x
+Übersicht aller verfügbaren Benutzer;Übersicht aller verfügbaren Benutzer;x
+Übersicht aller verfügbaren Domains;Übersicht aller verfügbaren Domains;x
+Übersicht aller verfügbaren Mailboxen;Übersicht aller verfügbaren Mailboxen;x
