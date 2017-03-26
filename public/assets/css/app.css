@@ -136,6 +136,10 @@ md-content.md-content-auto-height {
     font-size: 14px;
     line-height: 14px;
 }
+
+.text-center {
+    text-align: center;
+}
 /*!
  * Angular Material Design
  * https://github.com/angular/material
@@ -167,8 +171,8 @@ body, html {
   font-size: 6rem; }
 
 .md-fab i.material-icons {
-  margin-top: -5px;
-  margin-left: 3px;
+  margin-top: -3px;
+  margin-left: 0px;
   vertical-align: middle;
   font-size: 2.5rem;
   text-align: center; }

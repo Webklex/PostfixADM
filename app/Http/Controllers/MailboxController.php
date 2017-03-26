@@ -48,6 +48,7 @@ class MailboxController extends Controller {
 
         $mMailbox->quota_kb  = (int)$request->get('quota_kb');
         $mMailbox->domain    = $mDomain->name;
+        $mMailbox->email     = $request->get('email').'@'.$mDomain->name;
         $mMailbox->password  = $password;
 
         $mMailbox->active = 1;

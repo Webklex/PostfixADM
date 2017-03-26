@@ -37,7 +37,8 @@ class Mailbox extends Model {
     public static function whereHasAvailableDomain(){
         $mapConfig  = collect(json_decode(env('DB_MAPPING'), true));
         $mapColumnConfig = collect($mapConfig->get('mailbox')['columns']);
-        $attribute = $mapColumnConfig->get('domain') == false ? 'domain' : $mapColumnConfig->get('domain');
+        $config = $mapColumnConfig->get('domain');
+        $attribute = $config == false ? 'domain' : $config['column'];
 
         if(isset($config['join'])){
             return self::whereIn($attribute, Domain::available()->pluck($config['join']['key']));

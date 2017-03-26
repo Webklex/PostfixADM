@@ -39,10 +39,11 @@ class DomainController extends Controller {
 
     public function postCreate(PostDomainCreateRequest $request) {
         /** @var Domain $mDomain */
-        $mDomain = Domain::create($request->all());
-        $mDomain->users()->attach(auth()->user()->id);
+        $mDomain = new Domain();
+        $mDomain->name = $request->get('name');
         $mDomain->active = 1;
         $mDomain->save();
+        $mDomain->users()->attach(auth()->user()->id);
 
         return $this->getUpdate($mDomain->id);
     }
@@ -63,7 +64,7 @@ class DomainController extends Controller {
         $mDomain = Domain::getAvailable($id);
         if($mDomain == null) abort(404);
 
-        $mDomain->update($request->except('active'));
+        $mDomain->name = $request->get('name');
         $mDomain->active = $request->get('active') == true ? 1 : 0;
         $mDomain->save();
 

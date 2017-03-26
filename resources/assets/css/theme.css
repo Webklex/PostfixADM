@@ -114,3 +114,7 @@ md-content.md-content-auto-height {
     font-size: 14px;
     line-height: 14px;
 }
+
+.text-center {
+    text-align: center;
+}

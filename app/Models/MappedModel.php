@@ -40,22 +40,23 @@ trait MappedModel {
             return null;
         }
 
-        $attribute = $this->mapColumnConfig->get($column) == false ? $column : $this->mapColumnConfig->get($column);
+        $attribute = $this->mapColumnConfig->get($column) == false ? $column : $this->mapColumnConfig->get($column)['column'];
 
         return $this->attributes[$attribute];
-
     }
 
     protected function setMapped($column, $value){
         $config = $this->mapColumnConfig->get($column);
+        $attribute = $this->mapColumnConfig->get($column) == false ? $column : $this->mapColumnConfig->get($column)['column'];
         if(isset($config['join'])){
             $join = $config['join'];
-            DB::table($this->table)
-                ->where($this->table.'.id', '=', $this->attributes['id'])
-                ->join($join['table'], $this->table.'.'.$config['column'], $join['table'].'.'.$join['key'])
-                ->update([$join['table'].'.'.$join['value'] => $value]);
+            $relation = DB::table($join['table'])
+                ->where($join['table'].'.'.$join['value'], '=', $value)->first();
+
+            if($relation != null){
+                $this->attributes[$attribute] = $relation->{$join['key']};
+            }
         }else{
-            $attribute = $this->mapColumnConfig->get($column) == false ? $column : $this->mapColumnConfig->get($column);
             $this->attributes[$attribute] = $value;
         }
 

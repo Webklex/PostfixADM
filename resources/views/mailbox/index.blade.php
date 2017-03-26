@@ -23,7 +23,7 @@
                 <md-card-title-text flex="100" layout="row" layout-align="start start">
 
                     <h1 class="md-title display-inline-block vertical-align-middle clickable" flex="nogrow">
-                        <a href="/" title="@t('Zurück')">
+                        <a href="/" title="@t('Zurück')" class="clickable">
                             <i class="material-icons md-color-default">arrow_back</i>
                         </a>
                     </h1>
@@ -36,11 +36,7 @@
             <md-card-content layout-wrap layout="row"  flex="100">
 
                 @if($aMailbox->count() == 0)
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <h1 class="md-headline text-center">
+                    <h1 class="md-headline text-center mt-8" flex="100">
                         @t('Es wurden noch keine Mailboxen angelegt')
                     </h1>
                 @else

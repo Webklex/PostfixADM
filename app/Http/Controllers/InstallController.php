@@ -344,13 +344,12 @@ MAIL_ENCRYPTION=".$request->get('MAIL_ENCRYPTION')."
                 if($aTable->has($config['mailbox']['table']) == true):
                     Schema::table($config['mailbox']['table'], function (Blueprint $table) use($config, $aTable) {
 
-                        /** @var Collection $dbTable */
+                        $dbTable = collect($aTable->get($config['mailbox']['table']));
                         /** @var Collection $columns */
-                        $dbTable = $aTable->get($config['mailbox']['table']);
                         $columns = $dbTable != null ? $dbTable->get('columns') : collect([]);
                         if($columns->contains('id') == false) $table->increments('id');
 
-                        if($columns->contains('domain') == false && $config['mailbox']['columns']['domain'] == false) $table->integer('domain_id');
+                        if($columns->contains('domain') == false && $config['mailbox']['columns']['domain'] == false) $table->integer('domain');
                         if($columns->contains('email') == false && $config['mailbox']['columns']['email'] == false) $table->string('email');
                         if($columns->contains('password') == false && $config['mailbox']['columns']['password'] == false) $table->string('password');
                         if($columns->contains('quota_kb') == false && $config['mailbox']['columns']['quota_kb'] == false) $table->integer('quota_kb');
@@ -382,13 +381,12 @@ MAIL_ENCRYPTION=".$request->get('MAIL_ENCRYPTION')."
                 if($aTable->has($config['alias']['table']) == true):
                     Schema::table($config['alias']['table'], function (Blueprint $table) use($config, $aTable) {
 
-                        /** @var Collection $dbTable */
+                        $dbTable = collect($aTable->get($config['alias']['table']));
                         /** @var Collection $columns */
-                        $dbTable = $aTable->get($config['alias']['table']);
                         $columns = $dbTable != null ? $dbTable->get('columns') : collect([]);
                         if($columns->contains('id') == false) $table->increments('id');
 
-                        if($columns->contains('domain') == false && $config['alias']['columns']['domain'] == false) $table->integer('domain_id');
+                        if($columns->contains('domain') == false && $config['alias']['columns']['domain'] == false) $table->integer('domain');
                         if($columns->contains('source') == false && $config['alias']['columns']['source'] == false) $table->string('source');
                         if($columns->contains('destination') == false && $config['alias']['columns']['destination'] == false) $table->longText('destination');
                         //if($config['alias']['columns']['active'] == false)        $table->boolean('active')->default(0);
@@ -417,9 +415,8 @@ MAIL_ENCRYPTION=".$request->get('MAIL_ENCRYPTION')."
                 if($aTable->has($config['domain']['table']) == true):
                     Schema::table($config['domain']['table'], function (Blueprint $table) use($config, $aTable) {
 
-                        /** @var Collection $dbTable */
+                        $dbTable = collect($aTable->get($config['domain']['table']));
                         /** @var Collection $columns */
-                        $dbTable = $aTable->get($config['domain']['table']);
                         $columns = $dbTable != null ? $dbTable->get('columns') : collect([]);
                         if($columns->contains('id') == false) $table->increments('id');
 
