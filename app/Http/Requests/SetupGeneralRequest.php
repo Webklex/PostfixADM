@@ -22,6 +22,7 @@ class SetupGeneralRequest extends Request {
     public function rules(){
         return [
             'APP_DEBUG'         => '',
+            'encryption'        => 'required|string',
             'APP_LOG_LEVEL'     => 'required|string',
             'APP_URL'           => 'required|url',
             'DB_CONNECTION'     => 'required|string',

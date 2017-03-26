@@ -140,6 +140,34 @@
 
                             <md-divider></md-divider>
 
+                            <md-list-item class="@if($errors->has('encryption')){{' has-error'}}@endif">
+                                <p>@t('Passwort Verschlüsselungsalgorythmus')</p>
+                                <md-select placeholder="@t('Bitte wählen')"
+                                           name="encryption" ng-model="vm.data.encryption" class="md-no-underline">
+                                    <md-option value="BLF-CRYPT">BLF-CRYPT</md-option>
+                                    <md-option value="SHA512-CRYPT">SHA512-CRYPT</md-option>
+                                    <md-option value="SHA256-CRYPT">SHA256-CRYPT</md-option>
+                                    <md-option value="MD5-CRYPT">MD5-CRYPT</md-option>
+                                    <md-option value="LANMAN">LANMAN</md-option>
+                                    <md-option value="NTLM">NTLM</md-option>
+                                    <md-option value="RPA">RPA</md-option>
+                                    <md-option value="CRAM-MD5">CRAM-MD5</md-option>
+                                    <md-option value="DIGEST-MD5">DIGEST-MD5</md-option>
+                                    <md-option value="SCRAM-SHA-1">SCRAM-SHA-1</md-option>
+                                    <md-option value="PLAIN">PLAIN</md-option>
+                                    <md-option value="CRYPT">CRYPT</md-option>
+                                    <md-option value="PLAIN-MD5">PLAIN-MD5</md-option>
+                                    <md-option value="LDAP-MD5">LDAP-MD5</md-option>
+                                    <md-option value="SMD5">SMD5</md-option>
+                                    <md-option value="SHA">SHA</md-option>
+                                    <md-option value="SSHA">SSHA</md-option>
+                                    <md-option value="SHA256">SHA256</md-option>
+                                    <md-option value="SSHA256">SSHA256</md-option>
+                                    <md-option value="SHA512">SHA512</md-option>
+                                    <md-option value="SSHA512">SSHA512</md-option>
+                            </md-list-item>
+                            <md-divider></md-divider>
+
                         </md-list>
 
                     </md-card-content>

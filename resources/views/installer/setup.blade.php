@@ -12,7 +12,7 @@
 
     @include('installer.header')
 
-    @if($is_writable == false || $lock_writable == false || $is_writable_conf == false || $openssl == false)
+    @if($is_writable == false || $lock_writable == false || $is_writable_conf == false || $openssl == false || $doveadm == false)
 
         @if($is_writable == false || $lock_writable == false || $is_writable_conf == false)
             <div flex-xs flex-gt-xs="100" layout="row" class="mb-16">
@@ -51,9 +51,28 @@
                             <i class="material-icons md-color-white large" style="color: white;">warning</i>
                         </div>
                         <div flex>
-                            <span class="md-headline">@t('OpenSSL fehler')</span>
+                            <span class="md-headline">@t('OpenSSL Fehler')</span>
                             <p>
                                 @t('Leider scheint ihr System kein OpenSSL zu unterstützen. Dies ist aber dringend notwendig, um einen sicheren Betrieb zu gewähren.')
+                            </p>
+                        </div>
+                    </md-card-content>
+                </md-card>
+            </div>
+        @endif
+        @if($doveadm == false)
+            <div flex-xs flex-gt-xs="100" layout="row" class="mb-16">
+                <md-card md-theme="red" flex>
+                    <md-card-content layout="row">
+                        <div flex="nogrow" class="pr-16">
+                            <i class="material-icons md-color-white large" style="color: white;">warning</i>
+                        </div>
+                        <div flex>
+                            <span class="md-headline">@t('DoveADM Fehler')</span>
+                            <p>
+                                @t('Leider scheint ihr System kein DoveADM zu unterstützen. Dies ist aber dringend notwendig, um einen sicheren Betrieb zu gewähren.')
+                                <br />
+                                @t('Eventuell fehlendes Paket: <b>doveadm</b> / <b>dovecot-core</b> / <b>dovecot-common</b>')
                             </p>
                         </div>
                     </md-card-content>
@@ -68,7 +87,7 @@
                         <i class="material-icons md-color-white large" style="color: white;">done_all</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Alle benötigten Schreibrechte vorhanden')</span>
+                        <span class="md-headline">@t('Alle soweit bereit')</span>
                         <p>
                             @t('Der Installation steht nun nichts mehr im Wege. Klicken Sie auf "Installation beginnen", um zu starten.')
                         </p>

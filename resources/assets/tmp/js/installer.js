@@ -315,6 +315,8 @@
             MAIL_PASSWORD:  '',
             MAIL_ENCRYPTION: 'tls',
 
+            encryption: 'SHA512-CRYPT',
+
             mailbox: {
                 table: null,
                 email:      {join: {status: false, domain_table: null, join_key: null, join_value: null}},

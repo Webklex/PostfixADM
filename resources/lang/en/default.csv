@@ -2,6 +2,8 @@ Key;Value;Missing
 Abmelden;Abmelden;x
 Accountname;Accountname;x
 Aktualisieren;Aktualisieren;x
+Aktuelle Version;Aktuelle Version;x
+Alias hinzufügen;Alias hinzufügen;x
 Aliase verwalten;Aliase verwalten;x
 Alle benötigten Schreibrechte vorhanden;Alle benötigten Schreibrechte vorhanden;x
 Alle einsehen;Alle einsehen;x
@@ -16,12 +18,17 @@ Dateipfad;Dateipfad;x
 Datenbankmapping;Datenbankmapping;x
 Der Installation steht nun nichts mehr im Wege. Klicken Sie auf "Installation beginnen", um zu starten.;Der Installation steht nun nichts mehr im Wege. Klicken Sie auf "Installation beginnen", um zu starten.;x
 Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein;Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein;x
+Der Quota service ermöglicht es Ihnen die aktuell Postfachgröße der einzelnen Mailboxen einzusehen, ohne auf deren Konten zu zu greifen.;Der Quota service ermöglicht es Ihnen die aktuell Postfachgröße der einzelnen Mailboxen einzusehen, ohne auf deren Konten zu zu greifen.;x
 Die Basisinstallation dauert im Durchschnitt nur wenige Minuten. Er sollte in jedem Fall vollendet werden.;Die Basisinstallation dauert im Durchschnitt nur wenige Minuten. Er sollte in jedem Fall vollendet werden.;x
+Die angegebene Quelladresse muss mindestens 5 Zeichen lang sein.;Die angegebene Quelladresse muss mindestens 5 Zeichen lang sein.;x
 Domain;Domain;x
 Domains verwalten;Domains verwalten;x
+Eine anleitung kann hier gefunden werden;Eine anleitung kann hier gefunden werden;x
 Einstellungen;Einstellungen;x
+Einstellungen speichern;Einstellungen speichern;x
 Fertigstellen;Fertigstellen;x
 Für Tipps zur Installation oder allgemein bekannten Problemen gehen Sie bitte auf eine der folgenden Seiten:;Für Tipps zur Installation oder allgemein bekannten Problemen gehen Sie bitte auf eine der folgenden Seiten:;x
+Hierzu wird allerdings eine gewisse Fachkenntnis im Umgang mit Linuxdistributionen benötigt.;Hierzu wird allerdings eine gewisse Fachkenntnis im Umgang mit Linuxdistributionen benötigt.;x
 Ihre Emailadresse sollte schon wie eine aussehen.;Ihre Emailadresse sollte schon wie eine aussehen.;x
 Ihre Emailadresse sollte wie eine aussehen.;Ihre Emailadresse sollte wie eine aussehen.;x
 In den nächsten drei Schritten werden sie Stück für Stück durch die einzelnen Installationsprozesse geführt.;In den nächsten drei Schritten werden sie Stück für Stück durch die einzelnen Installationsprozesse geführt.;x
@@ -34,14 +41,26 @@ Passwort;Passwort;x
 Postfachgröße in MB;Postfachgröße in MB;x
 PostfixADM Erstinstallation;PostfixADM Erstinstallation;x
 PostfixADM Installationsprozess starten;PostfixADM Installationsprozess starten;x
+Prüfen;Prüfen;x
+Quelladresse;Quelladresse;x
+Quota aktivieren;Quota aktivieren;x
+Quota service aktivieren;Quota service aktivieren;x
+SSL keys neu generieren;SSL keys neu generieren;x
 Sehe alle Benutzer ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle Benutzer ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
 Sehe alle deine verfügbaren Domains ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle deine verfügbaren Domains ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
 Sehe alle deine verfügbaren Mailboxen aliase ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle deine verfügbaren Mailboxen aliase ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
 Sehe alle deine verfügbaren Mailboxen ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;Sehe alle deine verfügbaren Mailboxen ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.;x
+Sicherheisteinstellungen;Sicherheisteinstellungen;x
+Socket;Socket;x
+Software Update;Software Update;x
 Sollte dies aus irgendwelchen Gründen nicht möglich sein, sollte diese Seite unter keinen Umständen öffentlich erreichbar sein.;Sollte dies aus irgendwelchen Gründen nicht möglich sein, sollte diese Seite unter keinen Umständen öffentlich erreichbar sein.;x
 Sollte diese Datei existieren, entfernen Sie jene manuell, um eine erneute Installation zu verhindern.;Sollte diese Datei existieren, entfernen Sie jene manuell, um eine erneute Installation zu verhindern.;x
 Sprache;Sprache;x
 System;System;x
+Token;Token;x
+Token neu generieren;Token neu generieren;x
+Version;Version;x
+Zieladressen;Zieladressen;x
 Zurück;Zurück;x
 Übersicht aller verfügbaren Aliase;Übersicht aller verfügbaren Aliase;x
 Übersicht aller verfügbaren Benutzer;Übersicht aller verfügbaren Benutzer;x

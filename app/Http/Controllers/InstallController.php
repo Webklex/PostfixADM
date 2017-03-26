@@ -34,6 +34,7 @@ class InstallController extends Controller {
         session(['steps' => $aStep->toArray()]);
         $is_writable_conf = true;
         $openssl = true;
+        $doveadm = true;
         $private_key = null;
         $public_key = null;
 
@@ -59,6 +60,13 @@ class InstallController extends Controller {
         }
 
         try{
+            $password = exec('doveadm pw -s PLAIN -p POSTFIXADM 2>&1');
+            if($password != '{PLAIN}POSTFIXADM') $doveadm = false;
+        }catch(\ErrorException $e){
+            $doveadm = false;
+        }
+
+        try{
             ob_start();
             var_export([
                 'serial_number' => str_random(64),
@@ -80,6 +88,7 @@ class InstallController extends Controller {
             'is_writable' => File::isWritable(base_path().'/.env'),
             'is_writable_conf' => $is_writable_conf,
             'openssl' => $openssl,
+            'doveadm' => $doveadm,
             'lock_writable' => File::isWritable(base_path().'/installer.lock'),
         ]);
     }
@@ -149,6 +158,14 @@ MAIL_USERNAME=".$request->get('MAIL_USERNAME')."
 MAIL_PASSWORD=".$request->get('MAIL_PASSWORD')."
 MAIL_ENCRYPTION=".$request->get('MAIL_ENCRYPTION')."
 ");
+
+        $config = config('postfixadm');
+        $config['encryption']['method'] = $request->get('encryption');
+        ob_start();
+        var_export($config);
+        $content = ob_get_contents();
+        ob_end_clean();
+        File::put(config_path().'/postfixadm.php', "<?php\nreturn ".$content.';');
 
         $aStep = collect(session('steps', []));
         $aStep->put('database', 'database');

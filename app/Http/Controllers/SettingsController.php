@@ -57,6 +57,7 @@ class SettingsController extends Controller {
             'url'     => $request->get('quota_url'),
             'token'   => $request->get('quota_token')
         ];
+        $config['encryption']['method'] = $request->get('encryption');
 
         if($request->get('generate_new_quota') == true) $config['quota']['token'] = str_random(32);
 

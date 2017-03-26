@@ -23,6 +23,7 @@ class SettingsServiceRequest extends Request {
         return [
             'generate_new_ssl'     => '',
             'generate_new_quota'  => '',
+            'encryption'        => 'required|string',
             'quota'     => '',
             'quota_url'     => '',
             'quota_token'     => '',

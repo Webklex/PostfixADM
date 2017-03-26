@@ -42,7 +42,8 @@ class MailboxController extends Controller {
         $mDomain = Domain::getAvailable($request->get('domain_id'));
         if($mDomain == null) abort(404);
 
-        $password = exec('doveadm pw -s SHA512-CRYPT -p '.$request->get('password').' 2>&1');
+        $encryption = config('postfixadm.encryption.method');
+        $password = exec('doveadm pw -s '.$encryption.' -p '.$request->get('password').' 2>&1');
         /** @var Mailbox $mMailbox */
         $mMailbox = new Mailbox();
 
@@ -73,7 +74,8 @@ class MailboxController extends Controller {
 
         $mMailbox->quota_kb  = (int)$request->get('quota_kb');
         if($request->has('password')){
-            $password = exec('doveadm pw -s SHA512-CRYPT -p '.$request->get('password').' 2>&1');
+            $encryption = config('postfixadm.encryption.method');
+            $password = exec('doveadm pw -s '.$encryption.' -p '.$request->get('password').' 2>&1');
             $mMailbox->password = $password;
         }
 
