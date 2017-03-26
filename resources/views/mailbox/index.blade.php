@@ -42,13 +42,44 @@
                 @else
 
                     <md-list ng-cloak  flex="100">
+                        <md-divider></md-divider>
+                        <md-list-item layout="row" flex="100">
+                            <div flex>@t('Emailadresse')</div>
+                            @if(config('postfixadm.quota.enabled') == true)
+                                <div flex>@t('Pastfachgröße')</div>
+                            @endif
+                            <md-menu class="md-secondary" flex>
+                                <md-button class="md-icon-button"></md-button>
+                                <md-menu-content width="3">
+                                </md-menu-content>
+                            </md-menu>
+                        </md-list-item>
 
                         @foreach( $aMailbox as $mMailbox)
-                                <md-divider></md-divider>
-                            <md-list-item>
-                                <p>{{$mMailbox->email}}</p>
+                            <md-divider></md-divider>
+                            <md-list-item layout="row" flex="100">
+                                <div flex>{{$mMailbox->email}}</div>
+                                @if(config('postfixadm.quota.enabled') == true)
+                                    <div flex>{{$mMailbox->quota_kb}}MB / {{$mMailbox->quota}}MB
+                                        @if($mMailbox->quota > 0 && $mMailbox->quota_kb > 0)
+                                            <?php
+                                            $percent = ($mMailbox->quota_kb / $mMailbox->quota) * 100;
+                                            ?>
+                                            @if($percent >= 75)
+                                                <md-progress-linear class="md-warn" value="{{$percent}}"></md-progress-linear>
+                                            @elseif($percent > 50)
+                                                <md-progress-linear class="md-primary" value="{{$percent}}"></md-progress-linear>
+                                            @else
+                                                <md-progress-linear class="md-accent" value="{{$percent}}"></md-progress-linear>
+                                            @endif
+                                        @else
+                                            <md-progress-linear class="md-accent" value="0"></md-progress-linear>
+                                        @endif
+                                    </div>
+                                @endif
 
-                                <md-menu class="md-secondary">
+
+                                <md-menu class="md-secondary" flex>
                                     <md-button class="md-icon-button">
                                         <i class="material-icons md-color-default">toc</i>
                                     </md-button>
@@ -63,6 +94,7 @@
                                 </md-menu>
                             </md-list-item>
                         @endforeach
+                        <md-divider></md-divider>
 
                     </md-list>
 

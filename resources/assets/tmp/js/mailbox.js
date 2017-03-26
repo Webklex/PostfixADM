@@ -333,6 +333,10 @@
 
         vm.parse = function(json){
             vm.data = JSON.parse(json);
+        };
+
+        vm.quota = function(){
+            return Math.round((vm.data.quota_kb/vm.data.quota)*100);
         }
     }
 })();

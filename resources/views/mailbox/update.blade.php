@@ -20,7 +20,7 @@
 
 @section('content')
     <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
-                ng-controller="mailboxUpdate as vm" ng-init="vm.parse('{{$mMailbox->toJson()}}')">
+                ng-controller="mailboxUpdate as vm" ng-init="vm.parse('{{json_encode(array_merge($mMailbox->toArray(), ["quota" => $mMailbox->quota]))}}')">
         <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
             <form role="form" name="authForm" method="POST" action="/mailbox/update/{{$mMailbox->id}}" autocomplete="off" novalidate>
@@ -44,14 +44,33 @@
                     </md-card-title>
                     <md-card-content>
 
-                        <md-input-container class="md-block">
-                            <label>@t('Postfachgröße in MB')</label>
-                            <input id="quota_kb" type="text" ng-model="vm.data.quota_kb"
-                                   name="quota_kb" value="{{ getCurrent($mMailbox, 'quota_kb') }}" required autocomplete="off">
-                            @if ($errors->has('quota_kb'))
-                                <div role="alert"><div>{{ $errors->first('quota_kb') }}</div></div>
-                            @endif
-                        </md-input-container>
+                        @if(config('postfixadm.quota.enabled') == true)
+                            <md-input-container class="md-block" layout="row">
+                                <label>@t('Postfachgröße in MB')</label>
+
+                                <div flex="100">
+                                    @if($mMailbox->quota > 0 && $mMailbox->quota_kb > 0)
+                                        <?php
+                                        $percent = ($mMailbox->quota_kb / $mMailbox->quota) * 100;
+                                        ?>
+                                        @if($percent >= 75)
+                                            <md-progress-linear class="md-warn" value="{{$percent}}"></md-progress-linear>
+                                        @elseif($percent > 50)
+                                            <md-progress-linear class="md-primary" value="{{$percent}}"></md-progress-linear>
+                                        @else
+                                            <md-progress-linear class="md-accent" value="{{$percent}}"></md-progress-linear>
+                                        @endif
+                                    @else
+                                        <md-progress-linear class="md-accent" value="0"></md-progress-linear>
+                                    @endif
+                                </div>
+                                <input id="quota_kb" type="text" ng-model="vm.data.quota_kb"
+                                       name="quota_kb" value="{{ getCurrent($mMailbox, 'quota_kb') }}" required autocomplete="off">
+                                @if ($errors->has('quota_kb'))
+                                    <div role="alert"><div>{{ $errors->first('quota_kb') }}</div></div>
+                                @endif
+                            </md-input-container>
+                        @endif
 
                         <md-input-container class="md-block">
                             <label>@t('Passwort')</label>

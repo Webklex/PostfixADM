@@ -21,9 +21,7 @@ class PostMailboxUpdateRequest extends Request {
      */
     public function rules(){
         return [
-            'email'      => 'required|email',
             'password'   => '',
-            'quota_kb'   => 'required|integer',
             'active'     => '',
         ];
     }

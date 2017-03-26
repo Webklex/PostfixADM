@@ -34,6 +34,8 @@ class Mailbox extends Model {
         'active' => 'boolean'
     ];
 
+    protected $appends = ['quota'];
+
     public static function whereHasAvailableDomain(){
         $mapConfig  = collect(json_decode(env('DB_MAPPING'), true));
         $mapColumnConfig = collect($mapConfig->get('mailbox')['columns']);
@@ -65,6 +67,29 @@ class Mailbox extends Model {
     public function getQuotaKbAttribute(){
         $value = $this->getMapped('quota_kb');
         return $value > 0 ? $value / 1024 : 0;
+    }
+
+    public function getQuotaAttribute(){
+        $used_mb = null;
+
+        if(config('postfixadm.quota.url') == true):
+            extract(array_combine(['url', 'port'], explode(':',config('postfixadm.quota.url'))));
+
+            /** @var string $url */
+            /** @var integer $port */
+            $fp = fsockopen($url, $port, $errno, $errstr, 2);
+            if (!$fp) {
+                //Error
+            } else {
+                $out = $this->email . "\n";
+                fwrite($fp, $out);
+                $used_kb=fread($fp, 20);
+                fclose($fp);
+                $used_mb = round($used_kb/1024);
+            }
+        endif;
+
+        return $used_mb;
     }
 
     public function setQuotaKbAttribute($kb){

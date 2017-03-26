@@ -23,8 +23,7 @@ class PostMailboxCreateRequest extends Request {
         return [
             'domain_id'  => 'required|integer',
             'email'      => 'required|string',
-            'password'   => 'required|string',
-            'quota_kb'   => 'required|integer'
+            'password'   => 'required|string'
         ];
     }
 }

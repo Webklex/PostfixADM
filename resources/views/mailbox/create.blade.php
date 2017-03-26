@@ -68,7 +68,7 @@
                             @endif
                         </md-input-container>
 
-                        <md-input-container flex>
+                        <md-input-container flex="100">
                             <label>@t('Passwort')</label>
                             <input id="password" type="password" minlength="5" ng-model="vm.data.password"
                                    minlength="100" name="password" value="" autocomplete="off">
@@ -82,14 +82,16 @@
                             </div>
                         </md-input-container>
 
-                        <md-input-container flex>
-                            <label>@t('Postfachgröße in MB')</label>
-                            <input id="quota_kb" type="text" ng-model="vm.data.quota_kb"
-                                   name="quota_kb" value="{{ old('quota_kb') }}" required autocomplete="off">
-                            @if ($errors->has('quota_kb'))
-                                <div role="alert"><div>{{ $errors->first('quota_kb') }}</div></div>
-                            @endif
-                        </md-input-container>
+                        @if(config('postfixadm.quota.enabled') == true)
+                            <md-input-container flex="100">
+                                <label>@t('Postfachgröße in MB')</label>
+                                <input id="quota_kb" type="text" ng-model="vm.data.quota_kb"
+                                       name="quota_kb" value="{{ old('quota_kb') }}" required autocomplete="off">
+                                @if ($errors->has('quota_kb'))
+                                    <div role="alert"><div>{{ $errors->first('quota_kb') }}</div></div>
+                                @endif
+                            </md-input-container>
+                        @endif
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">

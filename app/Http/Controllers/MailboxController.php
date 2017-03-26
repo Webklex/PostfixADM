@@ -47,7 +47,7 @@ class MailboxController extends Controller {
         /** @var Mailbox $mMailbox */
         $mMailbox = new Mailbox();
 
-        $mMailbox->quota_kb  = (int)$request->get('quota_kb');
+        if($request->has('quota_kb') == true) $mMailbox->quota_kb  = (int)$request->get('quota_kb');
         $mMailbox->domain    = $mDomain->name;
         $mMailbox->email     = $request->get('email').'@'.$mDomain->name;
         $mMailbox->password  = $password;
@@ -72,7 +72,7 @@ class MailboxController extends Controller {
         /** @var Mailbox $mMailbox */
         $mMailbox = Mailbox::findOrFail($id);
 
-        $mMailbox->quota_kb  = (int)$request->get('quota_kb');
+        if($request->has('quota_kb') == true) $mMailbox->quota_kb  = (int)$request->get('quota_kb');
         if($request->has('password')){
             $encryption = config('postfixadm.encryption.method');
             $password = exec('doveadm pw -s '.$encryption.' -p '.$request->get('password').' 2>&1');
