@@ -33,19 +33,19 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/alias" title="@t('Zurück')" class="clickable">
+                            <h1 class="display-inline-block vertical-align-middle">
+                                <a href="/alias" title="@t('Back')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
-                                @t('Alias hinzufügen')
-                            </span>
+                                @t('Create alias')
+                            </h1>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content layout-wrap layout="row">
 
                         <md-input-container flex="100">
-                            <label>@t('Quelladresse')</label>
+                            <label>@t('Source address')</label>
                             <input id="source" type="text" minlength="5" ng-model="vm.data.source"
                                    maxlength="100" name="source" value="{{ old('source') }}" required autofocus autocomplete="off">
                             @if ($errors->has('source'))
@@ -53,7 +53,7 @@
                             @endif
                             <div ng-messages="authForm.source.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    @t('Die angegebene Quelladresse muss mindestens 5 Zeichen lang sein.')
+                                    @t('The provides source address has to be at least 5 characters long.')
                                 </div>
                             </div>
                         </md-input-container>
@@ -70,7 +70,7 @@
                         </md-input-container>
 
                         <md-input-container flex="100" ng-repeat="destination in vm.data.destination track by $index">
-                            <label>@t('Zieladressen')</label>
+                            <label>@t('Target addresses')</label>
                             <input id="destination_[[$index]]" type="text" ng-model="destination"
                                    name="destination[]" value="" required autocomplete="off">
                             <md-icon class="material-icons md-color-default" style="display:inline-block;" ng-click="vm.removeAlias($index)">delete</md-icon>
@@ -86,7 +86,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Alias hinzufügen')</md-button>
+                        <md-button type="submit">@t('Create alias')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

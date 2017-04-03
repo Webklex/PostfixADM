@@ -21,23 +21,23 @@
 @section('content')
     <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="domainCreate as vm">
-        <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
+        <div flex-xs flex-gt-xs="75" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
 
-            <form role="form" name="authForm" method="POST" action="/domain/create" autocomplete="off" novalidate>
+            <form role="form" name="authForm" method="POST" action="/domain/create" autocomplete="off" novalidate flex="100">
                 {{ csrf_field() }}
-                <md-card md-theme="default">
+                <md-card md-theme="default" flex="100">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/domain" title="@t('Zurück')" class="clickable">
+                            <h1 class="display-inline-block vertical-align-middle">
+                                <a href="/domain" title="@t('Back')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
-                                @t('Neue Domain anlegen')
-                            </span>
+                                @t('Create new domain')
+                            </h1>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
-                    <md-card-content>
+                    <md-card-content flex="100">
 
                         <md-input-container class="md-block">
                             <label>Name der Domain</label>
@@ -47,14 +47,14 @@
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    @t('Der Name der Domain inklusive TLD muss mindestens 5 Zeichen lang sein.')
+                                    @t('The domain name has to include the .tld and contain more then 5 characters.')
                                 </div>
                             </div>
                         </md-input-container>
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Domain anlegen')</md-button>
+                        <md-button type="submit">@t('Create domain')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

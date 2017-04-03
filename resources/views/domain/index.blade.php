@@ -23,13 +23,13 @@
                 <md-card-title-text flex="100" layout="row" layout-align="start start">
 
                     <h1 class="md-title display-inline-block vertical-align-middle clickable" flex="nogrow">
-                        <a href="/" title="@t('Zurück')" class="clickable">
+                        <a href="/" title="@t('Back')" class="clickable">
                             <i class="material-icons md-color-default">arrow_back</i>
                         </a>
                     </h1>
 
                     <h1 class="md-title display-inline-block vertical-align-middle">
-                        @t('Übersicht aller verfügbaren Domains')
+                        @t('Index of all existing domains')
                     </h1>
                 </md-card-title-text>
             </md-card-title>
@@ -37,7 +37,7 @@
 
                 @if($aDomain->count() == 0)
                     <h1 class="md-headline text-center mt-8" flex="100">
-                        @t('Es wurden noch keine Domains angelegt')
+                        @t('You might want to create a new domain first')
                     </h1>
                 @else
 
@@ -54,10 +54,10 @@
                                     </md-button>
                                     <md-menu-content width="3">
                                         <md-menu-item>
-                                            <a class="md-button" href="/domain/update/{{$mDomain->id}}">@t('Bearbeiten')</a>
+                                            <a class="md-button" href="/domain/update/{{$mDomain->id}}">@t('Edit')</a>
                                         </md-menu-item>
                                         <md-menu-item>
-                                            <a class="md-button" href="/domain/delete/{{$mDomain->id}}">@t('Löschen')</a>
+                                            <a class="md-button" href="/domain/delete/{{$mDomain->id}}">@t('Delete')</a>
                                         </md-menu-item>
                                     </md-menu-content>
                                 </md-menu>
@@ -73,7 +73,7 @@
         </md-card>
 
         <div layout="row" flex="100" layout-align="end center" md-theme="green">
-            <a href="/domain/create" md-theme="green" class="md-button md-fab md-green" aria-label="@t('Neue anlegen')">
+            <a href="/domain/create" md-theme="green" class="md-button md-fab md-green" aria-label="@t('Create new')">
                 <i class="material-icons md-white">add</i>
             </a>
         </div>

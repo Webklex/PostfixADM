@@ -36,6 +36,8 @@
             MAIL_HOST:      '',
             MAIL_PORT:      '25',
             MAIL_USERNAME:  '',
+            MAIL_FROM_NAME: '',
+            MAIL_FROM_ADDRESS: '',
             MAIL_PASSWORD:  '',
             MAIL_ENCRYPTION: 'tls',
 

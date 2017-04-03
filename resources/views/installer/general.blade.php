@@ -20,9 +20,9 @@
                         <i class="material-icons md-color-white large" style="color: white;">warning</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Ups.. so gehts nicht')</span>
+                        <span class="md-headline">@t('Well.. that\'s not how things work!')</span>
                         <p>
-                            @t('Bitte überprüfe deine Angaben noch einmal und versuche es erneut.')
+                            @t('Please double check your provided information. It seems something isn\'t right')
                         </p>
                     </div>
                 </md-card-content>
@@ -38,12 +38,33 @@
                         <i class="material-icons md-color-white large" style="color: white;">warning</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Verbindungsfehler')</span>
+                        <span class="md-headline">@t('Connection failed')</span>
                         <p>
-                            @t('Achtung es konnte keine Verbindung zur angegebenen Datenbank hergestellt werden.')
-                            @t('Bitte überprüfe deine Angaben noch einmal und versuche es erneut.')
+                            @t('Warning: The provided database could not be connected.')
+                            @t('Please double check your provided information. It seems something isn\'t right')
                             <br />
-                            @t('Fehlercode'): <b>{{old('mysql_error')}}</b>
+                            @t('Error code'): <b>{{old('mysql_error')}}</b>
+                        </p>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+    @endif
+
+    @if(old('mail_error'))
+        <div flex-xs flex-gt-xs="100" layout="row" class="mb-16">
+            <md-card md-theme="red" flex>
+                <md-card-content layout="row">
+                    <div flex="nogrow" class="pr-16">
+                        <i class="material-icons md-color-white large" style="color: white;">warning</i>
+                    </div>
+                    <div flex>
+                        <span class="md-headline">@t('Connection failed')</span>
+                        <p>
+                            @t('Warning: The provided mail settings failed.')
+                            @t('Please double check your provided information. It seems something isn\'t right')
+                            <br />
+                            @t('Error'): <b>{{old('mail_error')}}</b>
                         </p>
                     </div>
                 </md-card-content>
@@ -57,13 +78,13 @@
         <div flex-xs flex-gt-xs="50" layout="row">
             <md-card md-theme="default" flex>
                 <md-card-content>
-                    <span class="md-headline">@t('Allgemeine Einstellungen')</span>
+                    <span class="md-headline">@t('General settings')</span>
                     <md-list>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if ($errors->has('APP_DEBUG')){{' has-error'}}@endif">
-                            <p>@t('Debugmodus aktivieren')</p>
+                            <p>@t('Activate dubug mode')</p>
                             <md-checkbox class="md-secondary" name="APP_DEBUG" ng-model="vm.data.APP_DEBUG"
                                          ng-true-value="true" ng-false-value="false" ng-checked=""></md-checkbox>
                         </md-list-item>
@@ -71,8 +92,8 @@
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('APP_LOG_LEVEL')){{' has-error'}}@endif">
-                            <p>@t('Anwendungsloglevel')</p>
-                            <md-select placeholder="@t('Bitte wählen')"
+                            <p>@t('App log level')</p>
+                            <md-select placeholder="@t('Please choose')"
                                        name="APP_LOG_LEVEL" ng-model="vm.data.APP_LOG_LEVEL" class="md-no-underline">
                                 <md-option value="debug">Debug</md-option>
                                 <md-option value="info">Info</md-option>
@@ -87,16 +108,16 @@
 
                         <md-divider></md-divider>
 
-                        <md-list-item class="@if($errors->has('APP_URL')){{' has-error'}}@endif">
-                            <p>@t('Anwendungsurl')</p>
-                            <input type="text" ng-model="vm.data.APP_URL" name="APP_URL">
+                        <md-list-item class="@if($errors->has('APP_URL')){{' has-error'}}@endif" layout="row">
+                            <p flex>@t('App url')</p>
+                            <input flex type="text" ng-model="vm.data.APP_URL" name="APP_URL">
                         </md-list-item>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('encryption')){{' has-error'}}@endif">
-                            <p>@t('Passwort Verschlüsselungsalgorythmus')</p>
-                            <md-select placeholder="@t('Bitte wählen')"
+                            <p>@t('Password encryption algorithm')</p>
+                            <md-select placeholder="@t('Please choose')"
                                        name="encryption" ng-model="vm.data.encryption" class="md-no-underline">
                                 <md-option value="BLF-CRYPT">BLF-CRYPT</md-option>
                                 <md-option value="SHA512-CRYPT">SHA512-CRYPT</md-option>
@@ -125,14 +146,14 @@
                     </md-list>
                 </md-card-content>
                 <md-card-content>
-                    <span class="md-headline">@t('Datenbank Einstellungen')</span>
+                    <span class="md-headline">@t('Database settings')</span>
                     <md-list>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('DB_CONNECTION')){{' has-error'}}@endif">
-                            <p>@t('Datenbanktreiber')</p>
-                            <md-select placeholder="@t('Bitte wählen')"
+                            <p>@t('Database driver')</p>
+                            <md-select placeholder="@t('Please choose')"
                                        name="DB_CONNECTION" ng-model="vm.data.DB_CONNECTION" class="md-no-underline">
                                 <md-option value="mysql">MySQL</md-option>
                             </md-select>
@@ -140,9 +161,9 @@
 
                         <md-divider></md-divider>
 
-                        <md-list-item class="@if ($errors->has('DB_HOST')){{'md-color-red'}}@endif">
-                            <p>@t('Datenbankserver')</p>
-                            <input type="text" ng-model="vm.data.DB_HOST" name="DB_HOST">
+                        <md-list-item class="@if ($errors->has('DB_HOST')){{'md-color-red'}}@endif" layout="row">
+                            <p flex>@t('Database host')</p>
+                            <input flex type="text" ng-model="vm.data.DB_HOST" name="DB_HOST">
                         </md-list-item>
 
                         <md-divider></md-divider>
@@ -155,22 +176,22 @@
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('DB_DATABASE')){{' has-error'}}@endif">
-                            <p>@t('Datenbank')</p>
+                            <p>@t('Database')</p>
                             <input type="text" ng-model="vm.data.DB_DATABASE" name="DB_DATABASE">
                         </md-list-item>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('DB_USERNAME')){{' has-error'}}@endif">
-                            <p>@t('Benutzer')</p>
+                            <p>@t('User')</p>
                             <input type="text" ng-model="vm.data.DB_USERNAME" name="DB_USERNAME">
                         </md-list-item>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('DB_PASSWORD')){{' has-error'}}@endif">
-                            <p>@t('Passwort')</p>
-                            <input type="text" ng-model="vm.data.DB_PASSWORD" name="DB_PASSWORD">
+                            <p>@t('Password')</p>
+                            <input type="password" ng-model="vm.data.DB_PASSWORD" name="DB_PASSWORD">
                         </md-list-item>
 
                     </md-list>
@@ -182,15 +203,15 @@
             <md-card md-theme="default" flex>
                 <md-card-content>
 
-                    <span class="md-headline">@t('Emaileinstellungen')</span>
+                    <span class="md-headline">@t('Email settings')</span>
 
                     <md-list>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('MAIL_DRIVER')){{' has-error'}}@endif">
-                            <p>@t('Emailtreiber')</p>
-                            <md-select placeholder="@t('Bitte wählen')"
+                            <p>@t('Email driver')</p>
+                            <md-select placeholder="@t('Please choose')"
                                        name="MAIL_DRIVER" ng-model="vm.data.MAIL_DRIVER" class="md-no-underline">
                                 <md-option value="smtp">SMTP</md-option>
                             </md-select>
@@ -199,7 +220,7 @@
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('MAIL_HOST')){{' has-error'}}@endif">
-                            <p>@t('Serveradresse')</p>
+                            <p>@t('Host')</p>
                             <input type="text" ng-model="vm.data.MAIL_HOST" name="MAIL_HOST">
                         </md-list-item>
 
@@ -212,23 +233,37 @@
 
                         <md-divider></md-divider>
 
+                        <md-list-item class="@if($errors->has('MAIL_FROM_NAME')){{' has-error'}}@endif" layout="row">
+                            <p flex="nogrow">@t('Sender name')</p>
+                            <input type="text" ng-model="vm.data.MAIL_FROM_NAME" name="MAIL_FROM_NAME" flex>
+                        </md-list-item>
+
+                        <md-divider></md-divider>
+
+                        <md-list-item class="@if($errors->has('MAIL_FROM_ADDRESS')){{' has-error'}}@endif" layout="row">
+                            <p flex="nogrow">@t('Sender address')</p>
+                            <input type="text" ng-model="vm.data.MAIL_FROM_ADDRESS" name="MAIL_FROM_ADDRESS" flex>
+                        </md-list-item>
+
+                        <md-divider></md-divider>
+
                         <md-list-item class="@if($errors->has('MAIL_USERNAME')){{' has-error'}}@endif">
-                            <p>@t('Benutzername')</p>
+                            <p>@t('Username')</p>
                             <input type="text" ng-model="vm.data.MAIL_USERNAME" name="MAIL_USERNAME">
                         </md-list-item>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('MAIL_PASSWORD')){{' has-error'}}@endif">
-                            <p>@t('Passwort')</p>
+                            <p>@t('Password')</p>
                             <input type="password" ng-model="vm.data.MAIL_PASSWORD" name="MAIL_PASSWORD">
                         </md-list-item>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('MAIL_ENCRYPTION')){{' has-error'}}@endif">
-                            <p>@t('Verschlüsselung')</p>
-                            <md-select placeholder="@t('Bitte wählen')"
+                            <p>@t('Encryption')</p>
+                            <md-select placeholder="@t('Please choose')"
                                        name="MAIL_ENCRYPTION" ng-model="vm.data.MAIL_ENCRYPTION" class="md-no-underline">
                                 <md-option value="false">Keine</md-option>
                                 <md-option value="ssl">SSL</md-option>
@@ -245,7 +280,7 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center" class="p-16">
-                    <button class="md-button md-primary md-raised md-primary" href="">@t('Einstellungen übernehmen')</button>
+                    <button class="md-button md-primary md-raised md-primary" href="">@t('Apply settings')</button>
                 </md-card-actions>
             </md-card>
         </div>

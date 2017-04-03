@@ -22,12 +22,12 @@
             <md-card-title flex="100">
                 <md-card-title-text flex="100" layout="row" layout-align="center center">
                     <h1 class="md-title display-inline-block vertical-align-middle clickable" flex="nogrow">
-                        <a href="/" title="@t('Zurück')">
+                        <a href="/" title="@t('Back')">
                             <i class="material-icons md-color-default">arrow_back</i>
                         </a>
                     </h1>
                     <h1 class="md-title display-inline-block vertical-align-middle" flex>
-                        @t('Übersicht aller verfügbaren Benutzer')
+                        @t('Index of all existing users')
                     </h1>
                 </md-card-title-text>
             </md-card-title>
@@ -46,10 +46,10 @@
                                 </md-button>
                                 <md-menu-content width="3">
                                     <md-menu-item>
-                                        <a class="md-button" href="/user/update/{{$mUser->id}}">@t('Bearbeiten')</a>
+                                        <a class="md-button" href="/user/update/{{$mUser->id}}">@t('Edit')</a>
                                     </md-menu-item>
                                     <md-menu-item>
-                                        <a class="md-button" href="/user/delete/{{$mUser->id}}">@t('Löschen')</a>
+                                        <a class="md-button" href="/user/delete/{{$mUser->id}}">@t('Delete')</a>
                                     </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
@@ -64,7 +64,7 @@
         </md-card>
 
         <div layout="row" flex="100" layout-align="end center" md-theme="green">
-            <a href="/user/create" md-theme="green" class="md-button md-fab md-green" aria-label="@t('Neue anlegen')">
+            <a href="/user/create" md-theme="green" class="md-button md-fab md-green" aria-label="@t('Create new')">
                 <i class="material-icons md-white">add</i>
             </a>
         </div>

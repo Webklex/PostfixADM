@@ -37,6 +37,7 @@ Route::group(['middleware' => ['auth', 'locale']], function () {
 
     Route::get('/mailbox',              'MailboxController@index');
     Route::get('/mailbox/create',       'MailboxController@getCreate');
+    Route::get('/mailbox/test/{id}',    'MailboxController@test');
     Route::get('/mailbox/delete/{id}',  'MailboxController@getDelete');
     Route::get('/mailbox/update/{id}',  'MailboxController@getUpdate');
     Route::post('/mailbox/update/{id}', 'MailboxController@postUpdate');
@@ -68,4 +69,7 @@ Route::group(['middleware' => ['auth', 'super_admin', 'locale']], function () {
     Route::post('/user/create',       'UserController@postCreate');
     Route::get('/user/toggle/{id}/{domain}', 'UserController@toggleDomain');
 
+
+    Route::get('/update', 'UpdateController@index');
+    Route::get('/update/start/{next}', 'UpdateController@start');
 });

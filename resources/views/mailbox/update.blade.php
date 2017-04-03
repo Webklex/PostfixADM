@@ -33,12 +33,12 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/mailbox" title="@t('Zurück')" class="clickable">
+                            <h1 class="display-inline-block vertical-align-middle">
+                                <a href="/mailbox" title="@t('Back')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
-                                <b>{{$mMailbox->email}}</b> @t('aktualisieren')
-                            </span>
+                                <b>{{$mMailbox->email}}</b> @t('update')
+                            </h1>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
@@ -46,7 +46,7 @@
 
                         @if(config('postfixadm.quota.enabled') == true)
                             <md-input-container class="md-block" layout="row">
-                                <label>@t('Postfachgröße in MB')</label>
+                                <label>@t('Mailbox size (MB)')</label>
 
                                 <div flex="100">
                                     @if($mMailbox->quota > 0 && $mMailbox->quota_kb > 0)
@@ -73,7 +73,7 @@
                         @endif
 
                         <md-input-container class="md-block">
-                            <label>@t('Passwort')</label>
+                            <label>@t('Password')</label>
                             <input id="password" type="password" minlength="5" ng-model="vm.data.password"
                                    minlength="100" name="password" value="" autocomplete="off">
                             @if ($errors->has('password'))
@@ -81,14 +81,14 @@
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['minlength', 'maxlength']">
-                                    @t('Das Passwort muss mindestens 5, aber nicht länger als 100 Zeichen sein')
+                                    @t('The provides password has to be at least 5 characters long.')
                                 </div>
                             </div>
                         </md-input-container>
 
                         <md-input-container class="md-block">
                             <md-checkbox ng-checked="vm.data.active" ng-click="vm.data.active = !vm.data.active">
-                                @t('Mailbox ist aktiv und kann verwendet werden')
+                                @t('Mailbox is active and can be used')
                             </md-checkbox>
                             @if ($errors->has('active'))
                                 <div role="alert"><div>{{ $errors->first('active') }}</div></div>
@@ -97,7 +97,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Mailbox aktualisieren')</md-button>
+                        <md-button type="submit">@t('Update mailbox')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

@@ -33,19 +33,19 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/mailbox" title="@t('Zurück')" class="clickable">
+                            <h1 class="display-inline-block vertical-align-middle">
+                                <a href="/mailbox" title="@t('Back')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
-                                @t('Mailbox erstellen')
-                            </span>
+                                @t('Create mailbox')
+                            </h1>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content layout-wrap layout="row">
 
                         <md-input-container flex="50">
-                            <label>@t('Accountname')</label>
+                            <label>@t('Account name')</label>
                             <input id="name" type="text" minlength="2" ng-model="vm.data.email"
                                    maxlength="100" name="email" value="{{ old('email') }}" required autofocus autocomplete="off">
                             @if ($errors->has('email'))
@@ -53,7 +53,7 @@
                             @endif
                             <div ng-messages="authForm.email.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    @t('Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein')
+                                    @t('The provided name has to be at least 2 characters long.')
                                 </div>
                             </div>
                         </md-input-container>
@@ -69,7 +69,7 @@
                         </md-input-container>
 
                         <md-input-container flex="100">
-                            <label>@t('Passwort')</label>
+                            <label>@t('Password')</label>
                             <input id="password" type="password" minlength="5" ng-model="vm.data.password"
                                    minlength="100" name="password" value="" autocomplete="off">
                             @if ($errors->has('password'))
@@ -77,14 +77,14 @@
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    @t('Das Passwort muss mindestens 5, aber nicht länger als 100 Zeichen sein')
+                                    @t('The provides password has to be at least 5 characters long.')
                                 </div>
                             </div>
                         </md-input-container>
 
                         @if(config('postfixadm.quota.enabled') == true)
                             <md-input-container flex="100">
-                                <label>@t('Postfachgröße in MB')</label>
+                                <label>@t('Mailbox size (MB)')</label>
                                 <input id="quota_kb" type="text" ng-model="vm.data.quota_kb"
                                        name="quota_kb" value="{{ old('quota_kb') }}" required autocomplete="off">
                                 @if ($errors->has('quota_kb'))
@@ -95,7 +95,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Mailbox erstellen')</md-button>
+                        <md-button type="submit">@t('Create mailbox')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

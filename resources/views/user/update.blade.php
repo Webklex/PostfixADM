@@ -34,12 +34,12 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline display-inline-block vertical-align-middle">
-                                <a href="/user" title="@t('Zurück')" class="clickable">
+                            <h1 class="display-inline-block vertical-align-middle">
+                                <a href="/user" title="@t('Back')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
-                                @t('Benutzer aktualisieren')
-                            </span>
+                                @t('Update user')
+                            </h1>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
@@ -54,12 +54,12 @@
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    @t('Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein')
+                                    @t('The provided name has to be at least 2 characters long.')
                                 </div>
                             </div>
                         </md-input-container>
                         <md-input-container class="md-block">
-                            <label>@t('Emailadresse')</label>
+                            <label>@t('E-Mail address')</label>
                             <input id="name" type="text" minlength="5" ng-model="vm.data.email"
                                    maxlength="100" name="email" value="{{ getCurrent($mUser, 'email') }}" required autofocus autocomplete="off">
                             @if ($errors->has('email'))
@@ -67,13 +67,13 @@
                             @endif
                             <div ng-messages="authForm.email.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength']">
-                                    @t('Der Name muss mindestens 2, aber nicht länger als 100 Zeichen sein')
+                                    @t('The provided E-Mail address has to be a valid email address')
                                 </div>
                             </div>
                         </md-input-container>
 
                         <md-input-container class="md-block">
-                            <label>@t('Passwort')</label>
+                            <label>@t('Password')</label>
                             <input id="password" type="password" minlength="5" ng-model="vm.data.password"
                                    minlength="100" name="password" value="" autocomplete="off">
                             @if ($errors->has('password'))
@@ -81,14 +81,14 @@
                             @endif
                             <div ng-messages="authForm.name.$error" role="alert">
                                 <div ng-message-exp="['minlength', 'maxlength']">
-                                    @t('Das Passwort muss mindestens 5, aber nicht länger als 100 Zeichen sein')
+                                    @t('The provides password has to be at least 5 characters long.')
                                 </div>
                             </div>
                         </md-input-container>
 
                         <md-input-container class="md-block">
                             <md-checkbox ng-checked="vm.data.super_user" ng-click="vm.data.super_user = !vm.data.super_user">
-                                @t('Benutzer ist super Administrator.')
+                                @t('User is a super admin and has almighty power')
                             </md-checkbox>
                             @if ($errors->has('super_user'))
                                 <div role="alert"><div>{{ $errors->first('super_user') }}</div></div>
@@ -97,7 +97,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Benutzer aktualisieren')</md-button>
+                        <md-button type="submit">@t('Update user')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>
@@ -108,7 +108,7 @@
                 <md-card-title>
                     <md-card-title-text>
                             <span class="md-headline display-inline-block vertical-align-middle">
-                                @t('Domain Zugriff beschränken')
+                                @t('Restrict domain access')
                             </span>
                         <span class="md-subhead"></span>
                     </md-card-title-text>

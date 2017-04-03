@@ -8,15 +8,15 @@
         <md-card md-theme="default">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">@t('Mailboxen verwalten')</span>
+                    <span class="md-headline">@t('Mailbox management')</span>
                     <span class="md-subhead">
-                        @t('Sehe alle deine verfügbaren Mailboxen ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.')
+                        @t('Manage all your available mailboxes. You can edit ord delete existing ones and if you like create some new as well.')
                     </span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-                <a class="md-button" href="/mailbox">@t('Alle einsehen')</a>
-                <a class="md-button" href="/mailbox/create">@t('Neue anlegen')</a>
+                <a class="md-button" href="/mailbox">@t('View all')</a>
+                <a class="md-button" href="/mailbox/create">@t('Create new')</a>
             </md-card-actions>
         </md-card>
     </div>
@@ -25,15 +25,15 @@
         <md-card md-theme="default">
             <md-card-title>
                 <md-card-title-text>
-                    <span class="md-headline">@t('Aliase verwalten')</span>
+                    <span class="md-headline">@t('Alias management')</span>
                     <span class="md-subhead">
-                        @t('Sehe alle deine verfügbaren Mailboxen aliase ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.')
+                        @t('Manage all your available alias mailboxes. You can edit ord delete existing ones and if you like create some new as well.')
                     </span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
-                <a class="md-button" href="/alias">@t('Alle einsehen')</a>
-                <a class="md-button" href="/alias/create">@t('Neue anlegen')</a>
+                <a class="md-button" href="/alias">@t('View all')</a>
+                <a class="md-button" href="/alias/create">@t('Create new')</a>
             </md-card-actions>
         </md-card>
     </div>
@@ -45,15 +45,15 @@
             <md-card md-theme="default">
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">@t('Domains verwalten')</span>
+                        <span class="md-headline">@t('Domain management')</span>
                         <span class="md-subhead">
-                        @t('Sehe alle deine verfügbaren Domains ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.')
+                        @t('Manage all your available domains. You can edit ord delete existing ones and if you like create some new as well.')
                     </span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center">
-                    <a class="md-button" href="/domain">@t('Alle einsehen')</a>
-                    <a class="md-button" href="/domain/create">@t('Neue anlegen')</a>
+                    <a class="md-button" href="/domain">@t('View all')</a>
+                    <a class="md-button" href="/domain/create">@t('Create new')</a>
                 </md-card-actions>
             </md-card>
         </div>
@@ -62,15 +62,15 @@
             <md-card md-theme="default" flex>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">@t('Benutzer verwalten')</span>
+                        <span class="md-headline">@t('User managament')</span>
                         <span class="md-subhead">
-                            @t('Sehe alle Benutzer ein, verwalte sie, füge neue hinzu, ändere oder lösche sie.')
+                            @t('This is the place where you can manage all users.')
                         </span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-actions layout="row" layout-align="end center">
-                    <a class="md-button" href="/user">@t('Alle einsehen')</a>
-                    <a class="md-button" href="/user/create">@t('Neue anlegen')</a>
+                    <a class="md-button" href="/user">@t('View all')</a>
+                    <a class="md-button" href="/user/create">@t('Create new')</a>
                 </md-card-actions>
             </md-card>
         </div>

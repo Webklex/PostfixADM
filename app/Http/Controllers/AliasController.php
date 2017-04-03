@@ -57,7 +57,7 @@ class AliasController extends Controller {
 
     public function getUpdate($id) {
         /** @var Alias $mAlias */
-        $mAlias  = Alias::findOrFail($id);
+        $mAlias  = Alias::whereHasAvailableDomain()->findOrFail($id);
         $aDomain = Domain::available();
 
         $mAlias->domain_id = Domain::availableQuery()->where('name', $mAlias->domain)->first()->id;
@@ -74,7 +74,7 @@ class AliasController extends Controller {
         if($mDomain == null) abort(404);
 
         /** @var Alias $mAlias */
-        $mAlias = Alias::findOrFail($id);
+        $mAlias  = Alias::whereHasAvailableDomain()->findOrFail($id);
 
         $destination = implode(',', $request->get('destination'));
 
@@ -87,7 +87,7 @@ class AliasController extends Controller {
 
     public function getDelete($id) {
         /** @var Alias $mAlias */
-        $mAlias = Alias::findOrFail($id);
+        $mAlias  = Alias::whereHasAvailableDomain()->findOrFail($id);
 
         $mAlias->delete();
 

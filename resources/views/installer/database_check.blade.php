@@ -20,9 +20,9 @@
                         <i class="material-icons md-color-white large" style="color: white;">warning</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Ups.. so gehts nicht')</span>
+                        <span class="md-headline">@t('Well.. that\'s not how things work!')</span>
                         <p>
-                            @t('Bitte überprüfe deine Angaben noch einmal und versuche es erneut.')
+                            @t('Please double check your provided information. It seems something isn\'t right')
                             @t('Die Datenbank gab folgende Fehlermeldungen zurück'):
                             @foreach($aError as $error)
                                 <br />
@@ -35,7 +35,7 @@
         </div>
 
         <div flex="100" class="pt-16" layout="row" layout-align="start center">
-            <a class="md-button md-primary md-raised md-primary" href="/installer/database">@t('Neu versuchen')</a>
+            <a class="md-button md-primary md-raised md-primary" href="/installer/database">@t('Retry')</a>
         </div>
     @else
 
@@ -46,11 +46,11 @@
                         <i class="material-icons md-color-white large" style="color: white;">done_all</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Datenbankmapping erfolgreich geprüft')</span>
+                        <span class="md-headline">@t('Database mapping has ben approved')</span>
                         <p>
-                            @t('Das von Ihnen angegebene Datenbankmapping wurde erfolgreich geprüft.')
-                            @t('Jetzt können Sie die Installation abschließen und mit der Datenmigration beginnen.')
-                            @t('Bitte achten Sie darauf ein Datenbackup für den Fall der Fälle bereit zu halten.')
+                            @t('The provided database mapping schema has ben approved and stored.')
+                            @t('You can now continue and finish start the database migration process.')
+                            @t('Please make sure you have a database backup in case something goes wrong.')
                         </p>
                     </div>
                 </md-card-content>
@@ -58,7 +58,7 @@
         </div>
 
         <div flex="100" class="pt-16" layout="row" layout-align="end center">
-            <a class="md-button md-primary md-raised md-primary" href="/installer/service">@t('Migration abschließen')</a>
+            <a class="md-button md-primary md-raised md-primary" href="/installer/service">@t('Finish migration')</a>
         </div>
     @endif
 

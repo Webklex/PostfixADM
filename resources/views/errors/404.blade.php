@@ -27,14 +27,14 @@
                             <span class="md-headline" style="font-size: 72px;">@t('ERROR 404')</span>
                         </h1>
                         <span class="mt-16 text-center mb-background-white">
-                            @t('..da muss ich dich enttäuschen. Diese Seite existiert nicht.')
+                            @t('..well sorry but this page doesn\'t exists. You might want to go somewhere else.')
                         </span>
                     </div>
 
                 </md-card-title-text>
             </md-card-title>
             <md-card-content layout-wrap layout="row" flex="100" class="text-center mt-32" layout-align="center center">
-                <a class="md-button md-primary md-raised md-primary" href="/">@t('Zurück')</a>
+                <a class="md-button md-primary md-raised md-primary" href="/">@t('Back')</a>
             </md-card-content>
         </md-card>
 

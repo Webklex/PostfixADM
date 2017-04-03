@@ -20,12 +20,11 @@
                         <i class="material-icons md-color-white large" style="color: white;">warning</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Datei besitzt keine Schreibrechte')</span>
+                        <span class="md-headline">@t('File permissions incorrect')</span>
                         <p>
-                            @t('Bitte löschen Sie umgehen die Lock Datei <b>installer.lock</b> im root Verzeichnis der postfixADM-Installation.')
-                            @t('Andernfalls können Sie sich nicht anmelden und keine Accounts verwalten.')
+                            @t('Please make sure that the following files can be written by your www-data user: <b>installer.lock</b>')
                             <br />
-                            @t('Dateipfad'): {{base_path().'/installer.lock'}}
+                            @t('File path'): {{base_path().'/installer.lock'}}
                         </p>
                     </div>
                 </md-card-content>
@@ -34,7 +33,7 @@
 
 
         <div flex="100" class="pt-16" layout="row" layout-align="end center">
-            <a class="md-button md-primary md-raised md-primary" href="/installer/finish">@t('Erneut versuchen')</a>
+            <a class="md-button md-primary md-raised md-primary" href="/installer/finish">@t('Retry')</a>
         </div>
     @else
         <div flex-xs flex-gt-xs="100" layout="row" class="mb-16">
@@ -44,9 +43,9 @@
                         <i class="material-icons md-color-white large" style="color: white;">done_all</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Installation erfolgreich abgeschlossen')</span>
+                        <span class="md-headline">@t('Installation has ben completed')</span>
                         <p>
-                            @t('Jetzt ist alles fertig eingerichtet. Nun können Sie sich anmelden und ihre ersten Adressen / Domains oder ALiase anlegen.')
+                            @t('That\'s ben it. PostfixADM is now ready to use. Go ahead and creat your first Mailboxes.')
                         </p>
                     </div>
                 </md-card-content>
@@ -61,14 +60,14 @@
                     <md-card md-theme="default" flex="100">
                         <md-card-title>
                             <md-card-title-text>
-                                <span class="md-headline">@t('Bitte anmelden')</span>
+                                <span class="md-headline">@t('Please login')</span>
                                 <span class="md-subhead"></span>
                             </md-card-title-text>
                         </md-card-title>
                         <md-card-content flex="100">
 
                             <md-input-container class="md-block">
-                                <label>E-Mail Address</label>
+                                <label>@t('E-Mail Address')</label>
                                 <input id="email" type="email" ng-model="vm.email"
                                        name="email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
@@ -77,14 +76,14 @@
                             </md-input-container>
 
                             <md-input-container class="md-block">
-                                <label>@t('Passwort')</label>
+                                <label>@t('Password')</label>
                                 <input id="password" type="password" ng-model="password" minlength="3" name="password" required>
                             </md-input-container>
 
 
                         </md-card-content>
                         <md-card-actions layout="row" layout-align="end center">
-                            <md-button type="submit">@t('Anmelden')</md-button>
+                            <md-button type="submit">@t('Login')</md-button>
                         </md-card-actions>
                     </md-card>
                 </form>

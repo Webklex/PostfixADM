@@ -8,14 +8,14 @@
                 <md-card md-theme="default">
                     <md-card-title>
                         <md-card-title-text>
-                            <span class="md-headline">@t('Bitte anmelden')</span>
+                            <span class="md-headline">@t('Please login')</span>
                             <span class="md-subhead"></span>
                         </md-card-title-text>
                     </md-card-title>
                     <md-card-content>
 
                             <md-input-container class="md-block">
-                                <label>E-Mail Address</label>
+                                <label>@t('E-Mail Address')</label>
                                 <input id="email" type="email" ng-model="vm.email"
                                        name="email" value="{{ old('email') }}" required autofocus>
                                 @if ($errors->has('email'))
@@ -24,14 +24,14 @@
                             </md-input-container>
 
                             <md-input-container class="md-block">
-                                <label>@t('Passwort')</label>
+                                <label>@t('Password')</label>
                                 <input id="password" type="password" ng-model="password" minlength="3" name="password" required>
                             </md-input-container>
 
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Anmelden')</md-button>
+                        <md-button type="submit">@t('Login')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

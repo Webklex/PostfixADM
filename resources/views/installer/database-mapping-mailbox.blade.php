@@ -1,9 +1,9 @@
 
 
 <div class="md-headline" layout="row">
-    <div flex>@t('Mailboxmapping definieren')</div>
-    <md-select ng-model="vm.data.mailbox.table" class="mt-0 mb-16" placeholder="@t('Tabelle')" flex>
-        <md-option value="null">@t('Neu anlegen')</md-option>
+    <div flex>@t('Mailbox mapping definition')</div>
+    <md-select ng-model="vm.data.mailbox.table" class="mt-0 mb-16" placeholder="@t('Table')" flex>
+        <md-option value="null">@t('Create')</md-option>
         @foreach($matrix as $table)
             <md-option value="{{$table['table']}}">{{$table['table']}}</md-option>
         @endforeach
@@ -11,13 +11,13 @@
 </div>
 <div flex="100" layout="row"  ng-show="vm.data.mailbox.table != 'null' && vm.data.mailbox.table != null">
     @include('installer.database-mapping-map', [
-        'title'   => _t('Emailaddresse'),
+        'title'   => _t('E-mail address'),
         'matrix'  => $matrix,
         'field'   => 'email',
         'section' => 'mailbox',
     ])
     @include('installer.database-mapping-map', [
-        'title'   => _t('Passwort'),
+        'title'   => _t('Password'),
         'matrix'  => $matrix,
         'field'   => 'password',
         'section' => 'mailbox',
@@ -29,7 +29,7 @@
         'section' => 'mailbox',
     ])
     @include('installer.database-mapping-map', [
-        'title'   => _t('Aktiv Flag'),
+        'title'   => _t('Active Flag'),
         'matrix'  => $matrix,
         'field'   => 'active',
         'section' => 'mailbox',

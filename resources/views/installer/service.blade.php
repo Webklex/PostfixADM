@@ -20,9 +20,9 @@
                         <i class="material-icons md-color-white large" style="color: white;">warning</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Ups.. so gehts nicht')</span>
+                        <span class="md-headline">@t('Well.. that\'s not how things work!')</span>
                         <p>
-                            @t('Bitte überprüfe deine Angaben noch einmal und versuche es erneut.')
+                            @t('Please double check your provided information. It seems something isn\'t right')
                         </p>
                     </div>
                 </md-card-content>
@@ -36,9 +36,9 @@
                         <i class="material-icons md-color-white large" style="color: white;">done_all</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Migration erfolgreich abgeschlossen')</span>
+                        <span class="md-headline">@t('Migration has ben successful')</span>
                         <p>
-                            @t('Das wichtigste ist geschafft. Nun fehlen nur noch ein paar Kleinigkeiten und alles is fertig eingerichtet.')
+                            @t('The main installation process has ben completed. Lets head over to the next few settings')
                         </p>
                     </div>
                 </md-card-content>
@@ -54,7 +54,7 @@
         <div flex-xs flex-gt-xs="50" layout="row">
             <md-card md-theme="default" flex>
                 <md-card-content>
-                    <span class="md-headline">@t('Superadmin anlegen')</span>
+                    <span class="md-headline">@t('Create a new super admin')</span>
 
                     <md-list>
 
@@ -67,15 +67,15 @@
 
                         <md-divider></md-divider>
 
-                        <md-list-item class="@if($errors->has('email')){{' has-error'}}@endif">
-                            <p>@t('Emailadresse')</p>
-                            <input type="text" ng-model="vm.data.email" name="email">
+                        <md-list-item class="@if($errors->has('email')){{' has-error'}}@endif" layout="row">
+                            <p flex="nogrow">@t('E-mail address')</p>
+                            <input type="text" ng-model="vm.data.email" name="email" flex />
                         </md-list-item>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if($errors->has('password')){{' has-error'}}@endif">
-                            <p>@t('Passwort')</p>
+                            <p>@t('Password')</p>
                             <input type="password" ng-model="vm.data.password" name="password">
                         </md-list-item>
 
@@ -87,21 +87,21 @@
         <div flex-xs flex-gt-xs="50" layout="row">
             <md-card md-theme="default" flex>
                 <md-card-content>
-                    <span class="md-headline">@t('Quota service aktivieren')</span>
+                    <span class="md-headline">@t('Activate quota service')</span>
                     <p>
-                        @t('Der Quota service ermöglicht es Ihnen die aktuell Postfachgröße der einzelnen Mailboxen einzusehen, ohne auf deren Konten zu zu greifen.')
+                        @t('The quota service is designed to receive the individual mailbox quota without having the mailbox password.')
                         <br />
-                        @t('Hierzu wird allerdings eine gewisse Fachkenntnis im Umgang mit Linuxdistributionen benötigt.')
+                        @t('The setup requires some minor linux know-how.')
                         <br />
                         <br />
-                        @t('Eine anleitung kann hier gefunden werden'): <a target="_blank" href="https://wwww.github.com/webklex/postfixadm">Github Wiki</a>
+                        @t('Follow the link if you need further assistant'): <a target="_blank" href="https://wwww.github.com/webklex/postfixadm">Github Wiki</a>
                     </p>
                     <md-list>
 
                         <md-divider></md-divider>
 
                         <md-list-item class="@if ($errors->has('quota')){{' has-error'}}@endif">
-                            <p>@t('Quota aktivieren')</p>
+                            <p>@t('Activate quota')</p>
                             <input type="hidden" name="quota" value="[[vm.data.quota]]" />
                             <md-checkbox class="md-secondary" ng-model="vm.data.quota"
                                          ng-true-value="true" ng-false-value="false"></md-checkbox>
@@ -139,7 +139,7 @@
                                     vm.data.password != null ? vm.data.password.length < 6 : false
                                 )
                     ">
-                        @t('Installation abschließen')
+                        @t('Complete installation')
                     </button>
                 </md-card-actions>
             </md-card>

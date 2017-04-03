@@ -62,19 +62,19 @@
                                     <md-subheader class="md-no-sticky">@t('System')</md-subheader>
                                     <md-menu-item>
                                         <a href="/settings" class="md-button">
-                                            @t('Einstellungen')
+                                            @t('Settings')
                                         </a>
                                     </md-menu-item>
                                     <md-menu-divider></md-menu-divider>
                                     <md-menu-item>
-                                        <a href="/upgrade" class="md-button">
-                                            @t('Aktualisieren')
+                                        <a href="/update" class="md-button">
+                                            @t('Update')
                                         </a>
                                     </md-menu-item>
                                     <md-menu-divider></md-menu-divider>
                                     <md-menu-item>
                                         <a href="/logout" class="md-button color-red">
-                                            @t('Abmelden')
+                                            @t('Logout')
                                         </a>
                                     </md-menu-item>
                                 @endif

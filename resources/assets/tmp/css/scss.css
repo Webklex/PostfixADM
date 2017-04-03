@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 body, html {
   height: calc(100vh - 16px);
   min-height: calc(100vh - 16px);
@@ -51,7 +52,7 @@ md-menu-content.md-blue-theme md-menu-item:hover, md-menu-content.md-blue-theme 
     color: #c62828 !important; }
 
 .md-fab div {
-  margin-top: -10px;
+  margin-top: -6px;
   font-size: 36px; }
 
 .md-button.md-primary {
@@ -64,6 +65,9 @@ md-menu-content.md-blue-theme md-menu-item:hover, md-menu-content.md-blue-theme 
 
 md-checkbox.md-default-theme[disabled].md-checked .md-icon, md-checkbox[disabled].md-checked .md-icon {
   background-color: #006591 !important; }
+
+md-list md-list-item .pfa-label {
+  padding-top: 1px; }
 
 md-list-item md-select {
   margin-top: 0;
@@ -3134,3 +3138,27 @@ md-list-item input[type="text"]:focus, md-list-item input[type="password"]:focus
  */
 .pfa-color-white {
   color: #ffffff; }
+
+.md-color-default {
+  color: rgba(197, 197, 197, 0.84); }
+
+.md-color-white {
+  color: rgba(197, 197, 197, 0.84); }
+
+.pfa-label {
+  background-color: rgba(0, 0, 0, 0.87);
+  color: rgba(197, 197, 197, 0.84);
+  border-radius: 2px;
+  padding: 2px 8px 2px 8px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800; }
+  .pfa-label.pfa-label-info {
+    background-color: #006591;
+    color: rgba(197, 197, 197, 0.84); }
+  .pfa-label.pfa-label-success {
+    background-color: #207232;
+    color: rgba(197, 197, 197, 0.84); }
+  .pfa-label.pfa-label-danger, .pfa-label.pfa-label-security, .pfa-label.pfa-label-bug {
+    background-color: #c62828;
+    color: #ffffff; }

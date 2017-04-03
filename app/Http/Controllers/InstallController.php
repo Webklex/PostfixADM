@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SetupDatabaseRequest;
 use App\Http\Requests\SetupGeneralRequest;
 use App\Http\Requests\SetupServiceRequest;
+use App\Mail\TestMail;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,6 +14,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
 
@@ -133,6 +135,27 @@ class InstallController extends Controller {
         if (mysqli_connect_errno()) {
             $aRequest = $request->all();
             $aRequest['mysql_error'] = mysqli_connect_errno();
+            $aStep = $aStep->except('database');
+            session(['steps' => $aStep->toArray()]);
+            return redirect()->back()->withInput($aRequest);
+        }
+
+        try{
+            config(['mail.driver' => $request->get('MAIL_DRIVER')]);
+            config(['mail.host' => $request->get('MAIL_HOST')]);
+            config(['mail.port' => $request->get('MAIL_PORT')]);
+            config(['mail.username' => $request->get('MAIL_USERNAME')]);
+            config(['mail.password' => $request->get('MAIL_PASSWORD')]);
+            config(['mail.encryption' => $request->get('MAIL_ENCRYPTION')]);
+            config(['mail.from.address' => $request->get('MAIL_FROM_ADDRESS')]);
+            config(['mail.from.name' => $request->get('MAIL_FROM_NAME')]);
+            Mail::to([$request->get('MAIL_FROM_ADDRESS')])->send(new TestMail('PostfixADM mail configuration test'));
+        }catch(\Exception $e){
+            $aRequest = $request->all();
+
+            $error = explode('[', $e->getMessage());
+            $aRequest['mail_error'] = $error[0];
+
             $aStep = $aStep->except('database');
             session(['steps' => $aStep->toArray()]);
             return redirect()->back()->withInput($aRequest);

@@ -14,7 +14,7 @@
 ?>
 
 <section class="pa-footer">
-    PostfixADM - Copyright &copy; {{date('Y')}} by <a href="https://www.webklex.com" target="_blank">www.webklex.com</a>
+    PostfixADM - Copyright &copy; {{date('Y')}} by <a href="https://www.postfixadm.com" target="_blank">www.postfixadm.com</a>
 </section>
 
 <script type="text/javascript" src="/assets/js/vendors.min.js"></script>

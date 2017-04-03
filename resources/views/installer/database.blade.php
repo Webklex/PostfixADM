@@ -20,9 +20,9 @@
                         <i class="material-icons md-color-white large" style="color: white;">warning</i>
                     </div>
                     <div flex>
-                        <span class="md-headline">@t('Ups.. so gehts nicht')</span>
+                        <span class="md-headline">@t('Well.. that\'s not how things work!')</span>
                         <p>
-                            @t('Bitte überprüfe deine Angaben noch einmal und versuche es erneut.')
+                            @t('Please double check your provided information. It seems something isn\'t right')
                         </p>
                     </div>
                 </md-card-content>
@@ -39,11 +39,11 @@
                             <i class="material-icons md-color-white large" style="color: white;">info</i>
                         </div>
                         <div flex>
-                            <span class="md-headline">@t('Keine Tabellen gefunden')</span>
+                            <span class="md-headline">@t('No tabeles found')</span>
                             <p>
-                                @t('Es konnten keine Tabellen zum mappen gefunden werden.')
+                                @t('It seems like the given database doesn\'t contain any tables. So no mapping necessary.')
                                 <br />
-                                @t('Bitte legen zunächt die Tabellen an oder überspringen Sie diesen Schritt um die Tabellen automatisch zu erstellen.')
+                                @t('Please create the required tables first or skip the mapping and create the default tables automatically.')
                             </p>
                         </div>
                     </md-card-content>
@@ -62,7 +62,7 @@
             @if(count($matrix) == 0)
                 <div flex="100">
                     <md-card-actions layout="row" layout-align="end center" class="pt-16">
-                        <button class="md-button md-primary md-raised md-primary" href="">@t('Tabellen anlegen')</button>
+                        <button class="md-button md-primary md-raised md-primary" href="">@t('Create tables')</button>
                     </md-card-actions>
                 </div>
             @else
@@ -79,7 +79,7 @@
                         </md-card-content>
 
                         <md-card-actions layout="row" layout-align="end center" class="p-16">
-                            <button class="md-button md-primary md-raised md-primary">@t('Mapping übernehmen')</button>
+                            <button class="md-button md-primary md-raised md-primary">@t('Apply mapping')</button>
                         </md-card-actions>
                     </md-card>
                 </div>

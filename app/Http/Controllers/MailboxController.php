@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostMailboxCreateRequest;
 use App\Http\Requests\PostMailboxUpdateRequest;
+use App\Mail\TestMail;
 use App\Models\Domain;
 use App\Models\Mailbox;
+use Illuminate\Support\Facades\Mail;
 
 class MailboxController extends Controller {
 
@@ -28,6 +30,15 @@ class MailboxController extends Controller {
         return view('mailbox.index', [
             'aMailbox' => $aMailbox
         ]);
+    }
+
+    public function test($id){
+        /** @var Mailbox $mMailbox */
+        $mMailbox = Mailbox::whereHasAvailableDomain()->findOrFail($id);
+
+        Mail::to([$mMailbox->email])->send(new TestMail());
+
+        return redirect()->back();
     }
 
     public function getCreate() {
@@ -60,7 +71,7 @@ class MailboxController extends Controller {
 
     public function getUpdate($id) {
         /** @var Mailbox $mMailbox */
-        $mMailbox = Mailbox::findOrFail($id);
+        $mMailbox = Mailbox::whereHasAvailableDomain()->findOrFail($id);
 
         return view('mailbox.update', [
             'mMailbox' => $mMailbox
@@ -70,7 +81,7 @@ class MailboxController extends Controller {
     public function postUpdate($id, PostMailboxUpdateRequest $request) {
 
         /** @var Mailbox $mMailbox */
-        $mMailbox = Mailbox::findOrFail($id);
+        $mMailbox = Mailbox::whereHasAvailableDomain()->findOrFail($id);
 
         if($request->has('quota_kb') == true) $mMailbox->quota_kb  = (int)$request->get('quota_kb');
         if($request->has('password')){
@@ -88,7 +99,7 @@ class MailboxController extends Controller {
 
     public function getDelete($id) {
         /** @var Mailbox $mMailbox */
-        $mMailbox = Mailbox::findOrFail($id);
+        $mMailbox = Mailbox::whereHasAvailableDomain()->findOrFail($id);
 
         $mMailbox->delete();
 

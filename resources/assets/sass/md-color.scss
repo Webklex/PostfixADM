@@ -10,7 +10,49 @@
  *  -
  */
 
+$default-dark: rgba(0,0,0,0.87);
+$default: rgba(197, 197, 197, 0.84);
+
+$info-dark: rgb(0, 76, 110);
+$info: rgba(0, 101, 145, 1);
+
+$success-dark: rgb(24, 86, 38);
+$success: rgb(32, 114, 50);
+
+$danger-dark: rgb(178, 36, 36);
+$danger: rgb(198,40,40);
 
 .pfa-color-white {
   color: #ffffff;
+}
+.md-color-default {
+  color: $default;
+}
+.md-color-white {
+  color: rgba(197, 197, 197, 0.84);
+}
+
+.pfa-label {
+  background-color: $default-dark;
+  color: $default;
+  border-radius: 2px;
+  padding: 2px 8px 2px 8px;
+  font-family: 'Open Sans', sans-serif;
+  font-size:12px;
+  font-weight: 800;
+
+  &.pfa-label-info {
+    background-color: $info;
+    color: $default;
+  }
+
+  &.pfa-label-success {
+    background-color: $success;
+    color: $default;
+  }
+
+  &.pfa-label-danger, &.pfa-label-security, &.pfa-label-bug {
+    background-color: $danger;
+    color: #ffffff;
+  }
 }

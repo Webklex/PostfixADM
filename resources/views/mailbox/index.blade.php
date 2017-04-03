@@ -23,13 +23,13 @@
                 <md-card-title-text flex="100" layout="row" layout-align="start start">
 
                     <h1 class="md-title display-inline-block vertical-align-middle clickable" flex="nogrow">
-                        <a href="/" title="@t('Zurück')" class="clickable">
+                        <a href="/" title="@t('Back')" class="clickable">
                             <i class="material-icons md-color-default">arrow_back</i>
                         </a>
                     </h1>
 
                     <h1 class="md-title display-inline-block vertical-align-middle">
-                        @t('Übersicht aller verfügbaren Mailboxen')
+                        @t('Index of all existing mailboxes')
                     </h1>
                 </md-card-title-text>
             </md-card-title>
@@ -37,15 +37,15 @@
 
                 @if($aMailbox->count() == 0)
                     <h1 class="md-headline text-center mt-8" flex="100">
-                        @t('Es wurden noch keine Mailboxen angelegt')
+                        @t('You might want to create a mailbox first..')
                     </h1>
                 @else
 
                     <md-list ng-cloak  flex="100">
                         <md-list-item layout="row" flex="100">
-                            <div flex><i>@t('Emailadresse')</i></div>
+                            <div flex><i>@t('E-mail address')</i></div>
                             @if(config('postfixadm.quota.enabled') == true)
-                                <div flex-xs="25" flex><i>@t('Pastfachgröße')</i></div>
+                                <div flex-xs="25" flex><i>@t('Mailbox size (MB)')</i></div>
                             @endif
                             <md-menu class="md-secondary" flex>
                                 <md-button class="md-icon-button"></md-button>
@@ -91,10 +91,10 @@
                                     </md-button>
                                     <md-menu-content width="3">
                                         <md-menu-item>
-                                            <a class="md-button" href="/mailbox/update/{{$mMailbox->id}}">@t('Bearbeiten')</a>
+                                            <a class="md-button" href="/mailbox/update/{{$mMailbox->id}}">@t('Edit')</a>
                                         </md-menu-item>
                                         <md-menu-item>
-                                            <a class="md-button" href="/mailbox/delete/{{$mMailbox->id}}">@t('Löschen')</a>
+                                            <a class="md-button" href="/mailbox/delete/{{$mMailbox->id}}">@t('Delete')</a>
                                         </md-menu-item>
                                     </md-menu-content>
                                 </md-menu>
@@ -111,7 +111,7 @@
         </md-card>
 
         <div layout="row" flex="100" layout-align="end center" md-theme="green">
-            <a href="/mailbox/create" md-theme="green" class="md-button md-fab md-green" aria-label="@t('Neue anlegen')">
+            <a href="/mailbox/create" md-theme="green" class="md-button md-fab md-green" aria-label="@t('Create new')">
                 <i class="material-icons md-white">add</i>
             </a>
         </div>
