@@ -28,6 +28,9 @@ $danger: rgb(198,40,40);
 .md-color-default {
   color: $default;
 }
+.md-color-success {
+  color: lighten($success, 10);
+}
 .md-color-white {
   color: rgba(197, 197, 197, 0.84);
 }

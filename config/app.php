@@ -177,6 +177,9 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Chumper\Zipper\ZipperServiceProvider::class,
+        PragmaRX\Google2FA\Vendor\Laravel\ServiceProvider::class,
+
         webklex\helpers\HelperServiceProvider::class,
         Webklex\Translator\Providers\TranslatorServiceProvider::class,
         Webklex\Translator\Providers\TranslatorBladeServiceProvider::class,
@@ -210,6 +213,7 @@ return [
         'Event' => Illuminate\Support\Facades\Event::class,
         'File' => Illuminate\Support\Facades\File::class,
         'Gate' => Illuminate\Support\Facades\Gate::class,
+        'Google2FA' => PragmaRX\Google2FA\Vendor\Laravel\Facade::class,
         'Hash' => Illuminate\Support\Facades\Hash::class,
         'Lang' => Illuminate\Support\Facades\Lang::class,
         'Log' => Illuminate\Support\Facades\Log::class,
@@ -228,6 +232,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Zipper' => Chumper\Zipper\Zipper::class,
     ],
 
 ];

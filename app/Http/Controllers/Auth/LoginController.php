@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\Authenticatable;
+use App\Http\Requests\ValidateSecretRequest;
 
 class LoginController extends Controller
 {
@@ -28,12 +33,55 @@ class LoginController extends Controller
     protected $redirectTo = '/home';
 
     /**
-     * Create a new controller instance.
+     * Send the post-authentication response.
      *
-     * @return void
+     * @param  \Illuminate\Http\Request $request
+     * @param  \Illuminate\Contracts\Auth\Authenticatable $user
+     * @return \Illuminate\Http\Response
      */
-    public function __construct()
+    private function authenticated(Request $request, Authenticatable $user) {
+
+        if ($user->google2fa_secret) {
+            Auth::logout();
+
+            $request->session()->put('2fa:user:id', $user->id);
+
+            return redirect('/2fa/validate');
+        }
+
+        return redirect()->intended($this->redirectTo);
+    }
+
+    /**
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getValidateToken()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        if (session('2fa:user:id')) {
+            return view('auth.2fa');
+        }
+
+        return redirect('login');
+    }
+
+    /**
+     * @param ValidateSecretRequest $request
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function postValidateToken(ValidateSecretRequest $request)
+    {
+        //get user id and create cache key
+        $userId = $request->session()->pull('2fa:user:id');
+        $key    = $userId . ':' . $request->get('totp');
+
+        //use cache to store token to blacklist
+        Cache::add($key, true, 4);
+
+        //login and redirect user
+        Auth::loginUsingId($userId);
+
+        return redirect()->intended($this->redirectTo);
     }
 }

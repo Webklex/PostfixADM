@@ -131,6 +131,7 @@ Please create the required tables first or skip the mapping and create the defau
 Create tables;Tabellen anlegen;
 Apply mapping;Mapping übernehmen;
 ..well sorry but this page doesn't exists. You might want to go somewhere else.;..da muss ich dich enttäuschen. Diese Seite existiert nicht.;
+..well sorry but something went wrong. You might want to go somewhere else.;..ja ..was soll ich sagen.. irgendetwas ist schief gegangen :/;
 Update domain;Domain aktualisieren;
 The domain is active and can be used;Domain ist aktiv und kann verwendet werden;
 The domain name has to include the .tld and contain more then 5 characters.;Der Name der Domain inklusive TLD muss mindestens 5 Zeichen lang sein.;

@@ -14,6 +14,8 @@
 Route::group(['middleware' => ['installer', 'locale']], function () {
 
     Auth::routes();
+    Route::get('/2fa/validate',  'Auth\LoginController@getValidateToken');
+    Route::post('/2fa/validate', ['middleware' => 'throttle:5', 'uses' => 'Auth\LoginController@postValidateToken']);
     Route::get('/', 'HomeController@welcome');
     Route::get('/language/{locale}', 'Auth\AuthController@changeLanguage');
 
@@ -31,9 +33,10 @@ Route::group(['middleware' => ['installer', 'locale']], function () {
 Route::group(['middleware' => ['auth', 'locale']], function () {
 
     Route::get('/home',      'HomeController@welcome');
-    Route::get('/settings',  'SettingsController@getUpdate');
-    Route::post('/settings', 'SettingsController@postUpdate');
     Route::get('/logout',    'Auth\AuthController@logout');
+
+    Route::get('/settings/2fa/enable',    'Google2FAController@enableTwoFactor');
+    Route::get('/settings/2fa/disable',   'Google2FAController@disableTwoFactor');
 
     Route::get('/mailbox',              'MailboxController@index');
     Route::get('/mailbox/create',       'MailboxController@getCreate');
@@ -69,7 +72,14 @@ Route::group(['middleware' => ['auth', 'super_admin', 'locale']], function () {
     Route::post('/user/create',       'UserController@postCreate');
     Route::get('/user/toggle/{id}/{domain}', 'UserController@toggleDomain');
 
-
     Route::get('/update', 'UpdateController@index');
     Route::get('/update/start/{next}', 'UpdateController@start');
+
+    Route::get('/settings',  'SettingsController@getUpdate');
+    Route::post('/settings', 'SettingsController@postUpdate');
+
+    Route::group(['prefix' => 'api/update', 'namespace' => 'Api'], function () {
+
+        Route::post('step/{step}/{version}', 'UpdateController@performStep');
+    });
 });

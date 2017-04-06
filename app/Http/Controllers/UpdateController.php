@@ -24,13 +24,12 @@ class UpdateController extends Controller {
         curl_setopt($ch, CURLOPT_VERBOSE, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_USERAGENT, $agent);
-        curl_setopt($ch, CURLOPT_URL, 'http://postfixadm-website.dev/api/version/new');
+        curl_setopt($ch, CURLOPT_URL, 'http://postfixadm-website.dev/api/version/new/'.config('postfixadm.serial_number'));
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT ,0);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
         $data = json_decode(curl_exec($ch));
-
         curl_close($ch);
 
         $nextVersion = null;

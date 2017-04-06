@@ -17,7 +17,7 @@ class InstallerMiddleware
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (file_exists(base_path().'/installer.lock')) {
+        if (file_exists(base_path().'/installer.lock') && env('INSTALLED')) {
             $parts = explode('/', substr($request->getPathInfo(), 1));
             if(count($parts) > 0){
                 if(in_array($parts[0], ['language', 'installer'])){

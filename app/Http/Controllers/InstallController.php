@@ -347,6 +347,7 @@ MAIL_ENCRYPTION=".$request->get('MAIL_ENCRYPTION')."
                     $table->string('name');
                     $table->string('email')->unique();
                     $table->string('password');
+                    $table->string('google2fa_secret')->nullable();
                     $table->boolean('super_user')->default(0);
                     $table->rememberToken();
                     $table->timestamps();
@@ -519,6 +520,7 @@ MAIL_ENCRYPTION=".$request->get('MAIL_ENCRYPTION')."
     public function getFinish(){
         try {
             if(File::exists(base_path().'/installer.lock')) unlink(base_path().'/installer.lock');
+            File::append(base_path().'/.env', "INSTALLED=true\n");
         }catch(\ErrorException $e){
             return view('installer.finish', [
                 'aStep'  => collect(session('steps', [])),

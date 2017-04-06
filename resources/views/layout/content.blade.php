@@ -58,19 +58,28 @@
 
 
                                 @if(auth()->check())
-                                    <md-menu-divider></md-menu-divider>
                                     <md-subheader class="md-no-sticky">@t('System')</md-subheader>
                                     <md-menu-item>
-                                        <a href="/settings" class="md-button">
-                                            @t('Settings')
-                                        </a>
+                                        @if (auth()->user()->google2fa_secret)
+                                            <a href="/settings/2fa/disable" class="md-button">@t('Disable 2FA')</a>
+                                        @else
+                                            <a href="/settings/2fa/enable" class="md-button">@t('Enable 2FA')</a>
+                                        @endif
                                     </md-menu-item>
-                                    <md-menu-divider></md-menu-divider>
-                                    <md-menu-item>
-                                        <a href="/update" class="md-button">
-                                            @t('Update')
-                                        </a>
-                                    </md-menu-item>
+                                    @if(isSuperUser())
+                                        <md-menu-divider></md-menu-divider>
+                                        <md-menu-item>
+                                            <a href="/settings" class="md-button">
+                                                @t('Settings')
+                                            </a>
+                                        </md-menu-item>
+                                        <md-menu-divider></md-menu-divider>
+                                        <md-menu-item>
+                                            <a href="/update" class="md-button">
+                                                @t('Update')
+                                            </a>
+                                        </md-menu-item>
+                                    @endif
                                     <md-menu-divider></md-menu-divider>
                                     <md-menu-item>
                                         <a href="/logout" class="md-button color-red">

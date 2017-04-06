@@ -168,6 +168,17 @@
                             </md-list-item>
                             <md-divider></md-divider>
 
+                            <md-list-item layout="row" class="pr-0">
+                                <p flex="nogrow">@t('Google 2FA authentication'):</p>
+                                <div flex></div>
+                                @if (auth()->user()->google2fa_secret)
+                                    <a href="/settings/2fa/disable" class="md-button md-primary md-raised" flex="nogrow">@t('Disable 2FA')</a>
+                                @else
+                                    <a href="/settings/2fa/enable" class="md-button md-accent md-raised" flex="nogrow">@t('Enable 2FA')</a>
+                                @endif
+                            </md-list-item>
+                            <md-divider></md-divider>
+
                         </md-list>
 
                     </md-card-content>
@@ -194,7 +205,7 @@
                             <md-list-item layout="row" class="pr-0">
                                 <p flex="nogrow">@t('Software update'):</p>
                                 <div flex></div>
-                                <a href="/update" class="md-button md-button-link mr-0" flex="nogrow">@t('Prüfen')</a>
+                                <a href="/update"  class="md-raised md-accent md-button mr-0" flex="nogrow">@t('Check')</a>
                             </md-list-item>
 
                             <md-divider></md-divider>

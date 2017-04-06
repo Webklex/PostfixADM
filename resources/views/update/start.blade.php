@@ -15,12 +15,62 @@
 
 @extends('layout.app', [
     'scripts' => [
-        '/assets/js/installer.min.js'
+        '/assets/js/updater.min.js'
     ]
 ])
 
 @section('content')
-    <md-content class="md-padding" layout-xs="column" layout="row" layout-wrap>
+    <md-content ng-controller="updaterController as vm" ng-init="vm.parse('{{json_encode(["version" => $next, "token" => csrf_token()])}}')" class="md-padding" layout-xs="column" layout="row" layout-wrap>
+
+        <div flex-xs flex-gt-xs="100" layout="row" class="mb-16" ng-show="vm.error.length > 0">
+            <md-card md-theme="red" flex>
+                <md-card-content layout="row">
+                    <div flex="nogrow" class="pr-16">
+                        <i class="material-icons md-color-white large" style="color: white;">warning</i>
+                    </div>
+                    <div flex>
+                        <span class="md-headline">@t('File permissions incorrect')</span>
+                        <p>
+                            @t('Please make sure that the following files can be written by your www-data user:')
+
+                            <span ng-repeat="error in vm.error"><br />@t('File path'): [[error]]</span>
+                        </p>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex-xs flex-gt-xs="100" layout="row" class="mb-16" ng-show="vm.warning.length > 0">
+            <md-card md-theme="red" flex>
+                <md-card-content layout="row">
+                    <div flex="nogrow" class="pr-16">
+                        <i class="material-icons md-color-white large" style="color: white;">warning</i>
+                    </div>
+                    <div flex>
+                        <span class="md-headline">@t('Well.. that\'s not how things work!')</span>
+                        <p>
+                            @t('Please double check your provided information. It seems something isn\'t right')
+                            <br />
+                            <span ng-repeat="warning in vm.warning">[[warning]]<br /></span>
+                        </p>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex-xs flex-gt-xs="100" layout="row" class="mb-16" ng-show="vm.completed == true">
+            <md-card md-theme="green" flex>
+                <md-card-content layout="row">
+                    <div flex="nogrow" class="pr-16">
+                        <i class="material-icons md-color-white large" style="color: white;">done_all</i>
+                    </div>
+                    <div flex>
+                        <span class="md-headline">@t('Update completed!')</span>
+                        <p>
+                            @t('The new update has ben applied. The new version is now fully implemented.')
+                        </p>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
 
         <div flex="100" layout="row">
             <md-card md-theme="default" flex="100">
@@ -51,52 +101,52 @@
                             <md-divider></md-divider>
                             <md-list-item layout="row" class="pl-0 pr-0">
                                 <p flex="nogrow" class="pr-8">
-                                    <i class="material-icons md-color-success">done_all</i>
+                                    <i ng-class="{'md-color-success':vm.step.connect == true}" class="material-icons">done_all</i>
                                 </p>
-                                <p flex>Update server available and required patch files located</p>
+                                <p flex>@t('Update server available and required patch files located')</p>
                             </md-list-item>
 
                             <md-divider></md-divider>
                             <md-list-item layout="row" class="pl-0 pr-0">
                                 <p flex="nogrow" class="pr-8">
-                                    <i class="material-icons">done_all</i>
+                                    <i ng-class="{'md-color-success':vm.step.download == true}" class="material-icons">done_all</i>
                                 </p>
-                                <p flex>Patch files downloaded</p>
+                                <p flex>@t('Patch files downloaded')</p>
                             </md-list-item>
                             <md-divider></md-divider>
                             <md-list-item layout="row" class="pl-0 pr-0">
                                 <p flex="nogrow" class="pr-8">
-                                    <i class="material-icons">done_all</i>
+                                    <i ng-class="{'md-color-success':vm.step.extract == true}" class="material-icons">done_all</i>
                                 </p>
-                                <p flex>Patch files extracted</p>
+                                <p flex>@t('Patch files extracted')</p>
                             </md-list-item>
                             <md-divider></md-divider>
                             <md-list-item layout="row" class="pl-0 pr-0">
                                 <p flex="nogrow" class="pr-8">
-                                    <i class="material-icons">done_all</i>
+                                    <i ng-class="{'md-color-success':vm.step.applied == true}" class="material-icons">done_all</i>
                                 </p>
-                                <p flex>Patch files applied</p>
+                                <p flex>@t('Patch files applied')</p>
                             </md-list-item>
                             <md-divider></md-divider>
                             <md-list-item layout="row" class="pl-0 pr-0">
                                 <p flex="nogrow" class="pr-8">
-                                    <i class="material-icons">done_all</i>
+                                    <i ng-class="{'md-color-success':vm.step.migration == true}" class="material-icons">done_all</i>
                                 </p>
-                                <p flex>Migration executed</p>
+                                <p flex>@t('Migration executed')</p>
                             </md-list-item>
                             <md-divider></md-divider>
                             <md-list-item layout="row" class="pl-0 pr-0">
                                 <p flex="nogrow" class="pr-8">
-                                    <i class="material-icons">done_all</i>
+                                    <i ng-class="{'md-color-success':vm.step.completed == true}" class="material-icons">done_all</i>
                                 </p>
-                                <p flex>Update completed</p>
+                                <p flex>@t('Update completed')</p>
                             </md-list-item>
 
                         </md-list>
                     </div>
                     <div flex="50" flex-xs="100" flex-sm="100" layout="row" layout-align="center center">
                         <div class="text-center" flex>
-                            <a class="md-button md-primary md-raised m-8" href="/update/start/{{$next}}">@t('Start the update process')</a>
+                            <md-button ng-disabled="vm.started" ng-click="vm.startUpdate()"  class="md-button md-primary md-raised m-8">@t('Start the update process')</md-button>
                         </div>
                     </div>
                 </md-card-content>

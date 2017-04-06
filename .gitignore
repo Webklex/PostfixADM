@@ -11,3 +11,4 @@ Homestead.yaml
 /resources/assets/bower/
 /composer.lock
 /config/postfixadm.php
+/storage/patches/1*

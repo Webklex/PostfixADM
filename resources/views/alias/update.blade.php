@@ -85,7 +85,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit">@t('Update alias')</md-button>
+                        <md-button type="submit" class="md-raised md-primary m-8">@t('Update alias')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

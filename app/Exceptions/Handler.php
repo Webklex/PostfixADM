@@ -40,10 +40,15 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Symfony\Component\HttpFoundation\Response|\Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
+        switch(get_class($exception)){
+            case 'TokenMismatchException':
+                return response()->view('errors.500', [], 500);
+                break;
+        }
         return parent::render($request, $exception);
     }
 

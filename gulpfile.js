@@ -42,6 +42,7 @@ var angular_components = [
     'auth',
     'user',
     'installer',
+    'updater',
 ];
 
 

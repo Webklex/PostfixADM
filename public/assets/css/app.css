@@ -184,7 +184,8 @@ body, html {
   text-align: center; }
 
 md-menu-content {
-  padding: 0; }
+  padding: 0;
+  max-height: 550px !important; }
 
 md-menu-content md-menu-divider {
   margin-top: 0 !important;
@@ -3294,6 +3295,9 @@ md-list-item input[type="text"]:focus, md-list-item input[type="password"]:focus
 
 .md-color-default {
   color: rgba(197, 197, 197, 0.84); }
+
+.md-color-success {
+  color: #2b9a43; }
 
 .md-color-white {
   color: rgba(197, 197, 197, 0.84); }

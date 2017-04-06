@@ -19,7 +19,7 @@
                     @t('You are currently running on version'):
                     <span class="pfa-label @if($currentVersion != $nextVersion){{'pfa-label-info'}}@else{{'pfa-label-success'}}@endif">{{$currentVersion}}</span>
                 </div>
-                @if($nextVersion != null)
+                @if($currentVersion != $nextVersion && $nextVersion != null)
                     <div flex="100" flex-gt-xs="50" @if($currentVersion == $nextVersion){{'md-hidden'}}@endif>
                         @t('A new version is available'):
                         <span class="pfa-label pfa-label-success">{{$nextVersion}}</span>
