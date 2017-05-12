@@ -46,6 +46,10 @@ class UpdateController extends Controller {
         ]);
     }
 
+    /**
+     * @param $next
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function start($next){
         $currentVersion = file_get_contents(base_path('VERSION'));
 

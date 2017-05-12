@@ -13,7 +13,7 @@
         "paragonie/constant_time_encoding": "^1.0",
         "pragmarx/google2fa": "^1.0",
         "webklex/helpers": "^1.0",
-        "webklex/translator": "1.0.4.2"
+        "webklex/translator": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

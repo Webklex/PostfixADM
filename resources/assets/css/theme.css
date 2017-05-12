@@ -47,18 +47,18 @@ a, a:hover, a:active, a:focus {
     text-decoration: none;
 }
 
-.pa-header .pa-header-title {
+.pa-header-title {
     color: #FFF;
 }
 
 
-.pa-header .pa-header-title .material-icons{
+.pa-header-title .material-icons{
     font-size: 3rem;
     position: relative;
     top: 5px;
 }
 
-.pa-header .pa-header-title .part-two {
+.pa-header-title .part-two {
     color: #006591;
     font-weight: 600;
     position: relative;

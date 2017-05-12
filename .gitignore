@@ -12,3 +12,4 @@ Homestead.yaml
 /composer.lock
 /config/postfixadm.php
 /storage/patches/1*
+/gulp.env

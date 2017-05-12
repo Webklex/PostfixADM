@@ -307,7 +307,7 @@
     }
 })();
 /*
- * File: mailbox.controller.js
+ * File: updater.controller.js
  * Category: AngularJS Controller
  * Author: MSG
  * Created: 18.02.17 22:44
@@ -323,75 +323,97 @@
 (function(){
     'use strict';
 
-    angular.module('app').controller('userCreate', [mailboxCreate]);
+    angular.module('app').controller('updaterController', ['$http', updaterController]);
 
-    function mailboxCreate() {
+    function updaterController($http) {
         var vm = this;
 
         vm.data = {
-            email:    '',
-            name:     '',
-            super_user: 0,
-            password:  ''
+
         };
+
+        vm.started = false;
+        vm.completed = false;
+
+        vm.step = {
+            connect: false,
+            download: false,
+            extract: false,
+            applied: false,
+            migration: false,
+            completed: false,
+        };
+
+        vm.api = '/api/update/step';
+
+        vm.error = [];
+        vm.warning = [];
 
         vm.parse = function(json){
-            vm.domains = JSON.parse(json);
-        }
-    }
-})();
-/*
- * File: mailbox.controller.js
- * Category: AngularJS Controller
- * Author: MSG
- * Created: 18.02.17 22:44
- * Updated: -
- *
- * Description:
- *  -
- */
-
-
-/*global angular*/
-
-(function(){
-    'use strict';
-
-    angular.module('app').controller('userUpdate', ['$http', mailboxUpdate]);
-
-    function mailboxUpdate($http) {
-        var vm = this;
-
-        vm.data = {};
-        vm.domains = [];
-        vm.token = '';
-
-        vm.parse = function(json, domains, token){
-            vm.data = JSON.parse(json);
-            vm.domains = JSON.parse(domains);
-            vm.token = token;
-
-            for(var i = 0; i < vm.data.domains.length; i++){
-                for(var k = 0; k < vm.domains.length; k++){
-
-                    if(vm.domains[k].checked != true){
-                        vm.domains[k].checked = vm.domains[k].id == vm.data.domains[i].id;
-                    }
+            var data = JSON.parse(json);
+            angular.forEach(data, function(value, name){
+                if(value != null){
+                    vm.data[name] = value;
                 }
-            }
+            });
         };
 
-        vm.toggle = function(domain){
-            $http({
-                method: 'GET',
-                url: '/user/toggle/' + vm.data.id + '/' + domain.id,
+        vm.startUpdate = function(){
+            var options = {
+                method: 'POST',
                 headers: {
-                    'X-CSRF-TOKEN': vm.token
-                },
-                data: { test: 'test' }
-            }).then(function(){
-                domain.checked = !domain.checked;
-            }, function(){});
+                    'X-CSRF-TOKEN': vm.data.token
+                }
+            };
+            vm.started = true;
+            vm.completed = false;
+
+            vm.callStep('connect', options, function(){
+
+                vm.callStep('download', options, function(){
+
+                    vm.callStep('extract', options, function(){
+
+                        vm.callStep('applied', options, function(){
+
+                            vm.callStep('migration', options, function(){
+
+                                vm.callStep('completed', options, function(){
+                                    vm.completed = true;
+                                });
+
+                            });
+
+                        });
+
+                    });
+                });
+            });
         };
+
+        vm.callStep = function(step, options, callback){
+            options.url = vm.api+'/'+step+'/'+vm.data.version;
+
+            $http(options).then(function(response){
+                var data = response.data;
+
+                vm.error = data.error;
+                vm.warning = data.warning;
+                vm.step[step] = data.status;
+
+                if(data.error.length == 0 && data.status == true){
+                    callback();
+                }else{
+                    vm.started = false;
+                }
+            }, function(response){
+                var data = response.data;
+
+                vm.step[step] = false;
+                vm.started = false;
+                vm.error = data.error;
+                vm.warning = data.warning;
+            });
+        }
     }
 })();

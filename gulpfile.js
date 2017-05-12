@@ -1,35 +1,50 @@
-var elixir = require('laravel-elixir');
-var elixir_task = elixir.Task;
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var minifyCss = require('gulp-minify-css');
-var pump = require('pump');
+
+/*
+ |----------------------------------------------------------------------------
+ | Gulp Asset Management
+ |----------------------------------------------------------------------------
+ |
+ | This gulp file is designed to make the process of "compiling code on the
+ | fly" and requires a config file called: gulp.env
+ |
+ | Please be aware that this config file requires at least all the config
+ | parameters which are defined within the gulp.env.example file.
+ |
+ */
+var elixir      = require('laravel-elixir');
+var gulp        = require('gulp');
+var concat      = require('gulp-concat');
+var uglify      = require('gulp-uglify');
+var minifyCss   = require('gulp-minify-css');
+var pump        = require('pump');
 var ngAnnotate  = require('gulp-ng-annotate');
 var rename      = require('gulp-rename');
-var sass = require('gulp-sass');
-var shell = require('gulp-shell');
+var sass        = require('gulp-sass');
+var shell       = require('gulp-shell');
 var gulpFilter  = require('gulp-filter');
 var bowerFiles  = require('main-bower-files');
 var flatten     = require('gulp-flatten');
+var fs 			= require('fs');
+var dotenv 		= require('dotenv');
 
-var resource_path = "resources/assets/bower/";
+var config      = dotenv.parse(fs.readFileSync('gulp.env'));
+
 var js_path = "resources/assets/js/";
 var css_path = "resources/assets/css/";
 var scss_path = "resources/assets/sass/";
 var tmp_path = "resources/assets/tmp/";
 
-var js_vendors = [
-    resource_path + "angular/angular.min.js",
-    resource_path + "angular-animate/angular-animate.min.js",
-    resource_path + "angular-aria/angular-aria.min.js",
-    resource_path + "angular-messages/angular-messages.min.js",
-    resource_path + "angular-sanitize/angular-sanitize.min.js",
-    resource_path + "angular-local-storage/dist/angular-local-storage.js",
-    resource_path + "angular-material/angular-material.min.js"
-];
 
 
+/*
+ |----------------------------------------------------------------------------
+ | Directory configuration
+ |----------------------------------------------------------------------------
+ |
+ | All the different code types have their own directory config, so if however
+ | you need to add an other folder, feel free to add it to the array.
+ |
+ */
 var dir = {
     bower:  'resources/assets/bower',
     dist:   'public'
@@ -46,6 +61,20 @@ var angular_components = [
 ];
 
 
+
+/*
+ |----------------------------------------------------------------------------
+ | Elixir Asset Management
+ |----------------------------------------------------------------------------
+ |
+ | Elixir provides a clean, fluent API for defining some basic Gulp tasks
+ | for your Laravel application. By default, we are compiling the Sass
+ | file for our application, as well as publishing vendor resources.
+ |
+ | However in this case it is primary used for bringing browser sync up.
+ | BrowserSync only monitors two directories within the webroot (js and css).
+ |
+ */
 elixir.extend('custom_watch', function() {
     gulp.watch('routes/**/*.php', ['php']);
     gulp.watch(js_path + '**/*.js', ['scripts']);
@@ -58,35 +87,66 @@ elixir(function(mix) {
     .custom_watch()
     .browserSync({
         injectChanges: true,
-        proxy: 'postfixadm.dev',
+        proxy: config.APP_URL,
         open: false,
         files: [
-            'routes/**/*.php',
-            'app/Http/Controllers/**/*.php',
-            'app/Models/**/*.php',
-            "resources/views/**/*.blade.php",
             "public/**/*.css",
-            "public/**/*.js"
+            "public/js/**/*.js",
+            "routes/**/*.php",
+            "app/Http/Controllers/**/*.php",
+            "resources/views/**/*.php",
+            "!resources/views/email/**/*.php"
         ]
     })
 });
 
-gulp.task('default', ['php', 'bower', 'copyfiles', 'scripts', 'styles']);
 
+
+/*
+ |----------------------------------------------------------------------------
+ | Default gulp task
+ |----------------------------------------------------------------------------
+ |
+ | The default gulp call is triggered by just calling 'gulp' in your console.
+ | By default the following tasks will be executed: bower, sass, scripts,
+ | styles and inject.
+ |
+ */
+gulp.task('default', ['php', 'bower', 'scripts', 'styles']);
+
+
+
+/*
+ |----------------------------------------------------------------------------
+ | PHP gulp task
+ |----------------------------------------------------------------------------
+ |
+ | This task is used to call the magic artisan update command ;)
+ |
+ */
 gulp.task('php', shell.task([
     './artisan route:clear'
 ]));
 
-/**
- * Copy any needed files.
- *
- * Do a 'gulp copyfiles' after bower updates
+
+
+/*
+ |----------------------------------------------------------------------------
+ | Scripts gulp task
+ |----------------------------------------------------------------------------
+ |
+ | This task is used to compile all given .js files within the previously
+ | defined js folders. Take a look at dir.js for more information on
+ | which folders are included.
+ |
+ | The result is stored inside the public js folder and will be injected
+ | later by 'inject' inside the blade template.
+ |
+ | The angular components should be sorted automatically by ngAnnotate. For
+ | more information visit: https://www.npmjs.com/package/gulp-ng-annotate
+ | for more information.
+ |
  */
-gulp.task("copyfiles", function(done) {
-
-
-});
-
 gulp.task("scripts", function(done) {
 
     for(var i = 0; i < angular_components.length; i++){
@@ -107,6 +167,19 @@ gulp.task("scripts", function(done) {
             .pipe(gulp.dest('public/assets/js'));
     }
 
+
+    gulp.src([
+        js_path + 'angular/generic/**/*.js'
+    ])
+        .pipe(concat('generic.js'))
+        .pipe(gulp.dest(tmp_path+'/js'))
+        .pipe(ngAnnotate())
+        .pipe(uglify())
+        .pipe(rename({
+            suffix: ".min"
+        }))
+        .pipe(gulp.dest('public/assets/js'));
+
     gulp.src([
         '!' + js_path + 'vendors/*.js',
         '!' + js_path + 'angular/*.js',
@@ -118,6 +191,21 @@ gulp.task("scripts", function(done) {
         .on('end', done);
 });
 
+
+
+/*
+ |----------------------------------------------------------------------------
+ | SASS / SCSS gulp task
+ |----------------------------------------------------------------------------
+ |
+ | This task is used to compile all given .scss files within the previously
+ | defined scss folders. Take a look at dir.sass for more information on
+ | which folders are included.
+ |
+ | The result is stored inside the 'tmp' folder and will be compiled again
+ | by another gulp task 'styles'.
+ |
+ */
 gulp.task('sass', function(done) {
     gulp.src(['resources/assets/sass/**/*.scss'])
         .pipe(concat('scss.css'))
@@ -127,6 +215,21 @@ gulp.task('sass', function(done) {
         .on('end', done);
 });
 
+
+
+/*
+ |----------------------------------------------------------------------------
+ | Styles gulp task
+ |----------------------------------------------------------------------------
+ |
+ | This task is used to compile all given .css files within the previously
+ | defined css folders. Take a look at dir.css for more information on
+ | which folders are included.
+ |
+ | The result is stored inside the public css folder and will be injected
+ | later by 'inject' inside the blade template.
+ |
+ */
 gulp.task("styles", function(done) {
     gulp.src([css_path + '**/*.css', tmp_path + 'css/*.css'])
         .pipe(concat('app.css'))
@@ -135,7 +238,22 @@ gulp.task("styles", function(done) {
 
 });
 
-/*Gulp task Bower*/
+/*
+ |----------------------------------------------------------------------------
+ | Gulp task bower
+ |----------------------------------------------------------------------------
+ |
+ | This task is used to compile all required and installed bower components.
+ | If however a library isn't working or causing errors, consider using an
+ | override inside the bower.json file.
+ |
+ | The output of this will produce potentially 4 folders:
+ | public/images/* 			  - All image files that might be placed within the Libraries folders
+ | public/fonts/*  			  - All font files that might be placed within the Libraries folders
+ | public/js/vendors.min.js   - All java script files that might be placed within the Libraries folders
+ | public/css/vendors.min.css - All css files that might be placed within the Libraries folders
+ |
+ */
 gulp.task('bower', function() {
     var jsFilter    = gulpFilter('*.js', {restore: true});
     var cssFilter   = gulpFilter('*.css', {restore: true});

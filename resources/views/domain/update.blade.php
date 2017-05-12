@@ -21,7 +21,7 @@
 @section('content')
     <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
                 ng-controller="domainUpdate as vm" ng-init="vm.parse('{{$mDomain->toJson()}}')">
-        <div flex-xs flex-gt-xs="75" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
+        <div flex="100" flex-gt-xs="75" flex-gt-md="50" flex-gt-lg="25" layout="row">
 
             <form role="form" name="authForm" method="POST" action="/domain/update/{{$mDomain->id}}" autocomplete="off" novalidate flex="100">
                 {{ csrf_field() }}

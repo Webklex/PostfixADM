@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Log;
 use Chumper\Zipper\Facades\Zipper;
 use Illuminate\Support\Facades\Artisan;
 
@@ -11,18 +12,24 @@ class UpdateController extends Controller {
     /**
      * Create a new controller instance.
      */
-    public function __construct() {
-        //$this->middleware('auth');
-    }
+    public function __construct() {}
 
+    /**
+     * @param $step
+     * @param $version
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function performStep($step, $version){
         $status = false;
         $error = [];
         $warning = [];
 
+        $mirror = config('app.update_mirror');
+
         switch($step){
             case 'connect':
-                if($this->getCurlRequest('http://postfixadm-website.dev/api/version/new/'.config('postfixadm.serial_number')) != null){
+                if($this->getCurlRequest($mirror.'/version/new/'.config('postfixadm.serial_number')) != null){
                     $status = true;
                 }else{
                     $warning[] = _t('Update server currently not available.');
@@ -34,7 +41,7 @@ class UpdateController extends Controller {
                 }
                 break;
             case 'download':
-                $url = 'http://postfixadm-website.dev/api/version/new/download';
+                $url = $mirror.'/version/new/download';
                 $data = $this->postCurlRequest($url, [
                     'version'     => $version,
                     'serial'      => config('postfixadm.serial_number'),
@@ -112,6 +119,7 @@ class UpdateController extends Controller {
                 break;
             case 'completed':
 
+                Log::log('System updated');
                 $status = true;
                 break;
         }
@@ -123,6 +131,10 @@ class UpdateController extends Controller {
         ]);
     }
 
+    /**
+     * @param $url
+     * @return mixed
+     */
     protected function getCurlRequest($url){
         $agent= 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)';
 
@@ -142,6 +154,12 @@ class UpdateController extends Controller {
         return $data;
     }
 
+    /**
+     * @param $url
+     * @param array $payload
+     *
+     * @return mixed
+     */
     protected function postCurlRequest($url, array $payload = []){
         $payload_string = '';
         foreach($payload as $key => $value) { $payload_string .= $key.'='.$value.'&'; }

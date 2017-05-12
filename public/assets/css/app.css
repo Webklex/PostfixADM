@@ -69,18 +69,18 @@ a, a:hover, a:active, a:focus {
     text-decoration: none;
 }
 
-.pa-header .pa-header-title {
+.pa-header-title {
     color: #FFF;
 }
 
 
-.pa-header .pa-header-title .material-icons{
+.pa-header-title .material-icons{
     font-size: 3rem;
     position: relative;
     top: 5px;
 }
 
-.pa-header .pa-header-title .part-two {
+.pa-header-title .part-two {
     color: #006591;
     font-weight: 600;
     position: relative;
@@ -216,6 +216,27 @@ md-menu-content.md-blue-theme md-menu-item:hover, md-menu-content.md-blue-theme 
 .md-button.md-primary[disabled] {
   color: rgba(0, 0, 0, 0.87) !important;
   font-weight: 400 !important; }
+
+md-sidenav {
+  background-color: #fafafa;
+  max-width: 65vw !important;
+  min-width: 5vw !important; }
+  md-sidenav md-content {
+    background-color: #fafafa; }
+  md-sidenav hr {
+    border-color: rgba(0, 0, 0, 0.08);
+    margin: 0; }
+  md-sidenav h3 {
+    margin: 0;
+    padding: 16px;
+    background-color: #006591 !important;
+    font-weight: 600;
+    color: white; }
+  md-sidenav md-menu-item {
+    background-color: #fafafa; }
+
+md-backdrop {
+  cursor: pointer; }
 
 md-checkbox.md-default-theme[disabled].md-checked .md-icon, md-checkbox[disabled].md-checked .md-icon {
   background-color: #006591 !important; }

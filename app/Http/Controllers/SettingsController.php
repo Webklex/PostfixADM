@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SettingsServiceRequest;
+use App\Models\Log;
 use Illuminate\Support\Facades\File;
 
 class SettingsController extends Controller {
@@ -24,6 +25,10 @@ class SettingsController extends Controller {
         ]);
     }
 
+    /**
+     * @param SettingsServiceRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function postUpdate(SettingsServiceRequest $request){
         $config = config('postfixadm');
 
@@ -66,6 +71,7 @@ class SettingsController extends Controller {
         $content = ob_get_contents();
         ob_end_clean();
         File::put(config_path().'/postfixadm.php', "<?php\nreturn ".$content.';');
+        Log::log('System settings updated');
 
         return view('settings.update', [
             'config' => $config,

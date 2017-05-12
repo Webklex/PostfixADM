@@ -60,7 +60,7 @@
             </div>
         @endif
 
-        <form role="form" name="authForm" method="POST" action="/settings" autocomplete="off" novalidate flex="100" layout="row">
+        <form role="form" name="authForm" method="POST" action="/settings" autocomplete="off" novalidate flex="100" layout="row" layout-wrap>
             {{ csrf_field() }}
             <div flex-gt-sm="50" flex="100">
                 <md-card md-theme="default" flex>
@@ -165,17 +165,6 @@
                                     <md-option value="SSHA256">SSHA256</md-option>
                                     <md-option value="SHA512">SHA512</md-option>
                                     <md-option value="SSHA512">SSHA512</md-option>
-                            </md-list-item>
-                            <md-divider></md-divider>
-
-                            <md-list-item layout="row" class="pr-0">
-                                <p flex="nogrow">@t('Google 2FA authentication'):</p>
-                                <div flex></div>
-                                @if (auth()->user()->google2fa_secret)
-                                    <a href="/settings/2fa/disable" class="md-button md-primary md-raised" flex="nogrow">@t('Disable 2FA')</a>
-                                @else
-                                    <a href="/settings/2fa/enable" class="md-button md-accent md-raised" flex="nogrow">@t('Enable 2FA')</a>
-                                @endif
                             </md-list-item>
                             <md-divider></md-divider>
 

@@ -363,6 +363,15 @@ MAIL_ENCRYPTION=".$request->get('MAIL_ENCRYPTION')."
                 });
             endif;
 
+            if($aTable->has('pfa_logs') == false):
+                Schema::create('pfa_logs', function (Blueprint $table) {
+                    $table->increments('id');
+                    $table->integer('user_id')->nullable();
+                    $table->text('message');
+                    $table->timestamps();
+                });
+            endif;
+
             /*
              * MAILBOX MIGRATION
              */

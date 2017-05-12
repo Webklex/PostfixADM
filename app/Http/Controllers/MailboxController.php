@@ -6,6 +6,7 @@ use App\Http\Requests\PostMailboxCreateRequest;
 use App\Http\Requests\PostMailboxUpdateRequest;
 use App\Mail\TestMail;
 use App\Models\Domain;
+use App\Models\Log;
 use App\Models\Mailbox;
 use Illuminate\Support\Facades\Mail;
 
@@ -32,6 +33,10 @@ class MailboxController extends Controller {
         ]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function test($id){
         /** @var Mailbox $mMailbox */
         $mMailbox = Mailbox::whereHasAvailableDomain()->findOrFail($id);
@@ -41,6 +46,9 @@ class MailboxController extends Controller {
         return redirect()->back();
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getCreate() {
         $aDomain = Domain::available();
 
@@ -49,6 +57,10 @@ class MailboxController extends Controller {
         ]);
     }
 
+    /**
+     * @param PostMailboxCreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postCreate(PostMailboxCreateRequest $request) {
         $mDomain = Domain::getAvailable($request->get('domain_id'));
         if($mDomain == null) abort(404);
@@ -66,9 +78,15 @@ class MailboxController extends Controller {
         $mMailbox->active = 1;
         $mMailbox->save();
 
+        Log::log('Mailbox "'.$mMailbox->email.'" created');
+
         return redirect()->to('/mailbox');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getUpdate($id) {
         /** @var Mailbox $mMailbox */
         $mMailbox = Mailbox::whereHasAvailableDomain()->findOrFail($id);
@@ -78,6 +96,11 @@ class MailboxController extends Controller {
         ]);
     }
 
+    /**
+     * @param $id
+     * @param PostMailboxUpdateRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function postUpdate($id, PostMailboxUpdateRequest $request) {
 
         /** @var Mailbox $mMailbox */
@@ -93,14 +116,20 @@ class MailboxController extends Controller {
         $mMailbox->active = $request->get('active') == true ? 1 : 0;
 
         $mMailbox->save();
+        Log::log('Mailbox "'.$mMailbox->email.'" updated');
 
         return $this->getUpdate($mMailbox->id);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getDelete($id) {
         /** @var Mailbox $mMailbox */
         $mMailbox = Mailbox::whereHasAvailableDomain()->findOrFail($id);
 
+        Log::log('Mailbox "'.$mMailbox->email.'" deleted');
         $mMailbox->delete();
 
         return redirect()->to('/mailbox');

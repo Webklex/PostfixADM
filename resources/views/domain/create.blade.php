@@ -19,9 +19,9 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center" flex="100"
                 ng-controller="domainCreate as vm">
-        <div flex-xs flex-gt-xs="75" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
+        <div flex="100" flex-gt-xs="75" flex-gt-md="50" flex-gt-lg="25" layout="row">
 
             <form role="form" name="authForm" method="POST" action="/domain/create" autocomplete="off" novalidate flex="100">
                 {{ csrf_field() }}

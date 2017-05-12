@@ -35,4 +35,8 @@ class User extends Authenticatable {
     public function domains(){
         return $this->belongsToMany(Domain::class, 'pfa_domain_user');
     }
+
+    public function logs(){
+        return $this->hasMany(Log::class);
+    }
 }

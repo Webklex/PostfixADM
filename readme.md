@@ -1,40 +1,77 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# postfixADM
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## About postfixADM
 
-## About Laravel
+postfixADM is a modern postfix management tool. It is designed to work with almost any setup that is 
+based on postfix, dovecot and mysql.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+**Some of the key features are:**
+- Easy web installation and setup
+- Fully responsive
+- Database mapping
+- Supports over 22 crypto algorithms
+- Mailbox management
+- Alias management
+- Domain management
+- Optional Quota-Service
+- User management & ACL
+- System updater integrated
+- English and German language supported
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Based on:**
+- Laravel 5.4
+- AngularJS 1.6
+- Angular Material
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
+**Requirements:**
+- MySQL 
+- PHP 5.6
+- Apache2 or Nginx 1.6
+- doveadm (dovecot-core)
 
-## Learning Laravel
+**Developed and compiled with:**
+- Gulp
+- Bower
+- Composer
+- NPM / NodeJS
 
-Laravel has the most extensive and thorough documentation and video tutorial library of any modern web application framework. The [Laravel documentation](https://laravel.com/docs) is thorough, complete, and makes it a breeze to get started learning the framework.
+Fore more information please visit: [https://www.postfixadm.com](https://www.postfixadm.com)
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 900 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+## Getting started
+
+#### The easy way
+Download the newest version at: [https://www.postfixadm.com](https://www.postfixadm.com) and unzip the 
+content to where ever you want it to be.
+
+#### The other way
+If you like you can build your own installation package from this source:
+``` bash
+$ git clone https://github.com/Webklex/postfixadm.git
+$ cd postfixadm
+$ composer install
+$ php artisan update --init
+```
+
+## Development
+Copy the file ```gulp.env.example``` to ```gulp.env``` and edit the containing variables.
+Now you can install the development components:
+``` bash
+$ npm install
+$ bower install
+```
+You can bake everything together with the ```gulp``` command. If you want to develop a bit more fluent 
+just use ```gulp watch``` instead.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+Thank you for considering contributing to postfixADM! 
+The contribution guide will be added later ;)
 
 ## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+If you discover a security vulnerability within postfixADM, please send an 
+e-mail to me at security@postfixadm.com. All security vulnerabilities will be promptly addressed.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+postfixADM is open-sourced software and licensed under [MIT](http://opensource.org/licenses/MIT).

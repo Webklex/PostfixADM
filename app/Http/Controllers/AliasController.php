@@ -6,6 +6,7 @@ use App\Http\Requests\PostAliasCreateRequest;
 use App\Http\Requests\PostAliasUpdateRequest;
 use App\Models\Domain;
 use App\Models\Alias;
+use App\Models\Log;
 
 class AliasController extends Controller {
 
@@ -30,6 +31,9 @@ class AliasController extends Controller {
         ]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getCreate() {
         $aDomain = Domain::available();
 
@@ -38,6 +42,10 @@ class AliasController extends Controller {
         ]);
     }
 
+    /**
+     * @param PostAliasCreateRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postCreate(PostAliasCreateRequest $request) {
         /** @var Alias $mAlias */
         $mDomain = Domain::getAvailable($request->get('domain_id'));
@@ -51,10 +59,15 @@ class AliasController extends Controller {
         $mAlias->destination = $destination;
 
         $mAlias->save();
+        Log::log('Alias "'.$mAlias->source.'" created');
 
         return redirect()->to('/alias');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getUpdate($id) {
         /** @var Alias $mAlias */
         $mAlias  = Alias::whereHasAvailableDomain()->findOrFail($id);
@@ -68,6 +81,11 @@ class AliasController extends Controller {
         ]);
     }
 
+    /**
+     * @param $id
+     * @param PostAliasUpdateRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function postUpdate($id, PostAliasUpdateRequest $request) {
 
         $mDomain = Domain::getAvailable($request->get('domain_id'));
@@ -82,13 +100,21 @@ class AliasController extends Controller {
         $mAlias->source      = $request->get('source');
         $mAlias->destination = $destination;
 
+        $mAlias->save();
+        Log::log('Alias "'.$mAlias->source.'" updated');
+
         return $this->getUpdate($mAlias->id);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getDelete($id) {
         /** @var Alias $mAlias */
         $mAlias  = Alias::whereHasAvailableDomain()->findOrFail($id);
 
+        Log::log('Alias "'.$mAlias->source.'" deleted');
         $mAlias->delete();
 
         return redirect()->to('/alias');

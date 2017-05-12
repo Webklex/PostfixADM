@@ -19,11 +19,11 @@
 ])
 
 @section('content')
-    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center"
+    <md-content class="md-padding" layout="row" layout-wrap layout-align="center center" flex="100"
                 ng-controller="aliasUpdate as vm" ng-init="vm.parse('{{base64_encode($mAlias->toJson())}}' , '{{$aDomain->toJson()}}')">
-        <div flex-xs flex-gt-xs="50" flex-gt-sm="50" flex-gt-md="25" flex-gt-lg="10" layout="row">
+        <div flex="100" flex-gt-xs="75" flex-gt-md="50" flex-gt-lg="25" layout="row">
 
-            <form role="form" name="authForm" method="POST" action="/alias/update/{{$mAlias->id}}" autocomplete="off" novalidate>
+            <form role="form" name="authForm" method="POST" action="/alias/update/{{$mAlias->id}}" autocomplete="off" novalidate flex="100">
                 {{ csrf_field() }}
                 <input type="checkbox" name="active"
                        ng-value="vm.data.active"

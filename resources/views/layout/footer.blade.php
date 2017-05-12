@@ -20,6 +20,7 @@
 <script type="text/javascript" src="/assets/js/vendors.min.js"></script>
 
 <script type="text/javascript" src="/assets/js/app.js"></script>
+<script type="text/javascript" src="/assets/js/generic.min.js"></script>
 
 
 @if(isset($scripts))

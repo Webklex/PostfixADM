@@ -34,6 +34,6 @@ if (!function_exists('realUser')) {
      * @return string
      */
     function realUser() {
-        return User::findOrFail(auth()->user()->id);
+        return \App\Models\User::findOrFail(auth()->user()->id);
     }
 }

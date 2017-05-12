@@ -18,7 +18,7 @@
 
         <div flex-xs flex-gt-xs="100" layout="row" class="mb-0">
             <md-card md-theme="blue" flex>
-                <md-card-content layout="row">
+                <md-card-content layout="row" ng-controller="navigationController as nav">
                     <div flex="nogrow" class="pr-16" layout-align="center center">
                         <a href="/">
                             <h1 class="pa-header-title md-display-2 m-1 hide-sm hide-xs show-gt-sm">
@@ -34,61 +34,9 @@
                     <div flex></div>
                     <div flex="nogrow" layout="row" layout-align="center center">
 
-                        <md-menu class="pa-menu-right" md-position-mode="target-right target" flex>
-                            <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
-                                <i class="material-icons md-color-white">toc</i>
-                            </md-button>
-                            <md-menu-content width="3" ng-mouseleave="$mdMenu.close()">
-
-                                <md-subheader class="md-no-sticky">@t('Sprache')</md-subheader>
-
-                                @if(app()->getLocale() != 'de')
-                                    <md-menu-item>
-                                        <a href="/language/de" class="md-button">
-                                            Deutsch
-                                        </a>
-                                    </md-menu-item>
-                                @else
-                                    <md-menu-item>
-                                        <a href="/language/en" class="md-button">
-                                            English
-                                        </a>
-                                    </md-menu-item>
-                                @endif
-
-
-                                @if(auth()->check())
-                                    <md-subheader class="md-no-sticky">@t('System')</md-subheader>
-                                    <md-menu-item>
-                                        @if (auth()->user()->google2fa_secret)
-                                            <a href="/settings/2fa/disable" class="md-button">@t('Disable 2FA')</a>
-                                        @else
-                                            <a href="/settings/2fa/enable" class="md-button">@t('Enable 2FA')</a>
-                                        @endif
-                                    </md-menu-item>
-                                    @if(isSuperUser())
-                                        <md-menu-divider></md-menu-divider>
-                                        <md-menu-item>
-                                            <a href="/settings" class="md-button">
-                                                @t('Settings')
-                                            </a>
-                                        </md-menu-item>
-                                        <md-menu-divider></md-menu-divider>
-                                        <md-menu-item>
-                                            <a href="/update" class="md-button">
-                                                @t('Update')
-                                            </a>
-                                        </md-menu-item>
-                                    @endif
-                                    <md-menu-divider></md-menu-divider>
-                                    <md-menu-item>
-                                        <a href="/logout" class="md-button color-red">
-                                            @t('Logout')
-                                        </a>
-                                    </md-menu-item>
-                                @endif
-                            </md-menu-content>
-                        </md-menu>
+                        <div ng-click="nav.navigation.toggle()" class="pl-16 pr-16 clickable">
+                            <i class="material-icons md-color-white">toc</i>
+                        </div>
                     </div>
                 </md-card-content>
             </md-card>
@@ -99,3 +47,66 @@
 <md-content class="md-padding pt-0" layout-xs="column" layout="column">
     @yield('content')
 </md-content>
+
+<md-sidenav class="md-sidenav-right" md-component-id="main-side-navigation" md-whiteframe="4">
+    <div ng-controller="navigationController as nav">
+
+        <md-content class="m-0 p-0">
+            <md-menu-content class="m-0 p-0">
+
+                <h3 flex="100">@t('Sprache')</h3>
+
+                @if(app()->getLocale() != 'de')
+                    <md-menu-item>
+                        <a href="/language/de" class="md-button">
+                            Deutsch
+                        </a>
+                    </md-menu-item>
+                @else
+                    <md-menu-item>
+                        <a href="/language/en" class="md-button">
+                            English
+                        </a>
+                    </md-menu-item>
+                @endif
+
+
+                @if(auth()->check())
+                    <h3 flex="100">@t('System')</h3>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <a href="/account" class="md-button">
+                            @t('Account')
+                        </a>
+                    </md-menu-item>
+                    @if(isSuperUser())
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <a href="/log" class="md-button">
+                                @t('System log')
+                            </a>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <a href="/settings" class="md-button">
+                                @t('Settings')
+                            </a>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <a href="/update" class="md-button">
+                                @t('Update')
+                            </a>
+                        </md-menu-item>
+                    @endif
+                    <hr></hr>
+                    <md-menu-item>
+                        <a href="/logout" class="md-button color-red">
+                            @t('Logout')
+                        </a>
+                    </md-menu-item>
+                @endif
+            </md-menu-content>
+        </md-content>
+    </div>
+</md-sidenav>

@@ -84,6 +84,38 @@ md-menu-content.md-blue-theme md-menu-item:hover, md-menu-content.md-blue-theme 
   font-weight: 400 !important;
 }
 
+md-sidenav {
+  background-color: rgb(250,250,250);
+  max-width: 65vw !important;
+  //width: 70vw !important;
+  min-width: 5vw !important;
+
+  md-content {
+    background-color: rgb(250,250,250);
+  }
+
+  hr {
+    border-color: rgba(0,0,0, .08);
+    margin: 0;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 16px;
+    background-color: #006591 !important;
+    font-weight: 600;
+    color: white;
+  }
+
+  md-menu-item {
+    background-color: rgb(250,250,250);
+  }
+}
+
+md-backdrop {
+  cursor: pointer;
+}
+
 md-checkbox.md-default-theme[disabled].md-checked .md-icon, md-checkbox[disabled].md-checked .md-icon{
   background-color: #006591 !important;
 }

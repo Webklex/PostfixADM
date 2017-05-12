@@ -9,14 +9,19 @@ use Illuminate\Support\Facades\DB;
 trait MappedModel {
 
     /**
-     * The attributes that are mass assignable.
-     *
      * @var array
      */
-
     protected $mapConfig = [];
+
+    /**
+     * @var array|\Illuminate\Support\Collection
+     */
     protected $mapColumnConfig = [];
 
+    /**
+     * MappedModel constructor.
+     * @param array $attributes
+     */
     public function __construct(array $attributes = []) {
         $this->mapConfig  = collect(json_decode(env('DB_MAPPING'), true));
         $this->mapColumnConfig = collect($this->mapConfig->get($this->map)['columns']);
@@ -25,6 +30,10 @@ trait MappedModel {
         parent::__construct($attributes);
     }
 
+    /**
+     * @param $column
+     * @return null
+     */
     protected function getMapped($column){
         $config = $this->mapColumnConfig->get($column);
         if(isset($config['join'])){
@@ -45,6 +54,11 @@ trait MappedModel {
         return $this->attributes[$attribute];
     }
 
+    /**
+     * @param $column
+     * @param $value
+     * @return $this
+     */
     protected function setMapped($column, $value){
         $config = $this->mapColumnConfig->get($column);
         $attribute = $this->mapColumnConfig->get($column) == false ? $column : $this->mapColumnConfig->get($column)['column'];
@@ -64,6 +78,10 @@ trait MappedModel {
 
     }
 
+    /**
+     * @param $column
+     * @param $values
+     */
     public function whereMapped($column, $values){
         if(is_array($values)){
 

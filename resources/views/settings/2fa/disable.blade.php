@@ -45,7 +45,7 @@
                     </div>
                     <div flex="100">
                         <br />
-                        <a class="md-button md-primary md-raised m-8">@t('Return to the main page')</a>
+                        <a class="md-button md-primary md-raised m-8" href="/">@t('Return to the main page')</a>
                     </div>
                 </md-card-content>
             </md-card>
