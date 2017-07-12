@@ -12,6 +12,9 @@ matrix:
 
 sudo: false
 
+script:
+  - vendor/bin/phpunit
+
 install: composer create-project webklex/postfixadm --no-interaction
 
 notifications:
