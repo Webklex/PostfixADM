@@ -37,6 +37,19 @@ based on postfix, dovecot and mysql.
 
 Fore more information please visit: [https://www.postfixadm.com](https://www.postfixadm.com)
 
+## !!!ATTENTION!!!
+This is a pre alpha version. There are several things that might break or even don't work at all.
+
+### Currently known Issues
+- Update is broken and currently a bit spooky. Don't even try it ;)
+- Missing translations (Lots of german parts are remaining. But I would say round about 80% - 90% are translated)
+- Uncommented code sections
+- The code is not optimized.
+- No setup guide (documentation) for the quota service
+- Typos and weird translations
+- Official website still offline (Also no active @postfixadm.com mail - please use github[at]webklex.com for now)
+- And probably some more... But besides that it works like a charm :)
+
 ## Getting started
 
 #### The easy way
