@@ -1,7 +1,9 @@
 # postfixADM
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Software License][ico-license]](LICENSE.md)
+[![Build Status][ico-travis]][link-travis]
 
 ## About postfixADM
-
 postfixADM is a modern postfix management tool. It is designed to work with almost any setup that is 
 based on postfix, dovecot and mysql.
 
@@ -37,6 +39,9 @@ based on postfix, dovecot and mysql.
 
 Fore more information please visit: [https://www.postfixadm.com](https://www.postfixadm.com)
 
+### Screenshots
+![Installer General](https://www.webklex.com/wp-content/uploads/installer_general.png)
+![Installer Databse mapping](https://www.webklex.com/wp-content/uploads/installer_database.png)
 
 
 ## !!!ATTENTION!!!
@@ -90,3 +95,17 @@ e-mail to me at security@postfixadm.com. All security vulnerabilities will be pr
 ## License
 
 postfixADM is open-sourced software and licensed under [MIT](http://opensource.org/licenses/MIT).
+
+[ico-version]: https://img.shields.io/packagist/v/Webklex/postfixadm.svg?style=flat-square
+[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/Webklex/postfixadm/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/Webklex/postfixadm.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Webklex/postfixadm.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/Webklex/postfixadm.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/Webklex/postfixadm
+[link-travis]: https://travis-ci.org/Webklex/postfixadm
+[link-scrutinizer]: https://scrutinizer-ci.com/g/Webklex/postfixadm/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/Webklex/lpostfixadm
+[link-downloads]: https://packagist.org/packages/Webklex/postfixadm
+[link-author]: https://github.com/webklex
