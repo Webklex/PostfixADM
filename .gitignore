@@ -13,3 +13,4 @@ Homestead.yaml
 /config/postfixadm.php
 /storage/patches/1*
 /gulp.env
+/resources/assets/tmp/
