@@ -1,7 +1,6 @@
 # postfixADM
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
 
 ## About postfixADM
 postfixADM is a modern postfix management tool. It is designed to work with almost any setup that is 
