@@ -124,8 +124,11 @@ class InstallController extends Controller {
          * Test the MySQL connection
          */
         try{
-            mysqli_connect($request->get('DB_HOST').':'.$request->get('DB_PORT'),$request->get('DB_USERNAME'),$request->get('DB_PASSWORD'),$request->get('DB_DATABASE'));
-        }catch(\ErrorException $e){}
+            mysqli_connect($request->get('DB_HOST'),$request->get('DB_USERNAME'),$request->get('DB_PASSWORD'),$request->get('DB_DATABASE'),$request->get('DB_PORT'));
+        }catch(\ErrorException $e){
+
+            dd($e);
+        }
 
         $aStep = collect(session('steps', []));
 
