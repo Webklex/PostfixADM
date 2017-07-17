@@ -111,7 +111,7 @@
                     <br />
                     @t('Joust in case you need any help or tips, take a look at the official documentations:')
                     <br />
-                    <a target="_blank" href="https://github.com/Webklex/postfixadm">Github Wiki</a>
+                    <a target="_blank" href="https://github.com/Webklex/PostfixADM">Github Wiki</a>
                     <br />
                     <a target="_blank" href="https://wwww.postfixadm.com">postfixADM Helpdesk</a>
                 </p>
