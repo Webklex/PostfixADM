@@ -22,7 +22,7 @@
             <md-card-title flex="100">
                 <md-card-title-text flex="100" layout="row" layout-align="center center">
                     <h1 class="md-title display-inline-block vertical-align-middle clickable" flex="nogrow">
-                        <a href="/" title="@t('Back')">
+                        <a href="/redirect/back" title="@t('Back')">
                             <i class="material-icons md-color-default">arrow_back</i>
                         </a>
                     </h1>

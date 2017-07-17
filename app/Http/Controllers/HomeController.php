@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Libraries\BrowserHistory\BrowserHistory;
+
 class HomeController extends Controller {
 
     /**
@@ -16,5 +18,13 @@ class HomeController extends Controller {
      */
     public function welcome(){
         return view('welcome');
+    }
+
+    /**
+     * Redirect to previous BrowserHistory URI
+     */
+    public function redirectBack(){
+        /** @var BrowserHistory */
+        return \BrowserHistory::back();
     }
 }

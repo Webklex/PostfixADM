@@ -35,7 +35,7 @@
                     <md-card-title>
                         <md-card-title-text>
                             <h1 class="display-inline-block vertical-align-middle">
-                                <a href="/user" title="@t('Back')" class="clickable">
+                                <a href="/redirect/back" title="@t('Back')" class="clickable">
                                     <i class="material-icons md-color-default">arrow_back</i>
                                 </a>
                                 @t('Update user')

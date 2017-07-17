@@ -32,10 +32,11 @@ Route::group(['middleware' => ['installer', 'locale']], function () {
 
 Route::group(['middleware' => ['auth', 'locale']], function () {
 
-    Route::get('/home',      'HomeController@welcome');
-    Route::get('/logout',    'Auth\AuthController@logout');
-    Route::get('/account',   'UserController@getAccount');
-    Route::post('/account',  'UserController@updateAccount');
+    Route::get('/redirect/back', 'HomeController@redirectBack');
+    Route::get('/home',          'HomeController@welcome');
+    Route::get('/logout',        'Auth\AuthController@logout');
+    Route::get('/account',       'UserController@getAccount');
+    Route::post('/account',      'UserController@updateAccount');
 
     Route::get('/settings/2fa/enable',    'Google2FAController@enableTwoFactor');
     Route::get('/settings/2fa/disable',   'Google2FAController@disableTwoFactor');
