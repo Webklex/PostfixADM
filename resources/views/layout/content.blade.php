@@ -48,11 +48,11 @@
     @yield('content')
 </md-content>
 
-<md-sidenav class="md-sidenav-right" md-component-id="main-side-navigation" md-whiteframe="4">
+<md-sidenav class="md-sidenav-right" md-component-id="main-side-navigation" md-whiteframe="4" style="max-height: 100%;">
     <div ng-controller="navigationController as nav">
 
-        <md-content class="m-0 p-0">
-            <md-menu-content class="m-0 p-0">
+        <md-content class="m-0 p-0" style="max-height: 100%;">
+            <md-menu-content class="m-0 p-0" style="max-height: 100%;">
 
                 <h3 flex="100">@t('Sprache')</h3>
 
@@ -72,6 +72,52 @@
 
 
                 @if(auth()->check())
+
+                    <h3 flex="100">@t('Mailbox management')</h3>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <a class="md-button" href="/mailbox">@t('View all')</a>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <a class="md-button" href="/mailbox/create">@t('Create new')</a>
+                    </md-menu-item>
+
+                    <h3 flex="100">@t('Alias management')</h3>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <a class="md-button" href="/alias">@t('View all')</a>
+                    </md-menu-item>
+                    <md-menu-divider></md-menu-divider>
+                    <md-menu-item>
+                        <a class="md-button" href="/alias/create">@t('Create new')</a>
+                    </md-menu-item>
+
+
+                    @if(isSuperUser() == true)
+
+                        <h3 flex="100">@t('Domain management')</h3>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <a class="md-button" href="/domain">@t('View all')</a>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <a class="md-button" href="/domain/create">@t('Create new')</a>
+                        </md-menu-item>
+
+                        <h3 flex="100">@t('User management')</h3>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <a class="md-button" href="/user">@t('View all')</a>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <a class="md-button" href="/user/create">@t('Create new')</a>
+                        </md-menu-item>
+                    @endif
+
+
                     <h3 flex="100">@t('System')</h3>
                     <md-menu-divider></md-menu-divider>
                     <md-menu-item>
@@ -92,14 +138,16 @@
                                 @t('Settings')
                             </a>
                         </md-menu-item>
+                        {{--
                         <md-menu-divider></md-menu-divider>
                         <md-menu-item>
                             <a href="/update" class="md-button">
                                 @t('Update')
                             </a>
                         </md-menu-item>
+                        --}}
                     @endif
-                    <hr></hr>
+                    <hr />
                     <md-menu-item>
                         <a href="/logout" class="md-button color-red">
                             @t('Logout')

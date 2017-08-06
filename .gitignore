@@ -14,3 +14,4 @@ Homestead.yaml
 /storage/patches/1*
 /gulp.env
 /resources/assets/tmp/
+/installer.lock

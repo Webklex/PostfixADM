@@ -34,7 +34,7 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content layout-wrap layout="row" flex="100" class="text-center mt-32" layout-align="center center">
-                <a class="md-button md-primary md-raised md-primary" href="/">@t('Back')</a>
+                <a class="md-button md-primary md-raised md-primary" href="/redirect/back">@t('Back')</a>
             </md-card-content>
         </md-card>
 

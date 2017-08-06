@@ -9,21 +9,25 @@
  *  -
  */
 
-$color-success: #b3ff3d;
-$color-info: #4379aa;
-$color-warning: #FFF001;
-$color-danger:  #ff3a3f;
-$color-disabled: #ccc;
-$color-white: #FFF;
 
 $color-black: rgba(0,0,0,0.87);
+$color-white: rgba(197, 197, 197, 0.84);
+$color-disabled: $color-white;
+
+$brand-primary: rgb(0, 76, 110);
+$brand-primary-2: rgba(0, 101, 145, 1);
+$brand-info: $brand-primary-2;
+$brand-success: rgb(32, 114, 50);
+$brand-warning: rgb(198, 84, 56);
+$brand-danger: rgb(198,40,40);
+
+
+$color-success: $brand-success;
+$color-info: $brand-primary-2;
+$color-warning: $brand-warning;
+$color-danger:  $brand-danger;
+
 
 // Brands
 //$brand-primary: #234891;
 //$brand-primary-2: #0D296A;
-$brand-primary: #DEAB35;
-$brand-primary-2: #293893;
-$brand-info: #5A5A5C;
-$brand-success: #b3ff3d;
-$brand-warning: #cbb956;
-$brand-danger: #ff6920;

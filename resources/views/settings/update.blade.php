@@ -76,7 +76,7 @@
                             @t('The setup requires some minor linux know-how.')
                             <br />
                             <br />
-                            @t('Follow the link if you need further assistant'): <a target="_blank" href="https://wwww.github.com/webklex/postfixadm">Github Wiki</a>
+                            @t('Follow the link if you need further assistant'): <a target="_blank" href="https://github.com/Webklex/PostfixADM/wiki">Github Wiki</a>
                         </p>
                         <md-list flex="100">
 
@@ -190,7 +190,7 @@
 
                             <md-divider></md-divider>
 
-
+                            {{--
                             <md-list-item layout="row" class="pr-0">
                                 <p flex="nogrow">@t('Software update'):</p>
                                 <div flex></div>
@@ -198,6 +198,7 @@
                             </md-list-item>
 
                             <md-divider></md-divider>
+                            --}}
 
                         </md-list>
 

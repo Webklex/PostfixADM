@@ -20,9 +20,7 @@
     function updaterController($http) {
         var vm = this;
 
-        vm.data = {
-
-        };
+        vm.data = {};
 
         vm.started = false;
         vm.completed = false;

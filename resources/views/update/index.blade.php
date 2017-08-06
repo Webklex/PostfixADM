@@ -45,7 +45,7 @@
             </md-card-content>
             <md-card-actions layout="row" layout-align="end center">
                 @if($currentVersion != $nextVersion && $nextVersion != null)
-                    <a class="md-button md-primary md-raised m-8" href="/update/start/{{$nextVersion}}">@t('Download files and start the update')</a>
+                    <a class="md-button md-primary md-raised mai-8" href="/update/start/{{$nextVersion}}">@t('Download files and start the update')</a>
                 @endif
             </md-card-actions>
         </md-card>

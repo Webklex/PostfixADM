@@ -32,7 +32,7 @@ $danger: rgb(198,40,40);
   color: lighten($success, 10);
 }
 .md-color-white {
-  color: rgba(197, 197, 197, 0.84);
+  color: $default;
 }
 
 .pfa-label {
@@ -58,4 +58,56 @@ $danger: rgb(198,40,40);
     background-color: $danger;
     color: #ffffff;
   }
+}
+
+
+
+.md-color-info, .md-color-blue, .md-color-ok{
+  color: $info;
+}
+
+.md-color-danger, .md-color-red, .md-color-fail{
+  color: $danger;
+}
+
+.md-color-success, .md-color-green {
+  color: $success;
+}
+
+.md-background-primary {
+  color: $default;
+  background-color: $info;
+}
+
+.md-color-white {
+  color: $default;
+}
+
+.md-icon-color-info, .md-icon-color-blue, .md-icon-color-ok{
+  fill: $info;
+}
+
+.md-icon-color-danger, .md-icon-color-red, .md-icon-color-fail{
+  fill: $danger;
+}
+
+.md-icon-color-success, .md-icon-color-green {
+  fill: $success;
+}
+
+.md-icon-background-primary {
+  fill: $default;
+  background-color: $info;
+}
+
+.md-icon-color-white {
+  fill: $default;
+}
+
+.md-icon-color-dark, .md-icon-color-black {
+  fill: $default-dark;
+}
+
+.md-color-dark, .md-color-black {
+  color: $default-dark !important;
 }

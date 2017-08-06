@@ -75,7 +75,7 @@
                         @else
                             <a href="/settings/2fa/enable" class="md-button md-accent md-raised" flex="nogrow">@t('Enable 2FA')</a>
                         @endif
-                        <md-button type="submit" class="md-raised md-primary m-8">@t('Apply changes')</md-button>
+                        <md-button type="submit" class="md-raised md-primary mai-8">@t('Apply changes')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

@@ -98,7 +98,7 @@
 
                     </md-card-content>
                     <md-card-actions layout="row" layout-align="end center">
-                        <md-button type="submit" class="md-raised md-primary m-8">@t('Update mailbox')</md-button>
+                        <md-button type="submit" class="md-raised md-primary mai-8">@t('Update mailbox')</md-button>
                     </md-card-actions>
                 </md-card>
             </form>

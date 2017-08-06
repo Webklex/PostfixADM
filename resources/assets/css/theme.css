@@ -89,36 +89,6 @@ md-content.md-content-auto-height {
     display: none;
 }
 
-.pagination {
-    list-style: none;
-    margin-left: 0;
-    padding-left: 0;
-}
-.pagination li {
-    display: inline;
-    font-size: 14px;
-    line-height: 14px;
-    padding: 2px 8px;
-    background-color: rgb(0, 99, 142);
-    border: 1px solid rgb(0, 99, 142);
-    color: #fff;
-}
-.pagination li.disabled {
-    background-color: rgba(0, 0, 0, 0.11);
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    color: rgba(0, 0, 0, 0.5);
-    display: none;
-}
-.pagination li.active {
-    color: rgb(0, 99, 142);
-    background-color: #fff;
-    border: 1px solid rgb(0, 99, 142);
-}
-.pagination li a {
-    color: rgb(212, 212, 212);
-    font-size: 14px;
-    line-height: 14px;
-}
 
 .text-center {
     text-align: center;
