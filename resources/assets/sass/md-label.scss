@@ -1,0 +1,37 @@
+/*
+ * File: md-label.scss
+ * Category: -
+ * Author: MSG
+ * Created: 22.03.17 12:43
+ * Updated: -
+ *
+ * Description:
+ *  -
+ */
+
+@import "colors";
+
+.md-label {
+  padding: 1px 8px 1px 8px;
+  color: darken($color-white, 0);
+  background-color: darken($brand-primary, 0);
+  border-radius: 2px;
+
+  &.md-label-success {
+    background-color: darken($color-success, 0);
+    color: $color-black !important;
+  }
+
+  &.md-label-danger {
+    background-color: darken($color-danger, 0);
+  }
+
+  &.md-label-warning {
+    background-color: darken($color-warning, 0);
+    color: $color-black !important;
+  }
+
+  &.md-label-info {
+    background-color: darken($color-info, 0);
+  }
+}

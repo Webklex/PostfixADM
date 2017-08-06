@@ -1,0 +1,46 @@
+/*
+ * File: md-toast.scss
+ * Category: -
+ * Author: MSG - Webklex
+ * URL: http://webklex.com
+ * Created: 04.05.17 15:18
+ * Updated: -
+ *
+ * Description:
+ *  -
+ */
+
+@import "colors";
+
+md-toast {
+  position: fixed;
+  bottom: 0;
+}
+
+.md-toast.error, .md-toast.danger {
+  .md-toast-content{
+	background-color: $color-danger;
+	color: $color-white;
+  }
+}
+
+.md-toast.warning, .md-toast.warning {
+  .md-toast-content{
+	background-color: $color-warning;
+	color: $color-black
+  }
+}
+
+.md-toast.success {
+  .md-toast-content{
+	background-color: $color-success;
+	color: $color-black
+  }
+}
+
+.md-toast.info {
+  .md-toast-content{
+	background-color: $color-info;
+	color: $color-white;
+  }
+}

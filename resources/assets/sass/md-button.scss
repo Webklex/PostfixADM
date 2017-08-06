@@ -1,0 +1,58 @@
+/*
+ * File: md-button.scss
+ * Category: -
+ * Author: MSG
+ * Created: 22.03.17 10:48
+ * Updated: -
+ *
+ * Description:
+ *  -
+ */
+
+
+@import "colors";
+
+.md-button-success, .md-button.md-fab.md-button-success {
+  background-color: $color-success;
+  color: $color-black !important;
+}
+.md-button.md-button-success:hover, .md-button.md-button-success:not([disabled]):hover,
+.md-fab.md-button.md-button-success:hover, .md-fab.md-button.md-button-success:not([disabled]):hover {
+  background-color: darken($color-success, 20%);
+  color: $color-black !important;
+}
+
+.md-button-danger, .md-button.md-fab.md-button-danger {
+  background-color: $color-danger !important;
+  color: $color-white !important;
+}
+.md-button.md-button-danger:hover, .md-button.md-button-danger:not([disabled]):hover,
+.md-fab.md-button.md-button-danger:hover, .md-fab.md-button.md-button-danger:not([disabled]):hover {
+  background-color: darken($color-danger, 20%) !important;
+}
+
+.md-button-warning, .md-button.md-fab.md-button-warning {
+  background-color: $color-warning !important;
+  color: $color-black !important;
+}
+.md-button.md-button-warning:hover, .md-button.md-button-warning:not([disabled]):hover,
+.md-button.md-fab.md-button-warning:hover, .md-button.md-fab.md-button-warning:not([disabled]):hover {
+  background-color: darken($color-warning, 20%) !important;
+}
+
+.md-button-info, .md-button.md-fab.md-button-info {
+  background-color: $color-info !important;
+  color: $color-white !important;
+}
+.md-button.md-button-info:hover, .md-button.md-button-info:not([disabled]):hover,
+.md-button.md-fab.md-button-info:hover, .md-button.md-fab.md-button-info:not([disabled]):hover {
+  background-color: darken($color-info, 20%) !important;
+}
+
+.md-button.md-button-success[disabled], .md-button.md-fab.md-button-success[disabled] {
+  background-color: darken($color-disabled, 0%);
+}
+
+.md-button.md-button-success[disabled]:hover, .md-button.md-fab.md-button-success[disabled]:hover {
+  background-color: darken($color-disabled, 10%);
+}
