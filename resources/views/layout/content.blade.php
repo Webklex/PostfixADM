@@ -25,7 +25,7 @@
                                 <div class="material-icons" style="color: white;">verified_user</div>
                                 Postfix <span class="part-two">ADM</span>
                             </h1>
-                            <h1 class="pa-header-title md-display-2 m-1 show-sm show-xs hide-gt-sm">
+                            <h1 class="pa-header-title md-display-2 m-1 show-sm show-xs hide-gt-sm mt-8 mb-0">
                                 <div class="material-icons" style="color: white;">verified_user</div>
                                 <span class="part-two">PFA</span>
                             </h1>

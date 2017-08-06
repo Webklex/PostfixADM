@@ -70,13 +70,13 @@
 
                         <md-input-container flex="100" ng-repeat="destination in vm.data.destination track by $index">
                             <label>@t('Target addresses')</label>
-                            <input id="destination_[[$index]]" type="text" ng-model="destination"
+                            <input id="destination_[[$index]]" type="text"  ng-model="vm.data.destination[$index]"
                                    name="destination[]" value="" required autocomplete="off">
-                            <md-icon class="material-icons md-color-default" style="display:inline-block;" ng-click="vm.removeAlias($index)">delete</md-icon>
+                            <md-icon class="material-icons md-color-default clickable" style="display:inline-block;" ng-click="vm.removeAlias($index)">delete</md-icon>
                         </md-input-container>
 
                         <div flex="100">
-                            <md-icon class="material-icons md-color-default" style="float: right; border: 1px solid #929292;" ng-click="vm.addAlias()">add</md-icon>
+                            <md-icon class="material-icons md-color-default clickable" style="float: right; border: 1px solid #929292;" ng-click="vm.addAlias()">add</md-icon>
                         </div>
 
                         @if ($errors->has('destination'))

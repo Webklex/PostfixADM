@@ -23,11 +23,12 @@
         vm.data = {
             domain_id:   null,
             source:      '',
-            destination: ['']
+            destination: []
         };
 
         vm.parse = function(json){
             vm.domains = JSON.parse(json);
+            vm.addAlias();
         };
 
         vm.addAlias = function(){

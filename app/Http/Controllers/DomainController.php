@@ -50,6 +50,7 @@ class DomainController extends Controller {
         $mDomain = new Domain();
         $mDomain->name = $request->get('name');
         $mDomain->active = 1;
+        $mDomain->save();
         $mDomain->users()->attach(auth()->user()->id);
         $mDomain->save();
 
