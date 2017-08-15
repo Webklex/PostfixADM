@@ -42,24 +42,10 @@ Fore more information please visit: [https://www.postfixadm.com](https://www.pos
 ![Installer General](https://www.webklex.com/wp-content/uploads/installer_general.png)
 ![Installer Databse mapping](https://www.webklex.com/wp-content/uploads/installer_database.png)
 
-
-## !!!ATTENTION!!!
-This is a pre alpha version. There are several things that might break or even don't work at all.
-
-### Currently known Issues
-- Update is broken and currently a bit spooky. Don't even try it ;)
-- Missing translations (Lots of german parts are remaining. But I would say round about 80% - 90% are translated)
-- Uncommented code sections
-- The code is not optimized.
-- No setup guide (documentation) for the quota service
-- Typos and weird translations
-- Official website still offline (Also no active @postfixadm.com mail - please use github[at]webklex.com for now)
-- And probably some more... But besides that it works like a charm :)
-
 ## Getting started
 
 #### The easy way
-Download the newest version at: [https://www.postfixadm.com](https://www.postfixadm.com) and unzip the 
+Download the newest version at: [https://www.postfixadm.com/download](https://www.postfixadm.com/download) and unzip the 
 content to where ever you want it to be.
 
 #### The other way
@@ -69,7 +55,19 @@ $ git clone https://github.com/Webklex/postfixadm.git
 $ cd postfixadm
 $ composer install
 $ php artisan update --init
+$ cp gulp.env.example gulp.env
 ```
+Open ```gulp.env``` and enter your environment name and development domain.
+``` bash
+$ npm install
+$ bower install
+$ gulp && gulp watch
+```
+
+## Optional: Quota service
+If you like you can enable a quota service which allows you to keep an eye on your mailbox quota usage.
+Please refer to [https://www.postfixadm.com/wiki/setup/quota_service](https://www.postfixadm.com/wiki/setup/quota_service)
+for more details.
 
 ## Development
 Copy the file ```gulp.env.example``` to ```gulp.env``` and edit the containing variables.
@@ -80,6 +78,14 @@ $ bower install
 ```
 You can bake everything together with the ```gulp``` command. If you want to develop a bit more fluent 
 just use ```gulp watch``` instead.
+
+### Currently known Issues
+- Missing or weird translations (please let me know if you find any - you'll get a cookie as well).
+- Uncommented code sections.
+- The code is not optimized.
+- (inactive @postfixadm.com mail addresses - please use github[at]webklex.com for now)
+- And probably some more... But besides that it works like a charm :)
+
 
 ## Contributing
 
